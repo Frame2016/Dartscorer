@@ -1,13 +1,1873 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#10131a"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Dartscorer"><title>Dartscorer</title><style>:root{--bg:#10131a;--p:#191f2a;--p2:#273142;--t:#f4f6fa;--m:#9da8ba;--a:#ffb000;--ok:#5ed18b;--d:#52272b}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#273040,#10131a 48%);color:var(--t);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}.wrap{max-width:1100px;margin:auto;padding:18px 16px 30px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.brand{font-size:25px;font-weight:900}.muted{color:var(--m);font-size:13px}.panel{background:#191f2af2;border:1px solid #303949;border-radius:20px;padding:16px;box-shadow:0 12px 30px #0005}.grid{display:grid;grid-template-columns:1.25fr .9fr;gap:16px}.setup{display:grid;gap:12px}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:120px}label{display:block;color:var(--m);font-size:13px;margin-bottom:6px}input,select{width:100%;background:#111620;color:var(--t);border:1px solid #303949;border-radius:12px;padding:12px}button{border:0;border-radius:13px;padding:13px 15px;background:var(--p2);color:var(--t);font-weight:800;font-size:16px}button:active{transform:scale(.98)}.primary{background:var(--a);color:#17130a}.danger{background:var(--d)}h2,h3{margin:0 0 12px}.scoreline{display:flex;justify-content:space-between;align-items:center}.turn{color:var(--a);font-weight:900}.score{font-size:62px;font-weight:900;line-height:1}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}.quick button{font-size:18px}.keypad{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.keypad button{font-size:20px;padding:16px 8px}.history{max-height:650px;overflow:auto}.round{border-bottom:1px solid #303949;padding:12px 0}.rname{font-weight:800}.darts{display:flex;gap:7px;flex-wrap:wrap;margin-top:6px}.dart{background:#252e3d;padding:6px 9px;border-radius:9px}.hidden{display:none}.winner{color:var(--ok);font-size:24px;font-weight:900}@media(max-width:820px){.grid{grid-template-columns:1fr}.history{max-height:400px}.score{font-size:52px}}</style></head><body><div class="wrap"><div class="top"><div><div class="brand">🎯 DARTSCORER</div><div class="muted">X01 · Touchscreen · Bot</div></div><button id="new">Neues Spiel</button></div><section id="setup" class="panel setup"><h2>Spiel einrichten</h2><div class="row"><div><label>Startpunktzahl</label><select id="start"><option>301</option><option selected>501</option><option>701</option></select></div><div><label>Spieler</label><select id="count"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></div><div><label>Bot-Stärke</label><select id="difficulty"><option value="easy">Einfach</option><option value="medium" selected>Mittel</option><option value="hard">Schwer</option></select></div></div><div id="names" class="row"></div><button class="primary" id="startBtn">Spiel starten</button><div class="muted">Bei 2 Spielern ist Spieler 2 automatisch ein Bot. Bei 3/4 Spielern wird ein Spieler mit dem Namen „Bot“ ebenfalls als Bot behandelt.</div></section><section id="game" class="grid hidden"><div class="panel"><div class="scoreline"><div><div id="turn" class="turn"></div><div id="stats" class="muted"></div></div><div id="score" class="score">501</div></div><h3 style="margin-top:20px">Aktuelle Aufnahme</h3><div class="muted">Gib die Summe der bis zu drei Darts ein.</div><div id="quick" class="quick"></div><div id="keypad" class="keypad"></div><div class="row" style="margin-top:10px"><button id="clear" class="danger">Löschen</button><button id="undo">Undo</button><button id="submit" class="primary">Aufnahme eintragen</button></div><div id="msg" class="muted" style="margin-top:10px"></div></div><div class="panel history"><h3>Spielverlauf</h3><div id="history"></div></div></section></div><script>
-const $=x=>document.getElementById(x);let S=null,input='';const quick=[26,41,45,60,81,85,100,121,140,125,180,59];
-function names(){let n=+$('count').value;$('names').innerHTML='';for(let i=0;i<n;i++){let d=document.createElement('div');d.innerHTML='<label>Spieler '+(i+1)+'</label><input id="p'+i+'" value="'+(i===0?'Spieler 1':i===1?'Bot':'Spieler '+(i+1))+'">';$('names').appendChild(d)}}$('count').onchange=names;names();
-function bot(p){return p.bot||p.name.trim().toLowerCase()==='bot'}function start(){let n=+$('count').value;S={start:+$('start').value,current:0,round:1,finished:false,undo:[],players:[]};for(let i=0;i<n;i++)S.players.push({name:$('p'+i).value.trim()||'Spieler '+(i+1),score:S.start,bot:i===1&&n===2,turns:0,total:0,history:[]});$('setup').classList.add('hidden');$('game').classList.remove('hidden');render();setTimeout(botTurn,400)}$('startBtn').onclick=start;$('new').onclick=()=>{S=null;$('game').classList.add('hidden');$('setup').classList.remove('hidden');};
-function render(){if(!S)return;let p=S.players[S.current];$('turn').textContent=p.name+(bot(p)?' · BOT':'')+' ist dran';$('score').textContent=p.score;$('stats').textContent='Ø Aufnahme: '+(p.turns?(p.total/p.turns).toFixed(1):'0.0')+' · Aufnahmen: '+p.turns;renderQuick();renderHistory();localStorage.setItem('dartscorer',JSON.stringify(S))}
-function renderQuick(){$('quick').innerHTML='';quick.forEach(v=>{let b=document.createElement('button');b.textContent=v;b.onclick=()=>{input=''+v;$('msg').textContent='Eingabe: '+input};$('quick').appendChild(b)})}
-function split(v){if(v===0)return ['0','0','0'];if(v<=60)return [String(v),'0','0'];let a=Math.min(60,v),b=Math.min(60,v-a);return [String(a),String(b),String(v-a-b)]}
-function renderHistory(){let h=$('history');h.innerHTML='';let max=Math.max(0,...S.players.map(p=>p.history.length));if(!max){h.innerHTML='<div class="muted">Noch keine Aufnahmen.</div>';return}for(let r=max-1;r>=0;r--){let x=document.createElement('div');x.className='round';x.innerHTML=S.players.map(p=>{let q=p.history[r];return q?'<div><span class="rname">'+p.name+'</span> · '+q.value+' → '+q.remaining+(q.bust?' · BUST':'')+'<div class="darts">'+q.darts.map(d=>'<span class="dart">'+d+'</span>').join('')+'</div></div>':''}).join('');h.appendChild(x)}}
-function snap(){S.undo.push(JSON.stringify({...S,undo:[]}));if(S.undo.length>30)S.undo.shift()}
-function submit(v,isBot=false){v=Math.max(0,Math.min(180,Math.floor(+v||0)));let p=S.players[S.current];snap();let bust=v>p.score||p.score-v===1;let rem=bust?p.score:p.score-v;p.turns++;if(!bust)p.total+=v;p.history.push({value:v,remaining:rem,bust,darts:split(v)});if(!bust)p.score=rem;if(p.score===0){S.finished=true;$('msg').innerHTML='<span class="winner">'+p.name+' gewinnt!</span>';render();return}S.current=(S.current+1)%S.players.length;if(S.current===0)S.round++;input='';$('msg').textContent=bust?'BUST – Punktzahl bleibt unverändert.':'';render();setTimeout(botTurn,450)}
-function botTurn(){if(!S||S.finished)return;let p=S.players[S.current];if(!bot(p))return;let s=p.score,d=$('difficulty').value,lo=d==='easy'?20:d==='medium'?35:45,hi=d==='easy'?70:d==='medium'?100:120,v;if(s<=170&&d!=='easy'){v=s;if(v===1||v>170)v=Math.min(s-2,120)}else v=Math.floor(Math.random()*(Math.min(hi,s)-lo+1))+lo;if(v<0)v=0;if(v===s-1)v=Math.max(0,v-2);submit(v,true)}
-$('keypad').innerHTML=[1,2,3,4,5,6,7,8,9,0,10,15,20,25,30].map(v=>'<button data-v="'+v+'">'+v+'</button>').join('');$('keypad').onclick=e=>{let b=e.target.closest('button');if(!b)return;let v=+b.dataset.v;input=String(Math.min(180,(+input||0)*10+v));$('msg').textContent='Eingabe: '+input};$('clear').onclick=()=>{input='';$('msg').textContent=''};$('submit').onclick=()=>{if(input!=='')submit(+input)};$('undo').onclick=()=>{if(!S||!S.undo.length)return;let old=JSON.parse(S.undo.pop());old.undo=S.undo;S=old;render()};
-</script></body></html>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#10151c">
+<title>Dartscorer</title>
+
+<style>
+:root {
+  --background:#10151c;
+  --header:#0b1016;
+  --panel:#1b2430;
+  --panel-light:#293848;
+  --text:#f4f7fa;
+  --muted:#aeb8c4;
+  --green:#25c281;
+  --red:#e74c3c;
+  --blue:#34475b;
+  --purple:#7658b8;
+  --line:#46586b;
+  --gold:#e6b84e;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+html,
+body {
+  width:100%;
+  height:100%;
+  margin:0;
+  overflow:hidden;
+}
+
+body {
+  display:flex;
+  flex-direction:column;
+  background:var(--background);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+header {
+  flex:0 0 54px;
+  height:54px;
+  padding:13px;
+  background:var(--header);
+  text-align:center;
+  font-size:24px;
+  font-weight:bold;
+}
+
+main {
+  width:min(1150px,100%);
+  height:calc(100dvh - 54px);
+  min-height:0;
+  margin:0 auto;
+  padding:9px;
+  overflow:hidden;
+}
+
+.hidden {
+  display:none !important;
+}
+
+.card {
+  padding:10px;
+  border-radius:10px;
+  background:var(--panel);
+}
+
+h2 {
+  margin:0 0 10px;
+  font-size:21px;
+}
+
+label {
+  display:block;
+  margin:8px 0 4px;
+  color:var(--muted);
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width:100%;
+  padding:9px;
+  border:0;
+  border-radius:7px;
+  background:#fff;
+  color:#111;
+  font-size:16px;
+}
+
+input[type="checkbox"] {
+  margin-right:8px;
+  accent-color:var(--green);
+  transform:scale(1.15);
+}
+
+button {
+  min-height:44px;
+  padding:8px;
+  border:0;
+  border-radius:8px;
+  background:var(--blue);
+  color:#fff;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+  touch-action:manipulation;
+}
+
+button:active {
+  transform:scale(.97);
+}
+
+button:disabled {
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+.primary {
+  width:100%;
+  margin-top:13px;
+  background:var(--green);
+  color:#062719;
+}
+
+.secondary {
+  background:#607286;
+}
+
+.danger {
+  width:100%;
+  margin-top:8px;
+  background:var(--red);
+}
+
+.hint {
+  margin:9px 0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+}
+
+#setupScreen {
+  max-height:100%;
+  overflow-y:auto;
+}
+
+#gameScreen {
+  width:100%;
+  height:100%;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+#gameScreen > .card:first-child {
+  flex:0 0 59%;
+  min-height:0;
+  overflow:hidden;
+}
+
+#gameScreen > .card:last-child {
+  flex:1 1 41%;
+  min-height:0;
+  overflow:hidden;
+}
+
+.player-grid {
+  width:100%;
+  height:100%;
+  min-height:0;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+
+.player-grid.players-1,
+.player-grid.players-2 {
+  grid-template-rows:minmax(0,1fr);
+}
+
+.player-grid.players-3,
+.player-grid.players-4 {
+  grid-template-rows:repeat(2,minmax(0,1fr));
+}
+
+.player-card {
+  min-width:0;
+  min-height:0;
+  padding:6px;
+  border:2px solid transparent;
+  border-radius:9px;
+  background:var(--panel-light);
+  text-align:center;
+  overflow:hidden;
+}
+
+.player-card.active {
+  border-color:var(--green);
+}
+
+.player-name {
+  height:19px;
+  overflow:hidden;
+  color:var(--muted);
+  font-size:16px;
+  line-height:19px;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.bot-label {
+  display:inline-block;
+  margin-left:4px;
+  color:var(--gold);
+  font-size:11px;
+}
+
+.player-score {
+  height:40px;
+  font-size:34px;
+  font-weight:bold;
+  line-height:40px;
+}
+
+.player-legs {
+  height:20px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:20px;
+}
+
+.history-title {
+  height:22px;
+  margin-top:3px;
+  color:var(--muted);
+  text-align:left;
+  font-size:14px;
+  font-weight:bold;
+  line-height:22px;
+}
+
+.history-box {
+  height:calc(100% - 101px);
+  min-height:0;
+  overflow:hidden;
+  border-radius:5px;
+  background:rgba(0,0,0,.16);
+}
+
+.score-history {
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+  font-size:20px;
+  line-height:1.1;
+  text-align:left;
+}
+
+.score-history th,
+.score-history td {
+  height:30px;
+  padding:4px 5px;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+.score-history th {
+  background:rgba(0,0,0,.18);
+  color:var(--muted);
+  font-size:15px;
+  font-weight:normal;
+}
+
+.score-history th:first-child,
+.score-history td:first-child {
+  width:20%;
+}
+
+.score-history th:nth-child(2),
+.score-history td:nth-child(2) {
+  width:30%;
+}
+
+.score-history th:nth-child(3),
+.score-history td:nth-child(3) {
+  width:30%;
+}
+
+.score-history th:last-child,
+.score-history td:last-child {
+  width:20%;
+  text-align:right;
+}
+
+.bust {
+  color:var(--red);
+  font-weight:bold;
+}
+
+.checkout-mark {
+  color:var(--gold);
+  font-weight:bold;
+}
+
+.scoring-area {
+  width:100%;
+  height:100%;
+  min-height:0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  overflow:hidden;
+}
+
+.input-column,
+.quick-column {
+  min-width:0;
+  min-height:0;
+  overflow:hidden;
+}
+
+.input-display {
+  height:48px;
+  margin-bottom:8px;
+  padding:7px;
+  border-radius:8px;
+  background:#090d12;
+  color:var(--green);
+  text-align:center;
+  font-size:32px;
+  font-weight:bold;
+  letter-spacing:5px;
+  line-height:34px;
+}
+
+.keypad {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:5px;
+}
+
+.keypad button {
+  min-height:39px;
+  font-size:19px;
+}
+
+.quick-scores {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+}
+
+.quick-scores button {
+  min-height:43px;
+  background:var(--purple);
+  font-size:17px;
+}
+
+.checkout-area {
+  display:none;
+  margin-top:8px;
+}
+
+.checkout-area.visible {
+  display:block;
+}
+
+.checkout-title {
+  margin-bottom:5px;
+  color:var(--gold);
+  font-size:14px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.checkout-buttons {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:5px;
+}
+
+.checkout-buttons button {
+  min-height:40px;
+  background:var(--gold);
+  color:#211700;
+  font-size:17px;
+}
+
+.action-row {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  margin-top:7px;
+}
+
+.action-row button {
+  min-height:39px;
+  font-size:14px;
+}
+
+#statsScreen {
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
+
+.stats-wrap {
+  width:100%;
+  height:100%;
+  overflow-y:auto;
+}
+
+.stats-table {
+  width:100%;
+  border-collapse:collapse;
+  margin-top:8px;
+  font-size:14px;
+}
+
+.stats-table th,
+.stats-table td {
+  padding:7px 5px;
+  border-bottom:1px solid var(--line);
+  text-align:left;
+}
+
+.stats-table th {
+  color:var(--muted);
+  font-weight:normal;
+}
+
+.stats-table td:not(:first-child),
+.stats-table th:not(:first-child) {
+  text-align:right;
+}
+
+.stat-note {
+  margin:8px 0;
+  color:var(--muted);
+  font-size:12px;
+}
+
+@media (max-width:820px) {
+  header {
+    height:50px;
+    flex-basis:50px;
+    padding:12px;
+    font-size:21px;
+  }
+
+  main {
+    height:calc(100dvh - 50px);
+    padding:7px;
+  }
+
+  #gameScreen {
+    gap:7px;
+  }
+
+  .card {
+    padding:7px;
+  }
+
+  .player-grid {
+    gap:6px;
+  }
+
+  .player-card {
+    padding:4px;
+  }
+
+  .player-name {
+    height:17px;
+    font-size:13px;
+    line-height:17px;
+  }
+
+  .player-score {
+    height:32px;
+    font-size:28px;
+    line-height:32px;
+  }
+
+  .player-legs {
+    height:18px;
+    font-size:10px;
+    line-height:18px;
+  }
+
+  .history-title {
+    height:18px;
+    margin-top:2px;
+    font-size:11px;
+    line-height:18px;
+  }
+
+  .history-box {
+    height:calc(100% - 84px);
+  }
+
+  .score-history {
+    font-size:16px;
+  }
+
+  .score-history th {
+    font-size:12px;
+  }
+
+  .score-history th,
+  .score-history td {
+    height:25px;
+    padding:3px;
+  }
+
+  .input-display {
+    height:40px;
+    margin-bottom:5px;
+    padding:4px;
+    font-size:27px;
+    line-height:31px;
+  }
+
+  .keypad {
+    gap:3px;
+  }
+
+  .keypad button {
+    min-height:32px;
+    padding:4px;
+    font-size:16px;
+  }
+
+  .quick-scores {
+    gap:3px;
+  }
+
+  .quick-scores button {
+    min-height:35px;
+    padding:4px;
+    font-size:14px;
+  }
+
+  .checkout-area {
+    margin-top:5px;
+  }
+
+  .checkout-title {
+    margin-bottom:3px;
+    font-size:11px;
+  }
+
+  .checkout-buttons {
+    gap:3px;
+  }
+
+  .checkout-buttons button {
+    min-height:32px;
+    padding:3px;
+    font-size:13px;
+  }
+
+  .action-row {
+    gap:4px;
+    margin-top:5px;
+  }
+
+  .action-row button,
+  .danger {
+    min-height:32px;
+    padding:4px;
+    font-size:12px;
+  }
+
+  .danger {
+    margin-top:5px;
+  }
+}
+
+@media (max-width:520px) {
+  .player-grid {
+    gap:4px;
+  }
+
+  .player-card {
+    padding:3px;
+  }
+
+  .player-name {
+    font-size:11px;
+  }
+
+  .player-score {
+    font-size:23px;
+  }
+
+  .score-history {
+    font-size:14px;
+  }
+
+  .score-history th {
+    font-size:10px;
+  }
+
+  .score-history th,
+  .score-history td {
+    height:22px;
+    padding:2px;
+  }
+
+  .history-title {
+    font-size:9px;
+  }
+
+  .scoring-area {
+    gap:5px;
+  }
+
+  .quick-scores button {
+    font-size:12px;
+  }
+
+  .keypad button {
+    font-size:15px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>Dartscorer 🎯</header>
+
+<main>
+
+<section id="setupScreen" class="card">
+  <h2>Neues Spiel</h2>
+
+  <label for="gameMode">Startpunktzahl</label>
+  <select id="gameMode">
+    <option value="301">301</option>
+    <option value="501" selected>501</option>
+    <option value="1001">1001</option>
+  </select>
+
+  <label for="playerCount">Anzahl Spieler</label>
+  <select id="playerCount" onchange="updatePlayerFields()">
+    <option value="1">1 Spieler</option>
+    <option value="2" selected>2 Spieler</option>
+    <option value="3">3 Spieler</option>
+    <option value="4">4 Spieler</option>
+  </select>
+
+  <label for="setsToWin">Benötigte Sätze zum Matchgewinn</label>
+  <input type="number" id="setsToWin" min="1" max="99" value="2">
+
+  <label for="legsToWin">Benötigte Legs pro Satz</label>
+  <input type="number" id="legsToWin" min="1" max="99" value="3">
+
+  <div id="playerFields"></div>
+
+  <label>
+    <input type="checkbox" id="doubleOut" checked>
+    Double-Out verwenden
+  </label>
+
+  <div id="botOptions">
+    <label>
+      <input type="checkbox" id="playerTwoBot" onchange="toggleBotDifficulty()">
+      Spieler 2 ist ein Bot
+    </label>
+
+    <div id="botDifficultyBox" class="hidden">
+      <label for="botDifficulty">Bot-Schwierigkeit</label>
+      <select id="botDifficulty">
+        <option value="1">Stufe 1 – Anfänger</option>
+        <option value="2">Stufe 2 – Gelegenheitsspieler</option>
+        <option value="3" selected>Stufe 3 – Durchschnittlich</option>
+        <option value="4">Stufe 4 – Fortgeschritten</option>
+        <option value="5">Stufe 5 – Sehr stark</option>
+      </select>
+    </div>
+  </div>
+
+  <p class="hint">
+    Die Checkout-Auswahl erscheint nur nach einem erfolgreichen Checkout.
+    Angeboten werden ausschließlich Checkout-Varianten, die mit der
+    angegebenen Dartanzahl tatsächlich möglich sind. Die normale Eingabe
+    bleibt jederzeit möglich.
+  </p>
+
+  <button class="primary" onclick="startGame()">Spiel starten</button>
+</section>
+
+<section id="gameScreen" class="hidden">
+  <div class="card">
+    <div id="players" class="player-grid"></div>
+  </div>
+
+  <div class="card">
+    <div class="scoring-area">
+
+      <div class="input-column">
+        <div id="inputDisplay" class="input-display">000</div>
+
+        <div class="keypad">
+          <button onclick="pressKey('1')">1</button>
+          <button onclick="pressKey('2')">2</button>
+          <button onclick="pressKey('3')">3</button>
+          <button onclick="pressKey('4')">4</button>
+          <button onclick="pressKey('5')">5</button>
+          <button onclick="pressKey('6')">6</button>
+          <button onclick="pressKey('7')">7</button>
+          <button onclick="pressKey('8')">8</button>
+          <button onclick="pressKey('9')">9</button>
+          <button class="secondary" onclick="clearInput()">C</button>
+          <button onclick="pressKey('0')">0</button>
+          <button class="secondary" onclick="backspace()">⌫</button>
+        </div>
+
+        <div id="checkoutArea" class="checkout-area">
+          <div class="checkout-title">
+            Checkout-Darts auswählen
+          </div>
+          <div id="checkoutButtons" class="checkout-buttons"></div>
+        </div>
+
+        <div class="action-row">
+          <button class="secondary" onclick="undo()">Rückgängig</button>
+          <button class="primary" onclick="submitScore()">Eingeben</button>
+        </div>
+      </div>
+
+      <div class="quick-column">
+        <div class="quick-scores">
+          <button onclick="quickScore(26)">26</button>
+          <button onclick="quickScore(41)">41</button>
+          <button onclick="quickScore(45)">45</button>
+          <button onclick="quickScore(57)">57</button>
+          <button onclick="quickScore(60)">60</button>
+          <button onclick="quickScore(81)">81</button>
+          <button onclick="quickScore(85)">85</button>
+          <button onclick="quickScore(100)">100</button>
+          <button onclick="quickScore(140)">140</button>
+        </div>
+
+        <button class="danger" onclick="showStatistics()">
+          Statistik
+        </button>
+
+        <button class="danger" onclick="newGame()">
+          Neues Spiel
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="statsScreen" class="card hidden">
+  <div class="stats-wrap">
+    <h2>Match-Statistik</h2>
+    <div id="statsContent"></div>
+    <button class="primary" onclick="closeStatistics()">Zum Spiel zurück</button>
+    <button class="danger" onclick="newGame()">Neues Spiel</button>
+  </div>
+</section>
+
+</main>
+
+<script>
+let state = {
+  started:false,
+  matchOver:false,
+  pendingCheckout:null,
+  startScore:501,
+  doubleOut:true,
+  setsToWin:2,
+  legsToWin:3,
+  players:[],
+  currentPlayer:0,
+  history:[]
+};
+
+let currentInput = "";
+let botTimer = null;
+let botThinking = false;
+
+/* -----------------------------
+   Grundfunktionen
+----------------------------- */
+
+function emptyCheckoutStats() {
+  return {
+    attempts:0,
+    hits:0,
+    darts1:0,
+    darts2:0,
+    darts3:0,
+    totalDarts:0
+  };
+}
+
+function emptyMatchStats() {
+  return {
+    totalPoints:0,
+    totalDarts:0,
+    totalTurns:0,
+    firstNinePoints:0,
+    firstNineTurns:0,
+    highestScore:0,
+    highestCheckout:0,
+    scores100:0,
+    scores140:0,
+    scores180:0,
+    legsWon:0,
+    setsWon:0,
+    legDarts:[],
+    bestLeg:null
+  };
+}
+
+function updatePlayerFields() {
+  const count = Number(document.getElementById("playerCount").value);
+  const container = document.getElementById("playerFields");
+
+  container.innerHTML = "";
+
+  for (let i = 1; i <= count; i++) {
+    container.innerHTML += `
+      <label for="player${i}">Name Spieler ${i}</label>
+      <input type="text" id="player${i}" value="Spieler ${i}" maxlength="20">
+    `;
+  }
+
+  const botOptions = document.getElementById("botOptions");
+
+  if (count === 2) {
+    botOptions.classList.remove("hidden");
+  } else {
+    botOptions.classList.add("hidden");
+    document.getElementById("playerTwoBot").checked = false;
+    document.getElementById("botDifficultyBox").classList.add("hidden");
+  }
+}
+
+function toggleBotDifficulty() {
+  const isBot = document.getElementById("playerTwoBot").checked;
+  document.getElementById("botDifficultyBox")
+    .classList.toggle("hidden", !isBot);
+}
+
+function startGame() {
+  const count = Number(document.getElementById("playerCount").value);
+  const startScore = Number(document.getElementById("gameMode").value);
+
+  const setsToWin = Math.max(
+    1,
+    Number(document.getElementById("setsToWin").value) || 1
+  );
+
+  const legsToWin = Math.max(
+    1,
+    Number(document.getElementById("legsToWin").value) || 1
+  );
+
+  const doubleOut = document.getElementById("doubleOut").checked;
+  const isBot = count === 2 &&
+    document.getElementById("playerTwoBot").checked;
+
+  const botDifficulty =
+    Number(document.getElementById("botDifficulty").value);
+
+  const players = [];
+
+  for (let i = 1; i <= count; i++) {
+    let name = document.getElementById("player" + i).value.trim();
+    const playerIsBot = i === 2 && isBot;
+
+    if (playerIsBot) {
+      name = "Bot";
+    }
+
+    players.push({
+      name:name || "Spieler " + i,
+      score:startScore,
+      legs:0,
+      sets:0,
+      turns:[],
+      legResults:[],
+      isBot:playerIsBot,
+      difficulty:playerIsBot ? botDifficulty : 0,
+      checkoutStats:emptyCheckoutStats(),
+      matchStats:emptyMatchStats()
+    });
+  }
+
+  state = {
+    started:true,
+    matchOver:false,
+    pendingCheckout:null,
+    startScore,
+    doubleOut,
+    setsToWin,
+    legsToWin,
+    players,
+    currentPlayer:0,
+    history:[]
+  };
+
+  currentInput = "";
+  botThinking = false;
+
+  document.getElementById("setupScreen").classList.add("hidden");
+  document.getElementById("statsScreen").classList.add("hidden");
+  document.getElementById("gameScreen").classList.remove("hidden");
+
+  render();
+  startBotIfNeeded();
+}
+
+/* -----------------------------
+   Checkout-Berechnung
+----------------------------- */
+
+function checkoutValues(doubleOut) {
+  if (!doubleOut) {
+    return Array.from({length:60}, (_, i) => i + 1);
+  }
+
+  const values = [];
+
+  for (let n = 1; n <= 20; n++) {
+    values.push(n * 2);
+  }
+
+  values.push(50);
+  return values;
+}
+
+function canFinish(score, darts, doubleOut) {
+  if (score <= 0 || darts < 1 || darts > 3) {
+    return false;
+  }
+
+  const finalDartValues = checkoutValues(doubleOut);
+
+  if (darts === 1) {
+    return finalDartValues.includes(score);
+  }
+
+  let reachable = new Set([0]);
+
+  for (let i = 0; i < darts - 1; i++) {
+    const next = new Set();
+
+    for (const current of reachable) {
+      for (let value = 0; value <= 60; value++) {
+        next.add(current + value);
+      }
+    }
+
+    reachable = next;
+  }
+
+  for (const value of finalDartValues) {
+    if (reachable.has(score - value)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function legalCheckoutDarts(score) {
+  return [1, 2, 3].filter(darts =>
+    canFinish(score, darts, state.doubleOut)
+  );
+}
+
+/* -----------------------------
+   Anzeige
+----------------------------- */
+
+function render() {
+  if (!state.started) {
+    return;
+  }
+
+  const playersContainer = document.getElementById("players");
+
+  playersContainer.className =
+    "player-grid players-" + state.players.length;
+
+  playersContainer.innerHTML = state.players.map((player, index) => {
+    const recentTurns = player.turns.slice(-5);
+    const rows = [];
+
+    for (let i = 0; i < 5; i++) {
+      const turn = recentTurns[i];
+
+      if (!turn) {
+        rows.push(`
+          <tr>
+            <td></td><td></td><td></td><td></td>
+          </tr>
+        `);
+      } else {
+        rows.push(`
+          <tr>
+            <td>${turn.number}</td>
+            <td class="${turn.bust ? "bust" : ""}">
+              ${turn.bust ? "Bust" : turn.score}
+            </td>
+            <td>${turn.rest}</td>
+            <td class="${turn.checkoutDarts ? "checkout-mark" : ""}">
+              ${turn.checkoutDarts ? turn.checkoutDarts + "D" : ""}
+            </td>
+          </tr>
+        `);
+      }
+    }
+
+    return `
+      <div class="player-card ${
+        index === state.currentPlayer ? "active" : ""
+      }">
+        <div class="player-name">
+          ${escapeHtml(player.name)}
+          ${player.isBot
+            ? '<span class="bot-label">BOT</span>'
+            : ""}
+        </div>
+
+        <div class="player-score">${player.score}</div>
+
+        <div class="player-legs">
+          Sätze: ${player.sets} · Legs: ${player.legs}
+        </div>
+
+        <div class="history-title">Letzte 5 Aufnahmen</div>
+
+        <div class="history-box">
+          <table class="score-history">
+            <thead>
+              <tr>
+                <th>Aufn.</th>
+                <th>Score</th>
+                <th>Rest</th>
+                <th>CO</th>
+              </tr>
+            </thead>
+            <tbody>${rows.join("")}</tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  const player = state.players[state.currentPlayer];
+  const checkoutArea = document.getElementById("checkoutArea");
+  const checkoutButtons = document.getElementById("checkoutButtons");
+
+  const pending = state.pendingCheckout !== null;
+
+  checkoutArea.classList.toggle("visible", pending);
+  checkoutButtons.innerHTML = "";
+
+  if (pending) {
+    const options = legalCheckoutDarts(
+      state.pendingCheckout.checkoutScore
+    );
+
+    options.forEach(darts => {
+      const button = document.createElement("button");
+      button.textContent = darts;
+      button.onclick = () => completeCheckout(darts);
+      button.disabled = botThinking || state.matchOver;
+      checkoutButtons.appendChild(button);
+    });
+  }
+
+  document.getElementById("inputDisplay").textContent =
+    currentInput === ""
+      ? "000"
+      : currentInput.padStart(3, "0");
+
+  const controls = document.querySelectorAll(
+    ".keypad button, .quick-scores button, .action-row button"
+  );
+
+  controls.forEach(button => {
+    button.disabled =
+      botThinking ||
+      state.matchOver ||
+      pending ||
+      isCurrentPlayerBot();
+  });
+
+  saveState();
+}
+
+/* -----------------------------
+   Eingabe
+----------------------------- */
+
+function pressKey(number) {
+  if (
+    botThinking ||
+    state.matchOver ||
+    state.pendingCheckout ||
+    isCurrentPlayerBot()
+  ) {
+    return;
+  }
+
+  if (currentInput.length >= 3) {
+    return;
+  }
+
+  const proposed = currentInput + number;
+
+  if (Number(proposed) > 180) {
+    return;
+  }
+
+  currentInput = proposed;
+  render();
+}
+
+function quickScore(score) {
+  if (
+    botThinking ||
+    state.matchOver ||
+    state.pendingCheckout ||
+    isCurrentPlayerBot()
+  ) {
+    return;
+  }
+
+  currentInput = String(score);
+  submitScore();
+}
+
+function clearInput() {
+  if (
+    botThinking ||
+    state.matchOver ||
+    state.pendingCheckout ||
+    isCurrentPlayerBot()
+  ) {
+    return;
+  }
+
+  currentInput = "";
+  render();
+}
+
+function backspace() {
+  if (
+    botThinking ||
+    state.matchOver ||
+    state.pendingCheckout ||
+    isCurrentPlayerBot()
+  ) {
+    return;
+  }
+
+  currentInput = currentInput.slice(0, -1);
+  render();
+}
+
+function submitScore() {
+  if (
+    !state.started ||
+    state.matchOver ||
+    state.pendingCheckout ||
+    isCurrentPlayerBot()
+  ) {
+    return;
+  }
+
+  processScore(Number(currentInput || 0));
+}
+
+/* -----------------------------
+   Spielverarbeitung
+----------------------------- */
+
+function processScore(score) {
+  if (
+    !state.started ||
+    state.matchOver ||
+    state.pendingCheckout
+  ) {
+    return;
+  }
+
+  const player = state.players[state.currentPlayer];
+
+  if (score < 0 || score > 180) {
+    return;
+  }
+
+  saveHistory();
+
+  const oldScore = player.score;
+  const newScore = oldScore - score;
+  const turnNumber = player.turns.length + 1;
+
+  if (oldScore > 0 && oldScore <= 170) {
+    player.checkoutStats.attempts++;
+  }
+
+  let bust = false;
+
+  if (newScore < 0) {
+    bust = true;
+  }
+
+  if (state.doubleOut && newScore === 1) {
+    bust = true;
+  }
+
+  if (bust) {
+    player.turns.push({
+      number:turnNumber,
+      score,
+      rest:oldScore,
+      bust:true,
+      checkoutDarts:null
+    });
+
+    player.matchStats.totalTurns++;
+    player.matchStats.totalDarts += 3;
+    currentInput = "";
+    nextPlayer();
+    return;
+  }
+
+  player.score = newScore;
+
+  player.turns.push({
+    number:turnNumber,
+    score,
+    rest:newScore,
+    bust:false,
+    checkoutDarts:null
+  });
+
+  player.matchStats.totalPoints += score;
+  player.matchStats.totalTurns++;
+  player.matchStats.highestScore =
+    Math.max(player.matchStats.highestScore, score);
+
+  if (score >= 100) {
+    player.matchStats.scores100++;
+  }
+
+  if (score >= 140) {
+    player.matchStats.scores140++;
+  }
+
+  if (score === 180) {
+    player.matchStats.scores180++;
+  }
+
+  if (player.turns.length <= 3) {
+    player.matchStats.firstNinePoints += score;
+    player.matchStats.firstNineTurns++;
+  }
+
+  if (newScore === 0) {
+    state.pendingCheckout = {
+      playerIndex:state.currentPlayer,
+      turnIndex:player.turns.length - 1,
+      checkoutScore:oldScore
+    };
+
+    currentInput = "";
+    render();
+
+    if (player.isBot) {
+      const options = legalCheckoutDarts(oldScore);
+      const darts =
+        options[Math.floor(Math.random() * options.length)];
+      completeCheckout(darts);
+    }
+
+    return;
+  }
+
+  player.matchStats.totalDarts += 3;
+  currentInput = "";
+  nextPlayer();
+}
+
+function completeCheckout(darts) {
+  if (!state.pendingCheckout || state.matchOver) {
+    return;
+  }
+
+  const checkoutScore = state.pendingCheckout.checkoutScore;
+  const legalOptions = legalCheckoutDarts(checkoutScore);
+
+  if (!legalOptions.includes(darts)) {
+    return;
+  }
+
+  const playerIndex = state.pendingCheckout.playerIndex;
+  const turnIndex = state.pendingCheckout.turnIndex;
+  const player = state.players[playerIndex];
+  const turn = player.turns[turnIndex];
+
+  if (!turn) {
+    state.pendingCheckout = null;
+    render();
+    return;
+  }
+
+  turn.checkoutDarts = darts;
+
+  player.checkoutStats.hits++;
+  player.checkoutStats["darts" + darts]++;
+  player.checkoutStats.totalDarts += darts;
+
+  player.matchStats.totalDarts += darts;
+  player.matchStats.highestCheckout =
+    Math.max(player.matchStats.highestCheckout, checkoutScore);
+
+  finishLeg(player);
+}
+
+function finishLeg(player) {
+  const dartsInLeg = player.matchStats.totalDarts -
+    player.legResults.reduce((sum, leg) => sum + leg.darts, 0);
+
+  player.legResults.push({
+    darts:dartsInLeg,
+    points:state.startScore
+  });
+
+  player.matchStats.legsWon++;
+  player.matchStats.legDarts.push(dartsInLeg);
+
+  if (
+    player.matchStats.bestLeg === null ||
+    dartsInLeg < player.matchStats.bestLeg
+  ) {
+    player.matchStats.bestLeg = dartsInLeg;
+  }
+
+  player.legs++;
+
+  if (player.legs >= state.legsToWin) {
+    player.sets++;
+    player.matchStats.setsWon++;
+
+    if (player.sets >= state.setsToWin) {
+      state.matchOver = true;
+      state.pendingCheckout = null;
+      botThinking = false;
+      render();
+      showStatistics();
+      return;
+    }
+
+    resetLegForAllPlayers();
+    state.currentPlayer = 0;
+  } else {
+    resetLegForAllPlayers();
+    state.currentPlayer = 0;
+  }
+
+  state.pendingCheckout = null;
+  botThinking = false;
+  currentInput = "";
+  render();
+  startBotIfNeeded();
+}
+
+function resetLegForAllPlayers() {
+  state.players.forEach(player => {
+    player.score = state.startScore;
+    player.turns = [];
+  });
+}
+
+function nextPlayer() {
+  state.currentPlayer =
+    (state.currentPlayer + 1) % state.players.length;
+
+  currentInput = "";
+  botThinking = false;
+  render();
+  startBotIfNeeded();
+}
+
+/* -----------------------------
+   Bot
+----------------------------- */
+
+function isCurrentPlayerBot() {
+  const player = state.players[state.currentPlayer];
+  return player && player.isBot === true;
+}
+
+function startBotIfNeeded() {
+  if (
+    !state.started ||
+    state.matchOver ||
+    state.pendingCheckout ||
+    !isCurrentPlayerBot() ||
+    botThinking
+  ) {
+    return;
+  }
+
+  botThinking = true;
+  render();
+
+  botTimer = setTimeout(() => {
+    playBotTurn();
+  }, 900);
+}
+
+function playBotTurn() {
+  if (
+    !state.started ||
+    state.matchOver ||
+    state.pendingCheckout ||
+    !isCurrentPlayerBot()
+  ) {
+    botThinking = false;
+    return;
+  }
+
+  const bot = state.players[state.currentPlayer];
+  const score = calculateBotScore(
+    bot.score,
+    bot.difficulty
+  );
+
+  botThinking = false;
+  processScore(score);
+}
+
+function calculateBotScore(rest, difficulty) {
+  if (
+    rest > 1 &&
+    rest <= 170 &&
+    Math.random() < .04 + difficulty * .045
+  ) {
+    const options = legalCheckoutDarts(rest);
+
+    if (options.length > 0) {
+      return rest;
+    }
+  }
+
+  const maximums = {
+    1:55,
+    2:75,
+    3:100,
+    4:135,
+    5:180
+  };
+
+  const minimums = {
+    1:0,
+    2:10,
+    3:20,
+    4:25,
+    5:30
+  };
+
+  const minimum = minimums[difficulty] || 20;
+  const maximum = maximums[difficulty] || 100;
+
+  let score = Math.round(
+    minimum + Math.random() * (maximum - minimum)
+  );
+
+  if (difficulty >= 4 && Math.random() < .18) {
+    const strongScores = [
+      100,121,125,140,141,150,180
+    ];
+
+    score = strongScores[
+      Math.floor(Math.random() * strongScores.length)
+    ];
+  }
+
+  return Math.max(0, Math.min(180, score));
+}
+
+/* -----------------------------
+   Rückgängig und Speicherung
+----------------------------- */
+
+function saveHistory() {
+  state.history.push({
+    players:JSON.parse(JSON.stringify(state.players)),
+    currentPlayer:state.currentPlayer,
+    matchOver:state.matchOver,
+    pendingCheckout:state.pendingCheckout
+      ? JSON.parse(JSON.stringify(state.pendingCheckout))
+      : null
+  });
+
+  if (state.history.length > 50) {
+    state.history.shift();
+  }
+}
+
+function undo() {
+  if (botTimer) {
+    clearTimeout(botTimer);
+    botTimer = null;
+  }
+
+  botThinking = false;
+
+  if (state.history.length === 0) {
+    return;
+  }
+
+  const previous = state.history.pop();
+
+  state.players = previous.players;
+  state.currentPlayer = previous.currentPlayer;
+  state.matchOver = previous.matchOver;
+  state.pendingCheckout = previous.pendingCheckout;
+
+  currentInput = "";
+  render();
+}
+
+function newGame() {
+  if (!confirm("Das aktuelle Spiel wirklich beenden?")) {
+    return;
+  }
+
+  if (botTimer) {
+    clearTimeout(botTimer);
+    botTimer = null;
+  }
+
+  botThinking = false;
+  currentInput = "";
+
+  state.started = false;
+  state.matchOver = false;
+  state.pendingCheckout = null;
+
+  localStorage.removeItem("dartscorer");
+
+  document.getElementById("gameScreen").classList.add("hidden");
+  document.getElementById("statsScreen").classList.add("hidden");
+  document.getElementById("setupScreen").classList.remove("hidden");
+
+  updatePlayerFields();
+}
+
+function saveState() {
+  if (!state.started) {
+    return;
+  }
+
+  localStorage.setItem(
+    "dartscorer",
+    JSON.stringify(state)
+  );
+}
+
+/* -----------------------------
+   Statistik
+----------------------------- */
+
+function formatNumber(value) {
+  return Number(value || 0).toFixed(2);
+}
+
+function checkoutPercentage(player) {
+  const stats = player.checkoutStats;
+
+  if (!stats.attempts) {
+    return "0.00 %";
+  }
+
+  return formatNumber(stats.hits / stats.attempts * 100) + " %";
+}
+
+function threeDartAverage(player) {
+  if (!player.matchStats.totalDarts) {
+    return "0.00";
+  }
+
+  return formatNumber(
+    player.matchStats.totalPoints /
+    player.matchStats.totalDarts * 3
+  );
+}
+
+function firstNineAverage(player) {
+  if (!player.matchStats.firstNineTurns) {
+    return "0.00";
+  }
+
+  return formatNumber(
+    player.matchStats.firstNinePoints /
+    player.matchStats.firstNineTurns
+  );
+}
+
+function averageLegDarts(player) {
+  const legs = player.matchStats.legDarts;
+
+  if (!legs.length) {
+    return "0.00";
+  }
+
+  return formatNumber(
+    legs.reduce((sum, darts) => sum + darts, 0) / legs.length
+  );
+}
+
+function showStatistics() {
+  if (!state.started) {
+    return;
+  }
+
+  const content = document.getElementById("statsContent");
+
+  content.innerHTML = `
+    <p class="stat-note">
+      Die Statistik wird während des Spiels laufend aktualisiert.
+      Ein Checkout-Versuch zählt, sobald ein Spieler mit einem Rest von
+      höchstens 170 Punkten an die Aufnahme geht.
+    </p>
+
+    <table class="stats-table">
+      <thead>
+        <tr>
+          <th>Statistik</th>
+          ${state.players.map(player =>
+            `<th>${escapeHtml(player.name)}</th>`
+          ).join("")}
+        </tr>
+      </thead>
+      <tbody>
+        ${statRow("3-Dart-Average", player =>
+          threeDartAverage(player)
+        )}
+
+        ${statRow("First-9-Average", player =>
+          firstNineAverage(player)
+        )}
+
+        ${statRow("Checkoutquote", player =>
+          checkoutPercentage(player)
+        )}
+
+        ${statRow("Checkout-Versuche", player =>
+          player.checkoutStats.attempts
+        )}
+
+        ${statRow("Checkouts", player =>
+          player.checkoutStats.hits
+        )}
+
+        ${statRow("1-Dart-Checkouts", player =>
+          player.checkoutStats.darts1
+        )}
+
+        ${statRow("2-Dart-Checkouts", player =>
+          player.checkoutStats.darts2
+        )}
+
+        ${statRow("3-Dart-Checkouts", player =>
+          player.checkoutStats.darts3
+        )}
+
+        ${statRow("Höchste Aufnahme", player =>
+          player.matchStats.highestScore
+        )}
+
+        ${statRow("High Finish", player =>
+          player.matchStats.highestCheckout
+        )}
+
+        ${statRow("180er", player =>
+          player.matchStats.scores180
+        )}
+
+        ${statRow("140+ Aufnahmen", player =>
+          player.matchStats.scores140
+        )}
+
+        ${statRow("100+ Aufnahmen", player =>
+          player.matchStats.scores100
+        )}
+
+        ${statRow("Gewonnene Legs", player =>
+          player.matchStats.legsWon
+        )}
+
+        ${statRow("Gewonnene Sätze", player =>
+          player.matchStats.setsWon
+        )}
+
+        ${statRow("Durchschnittliche Leg-Darts", player =>
+          averageLegDarts(player)
+        )}
+
+        ${statRow("Bestes Leg", player =>
+          player.matchStats.bestLeg === null
+            ? "-"
+            : player.matchStats.bestLeg + " Darts"
+        )}
+      </tbody>
+    </table>
+  `;
+
+  document.getElementById("gameScreen").classList.add("hidden");
+  document.getElementById("setupScreen").classList.add("hidden");
+  document.getElementById("statsScreen").classList.remove("hidden");
+}
+
+function statRow(label, callback) {
+  return `
+    <tr>
+      <td>${label}</td>
+      ${state.players.map(player =>
+        `<td>${callback(player)}</td>`
+      ).join("")}
+    </tr>
+  `;
+}
+
+function closeStatistics() {
+  document.getElementById("statsScreen").classList.add("hidden");
+  document.getElementById("gameScreen").classList.remove("hidden");
+  render();
+}
+
+/* -----------------------------
+   Spielstand laden
+----------------------------- */
+
+function loadState() {
+  const saved = localStorage.getItem("dartscorer");
+
+  if (!saved) {
+    updatePlayerFields();
+    return;
+  }
+
+  try {
+    const parsed = JSON.parse(saved);
+
+    if (
+      !parsed.started ||
+      !Array.isArray(parsed.players) ||
+      parsed.players.length === 0
+    ) {
+      updatePlayerFields();
+      return;
+    }
+
+    state = parsed;
+
+    state.players.forEach(player => {
+      if (!Array.isArray(player.turns)) {
+        player.turns = [];
+      }
+
+      if (!Array.isArray(player.legResults)) {
+        player.legResults = [];
+      }
+
+      if (!player.checkoutStats) {
+        player.checkoutStats = emptyCheckoutStats();
+      }
+
+      if (typeof player.checkoutStats.hits !== "number") {
+        player.checkoutStats.hits = 0;
+      }
+
+      if (!player.matchStats) {
+        player.matchStats = emptyMatchStats();
+      }
+
+      player.turns.forEach(turn => {
+        if (typeof turn.checkoutDarts === "undefined") {
+          turn.checkoutDarts = null;
+        }
+      });
+    });
+
+    document.getElementById("setupScreen")
+      .classList.add("hidden");
+
+    document.getElementById("statsScreen")
+      .classList.add("hidden");
+
+    document.getElementById("gameScreen")
+      .classList.remove("hidden");
+
+    render();
+    startBotIfNeeded();
+
+  } catch (error) {
+    localStorage.removeItem("dartscorer");
+    updatePlayerFields();
+  }
+}
+
+/* -----------------------------
+   Sicherheit und Tastatur
+----------------------------- */
+
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+document.addEventListener("keydown", event => {
+  if (
+    !state.started ||
+    state.matchOver ||
+    state.pendingCheckout ||
+    isCurrentPlayerBot()
+  ) {
+    return;
+  }
+
+  if (/^[0-9]$/.test(event.key)) {
+    pressKey(event.key);
+  }
+
+  if (event.key === "Backspace") {
+    backspace();
+  }
+
+  if (event.key === "Escape") {
+    clearInput();
+  }
+
+  if (event.key === "Enter") {
+    submitScore();
+  }
+});
+
+updatePlayerFields();
+loadState();
+</script>
+
+</body>
+</html>
