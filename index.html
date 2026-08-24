@@ -43,21 +43,21 @@ body {
 }
 
 header {
-  flex:0 0 54px;
-  height:54px;
-  padding:13px;
+  flex:0 0 48px;
+  height:48px;
+  padding:11px;
   background:var(--header);
   text-align:center;
-  font-size:24px;
+  font-size:21px;
   font-weight:bold;
 }
 
 main {
-  width:min(1150px,100%);
-  height:calc(100dvh - 54px);
+  width:min(1050px,100%);
+  height:calc(100dvh - 48px);
   min-height:0;
   margin:0 auto;
-  padding:9px;
+  padding:6px;
   overflow:hidden;
 }
 
@@ -66,19 +66,19 @@ main {
 }
 
 .card {
-  padding:10px;
-  border-radius:10px;
+  padding:8px;
+  border-radius:9px;
   background:var(--panel);
 }
 
 h2 {
-  margin:0 0 10px;
-  font-size:21px;
+  margin:0 0 8px;
+  font-size:20px;
 }
 
 label {
   display:block;
-  margin:8px 0 4px;
+  margin:6px 0 3px;
   color:var(--muted);
 }
 
@@ -86,28 +86,28 @@ input[type="text"],
 input[type="number"],
 select {
   width:100%;
-  padding:9px;
+  padding:8px;
   border:0;
-  border-radius:7px;
+  border-radius:6px;
   background:#fff;
   color:#111;
-  font-size:16px;
+  font-size:15px;
 }
 
 input[type="checkbox"] {
-  margin-right:8px;
+  margin-right:7px;
   accent-color:var(--green);
-  transform:scale(1.15);
+  transform:scale(1.1);
 }
 
 button {
-  min-height:44px;
-  padding:8px;
+  min-height:40px;
+  padding:6px;
   border:0;
-  border-radius:8px;
+  border-radius:7px;
   background:var(--blue);
   color:#fff;
-  font-size:17px;
+  font-size:16px;
   font-weight:bold;
   cursor:pointer;
   touch-action:manipulation;
@@ -124,7 +124,7 @@ button:disabled {
 
 .primary {
   width:100%;
-  margin-top:13px;
+  margin-top:10px;
   background:var(--green);
   color:#062719;
 }
@@ -135,15 +135,15 @@ button:disabled {
 
 .danger {
   width:100%;
-  margin-top:8px;
+  margin-top:6px;
   background:var(--red);
 }
 
 .hint {
-  margin:9px 0;
+  margin:7px 0;
   color:var(--muted);
-  font-size:13px;
-  line-height:1.35;
+  font-size:12px;
+  line-height:1.3;
 }
 
 #setupScreen {
@@ -157,17 +157,17 @@ button:disabled {
   min-height:0;
   display:flex;
   flex-direction:column;
-  gap:9px;
+  gap:6px;
 }
 
 #gameScreen > .card:first-child {
-  flex:0 0 59%;
+  flex:0 0 55%;
   min-height:0;
   overflow:hidden;
 }
 
 #gameScreen > .card:last-child {
-  flex:1 1 41%;
+  flex:1 1 45%;
   min-height:0;
   overflow:hidden;
 }
@@ -178,7 +178,7 @@ button:disabled {
   min-height:0;
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:8px;
+  gap:6px;
 }
 
 .player-grid.players-1,
@@ -194,9 +194,9 @@ button:disabled {
 .player-card {
   min-width:0;
   min-height:0;
-  padding:6px;
+  padding:5px;
   border:2px solid transparent;
-  border-radius:9px;
+  border-radius:8px;
   background:var(--panel-light);
   text-align:center;
   overflow:hidden;
@@ -207,11 +207,11 @@ button:disabled {
 }
 
 .player-name {
-  height:19px;
+  height:18px;
   overflow:hidden;
   color:var(--muted);
-  font-size:16px;
-  line-height:19px;
+  font-size:14px;
+  line-height:18px;
   text-overflow:ellipsis;
   white-space:nowrap;
 }
@@ -220,35 +220,35 @@ button:disabled {
   display:inline-block;
   margin-left:4px;
   color:var(--gold);
-  font-size:11px;
+  font-size:10px;
 }
 
 .player-score {
-  height:40px;
-  font-size:34px;
+  height:36px;
+  font-size:31px;
   font-weight:bold;
-  line-height:40px;
+  line-height:36px;
 }
 
 .player-legs {
-  height:20px;
+  height:18px;
   color:var(--muted);
-  font-size:12px;
-  line-height:20px;
+  font-size:11px;
+  line-height:18px;
 }
 
 .history-title {
-  height:22px;
-  margin-top:3px;
+  height:20px;
+  margin-top:2px;
   color:var(--muted);
   text-align:left;
-  font-size:14px;
+  font-size:12px;
   font-weight:bold;
-  line-height:22px;
+  line-height:20px;
 }
 
 .history-box {
-  height:calc(100% - 101px);
+  height:calc(100% - 94px);
   min-height:0;
   overflow:hidden;
   border-radius:5px;
@@ -259,15 +259,15 @@ button:disabled {
   width:100%;
   border-collapse:collapse;
   table-layout:fixed;
-  font-size:20px;
+  font-size:17px;
   line-height:1.1;
   text-align:left;
 }
 
 .score-history th,
 .score-history td {
-  height:30px;
-  padding:4px 5px;
+  height:27px;
+  padding:3px 4px;
   overflow:hidden;
   border-bottom:1px solid var(--line);
   white-space:nowrap;
@@ -277,7 +277,7 @@ button:disabled {
 .score-history th {
   background:rgba(0,0,0,.18);
   color:var(--muted);
-  font-size:15px;
+  font-size:13px;
   font-weight:normal;
 }
 
@@ -318,7 +318,7 @@ button:disabled {
   min-height:0;
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:8px;
   overflow:hidden;
 }
 
@@ -330,14 +330,14 @@ button:disabled {
 }
 
 .input-display {
-  height:48px;
-  margin-bottom:8px;
-  padding:7px;
-  border-radius:8px;
+  height:46px;
+  margin-bottom:6px;
+  padding:6px;
+  border-radius:7px;
   background:#090d12;
   color:var(--green);
   text-align:center;
-  font-size:32px;
+  font-size:31px;
   font-weight:bold;
   letter-spacing:5px;
   line-height:34px;
@@ -346,29 +346,29 @@ button:disabled {
 .keypad {
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:5px;
+  gap:4px;
 }
 
 .keypad button {
-  min-height:39px;
-  font-size:19px;
+  min-height:35px;
+  font-size:17px;
 }
 
 .quick-scores {
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:6px;
+  gap:5px;
 }
 
 .quick-scores button {
-  min-height:43px;
+  min-height:38px;
   background:var(--purple);
-  font-size:17px;
+  font-size:15px;
 }
 
 .checkout-area {
   display:none;
-  margin-top:8px;
+  margin-top:6px;
 }
 
 .checkout-area.visible {
@@ -376,9 +376,9 @@ button:disabled {
 }
 
 .checkout-title {
-  margin-bottom:5px;
+  margin-bottom:4px;
   color:var(--gold);
-  font-size:14px;
+  font-size:12px;
   font-weight:bold;
   text-align:center;
 }
@@ -386,26 +386,26 @@ button:disabled {
 .checkout-buttons {
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:5px;
+  gap:4px;
 }
 
 .checkout-buttons button {
-  min-height:40px;
+  min-height:35px;
   background:var(--gold);
   color:#211700;
-  font-size:17px;
+  font-size:15px;
 }
 
 .action-row {
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:6px;
-  margin-top:7px;
+  gap:5px;
+  margin-top:6px;
 }
 
 .action-row button {
-  min-height:39px;
-  font-size:14px;
+  min-height:35px;
+  font-size:13px;
 }
 
 #statsScreen {
@@ -423,13 +423,13 @@ button:disabled {
 .stats-table {
   width:100%;
   border-collapse:collapse;
-  margin-top:8px;
-  font-size:14px;
+  margin-top:7px;
+  font-size:13px;
 }
 
 .stats-table th,
 .stats-table td {
-  padding:7px 5px;
+  padding:6px 4px;
   border-bottom:1px solid var(--line);
   text-align:left;
 }
@@ -445,203 +445,114 @@ button:disabled {
 }
 
 .stat-note {
-  margin:8px 0;
+  margin:7px 0;
   color:var(--muted);
-  font-size:12px;
+  font-size:11px;
 }
 
-@media (max-width:820px) {
+@media (max-height:700px) {
   header {
-    height:50px;
-    flex-basis:50px;
-    padding:12px;
-    font-size:21px;
+    flex-basis:43px;
+    height:43px;
+    padding:9px;
+    font-size:19px;
   }
 
   main {
-    height:calc(100dvh - 50px);
-    padding:7px;
+    height:calc(100dvh - 43px);
+    padding:5px;
   }
 
   #gameScreen {
-    gap:7px;
+    gap:5px;
+  }
+
+  #gameScreen > .card:first-child {
+    flex-basis:51%;
+  }
+
+  #gameScreen > .card:last-child {
+    flex-basis:49%;
   }
 
   .card {
-    padding:7px;
-  }
-
-  .player-grid {
-    gap:6px;
+    padding:6px;
   }
 
   .player-card {
-    padding:4px;
+    padding:3px;
   }
 
   .player-name {
-    height:17px;
-    font-size:13px;
-    line-height:17px;
+    height:16px;
+    font-size:12px;
+    line-height:16px;
   }
 
   .player-score {
     height:32px;
-    font-size:28px;
+    font-size:27px;
     line-height:32px;
   }
 
   .player-legs {
-    height:18px;
+    height:16px;
     font-size:10px;
-    line-height:18px;
+    line-height:16px;
   }
 
   .history-title {
-    height:18px;
-    margin-top:2px;
-    font-size:11px;
-    line-height:18px;
+    height:17px;
+    font-size:10px;
+    line-height:17px;
   }
 
   .history-box {
-    height:calc(100% - 84px);
+    height:calc(100% - 85px);
   }
 
   .score-history {
-    font-size:16px;
+    font-size:14px;
   }
 
   .score-history th {
-    font-size:12px;
+    font-size:11px;
   }
 
   .score-history th,
   .score-history td {
-    height:25px;
-    padding:3px;
-  }
-
-  .input-display {
-    height:40px;
-    margin-bottom:5px;
-    padding:4px;
-    font-size:27px;
-    line-height:31px;
-  }
-
-  .keypad {
-    gap:3px;
+    height:23px;
+    padding:2px;
   }
 
   .keypad button {
-    min-height:32px;
-    padding:4px;
-    font-size:16px;
-  }
-
-  .quick-scores {
-    gap:3px;
+    min-height:29px;
+    font-size:15px;
   }
 
   .quick-scores button {
-    min-height:35px;
-    padding:4px;
-    font-size:14px;
-  }
-
-  .checkout-area {
-    margin-top:5px;
-  }
-
-  .checkout-title {
-    margin-bottom:3px;
-    font-size:11px;
-  }
-
-  .checkout-buttons {
-    gap:3px;
-  }
-
-  .checkout-buttons button {
     min-height:32px;
-    padding:3px;
     font-size:13px;
   }
 
-  .action-row {
-    gap:4px;
-    margin-top:5px;
+  .checkout-buttons button {
+    min-height:29px;
+    font-size:13px;
   }
 
   .action-row button,
   .danger {
-    min-height:32px;
-    padding:4px;
-    font-size:12px;
-  }
-
-  .danger {
-    margin-top:5px;
-  }
-}
-
-@media (max-width:520px) {
-  .player-grid {
-    gap:4px;
-  }
-
-  .player-card {
-    padding:3px;
-  }
-
-  .player-name {
+    min-height:29px;
     font-size:11px;
-  }
-
-  .player-score {
-    font-size:23px;
-  }
-
-  .score-history {
-    font-size:14px;
-  }
-
-  .score-history th {
-    font-size:10px;
-  }
-
-  .score-history th,
-  .score-history td {
-    height:22px;
-    padding:2px;
-  }
-
-  .history-title {
-    font-size:9px;
-  }
-
-  .scoring-area {
-    gap:5px;
-  }
-
-  .quick-scores button {
-    font-size:12px;
-  }
-
-  .keypad button {
-    font-size:15px;
   }
 }
 </style>
 </head>
 
 <body>
-
 <header>Dartscorer 🎯</header>
 
 <main>
-
 <section id="setupScreen" class="card">
   <h2>Neues Spiel</h2>
 
@@ -661,10 +572,18 @@ button:disabled {
   </select>
 
   <label for="setsToWin">Benötigte Sätze zum Matchgewinn</label>
-  <input type="number" id="setsToWin" min="1" max="99" value="2">
+  <input type="number" id="setsToWin" min="1" max="99" value="1">
 
   <label for="legsToWin">Benötigte Legs pro Satz</label>
   <input type="number" id="legsToWin" min="1" max="99" value="3">
+
+  <label for="startingPlayer">Wer beginnt das erste Leg?</label>
+  <select id="startingPlayer"></select>
+
+  <label>
+    <input type="checkbox" id="alternateStarter" checked>
+    Startspieler nach jedem Leg automatisch wechseln
+  </label>
 
   <div id="playerFields"></div>
 
@@ -692,10 +611,9 @@ button:disabled {
   </div>
 
   <p class="hint">
-    Die Checkout-Auswahl erscheint nur nach einem erfolgreichen Checkout.
-    Angeboten werden ausschließlich Checkout-Varianten, die mit der
-    angegebenen Dartanzahl tatsächlich möglich sind. Die normale Eingabe
-    bleibt jederzeit möglich.
+    Wenn der automatische Wechsel aktiviert ist, beginnt im zweiten Leg
+    automatisch der nächste Spieler. Bei zwei Spielern beginnt dadurch
+    nach Spieler 1 automatisch Spieler 2.
   </p>
 
   <button class="primary" onclick="startGame()">Spiel starten</button>
@@ -708,7 +626,6 @@ button:disabled {
 
   <div class="card">
     <div class="scoring-area">
-
       <div class="input-column">
         <div id="inputDisplay" class="input-display">000</div>
 
@@ -728,9 +645,7 @@ button:disabled {
         </div>
 
         <div id="checkoutArea" class="checkout-area">
-          <div class="checkout-title">
-            Checkout-Darts auswählen
-          </div>
+          <div class="checkout-title">Checkout-Darts auswählen</div>
           <div id="checkoutButtons" class="checkout-buttons"></div>
         </div>
 
@@ -753,15 +668,9 @@ button:disabled {
           <button onclick="quickScore(140)">140</button>
         </div>
 
-        <button class="danger" onclick="showStatistics()">
-          Statistik
-        </button>
-
-        <button class="danger" onclick="newGame()">
-          Neues Spiel
-        </button>
+        <button class="danger" onclick="showStatistics()">Statistik</button>
+        <button class="danger" onclick="newGame()">Neues Spiel</button>
       </div>
-
     </div>
   </div>
 </section>
@@ -774,7 +683,6 @@ button:disabled {
     <button class="danger" onclick="newGame()">Neues Spiel</button>
   </div>
 </section>
-
 </main>
 
 <script>
@@ -784,10 +692,18 @@ let state = {
   pendingCheckout:null,
   startScore:501,
   doubleOut:true,
-  setsToWin:2,
+  setsToWin:1,
   legsToWin:3,
   players:[],
   currentPlayer:0,
+
+  /*
+    startingPlayer ist der Spieler, der das aktuelle Leg beginnt.
+    starterRotation merkt sich, ob der automatische Wechsel aktiviert ist.
+  */
+  startingPlayer:0,
+  starterRotation:true,
+
   history:[]
 };
 
@@ -829,18 +745,54 @@ function emptyMatchStats() {
   };
 }
 
-function updatePlayerFields() {
-  const count = Number(document.getElementById("playerCount").value);
-  const container = document.getElementById("playerFields");
+function updateStartingPlayerOptions() {
+  const count = Number(
+    document.getElementById("playerCount").value
+  );
 
+  const select = document.getElementById("startingPlayer");
+  const previousValue = select.value;
+
+  select.innerHTML = "";
+
+  for (let i = 1; i <= count; i++) {
+    const option = document.createElement("option");
+    option.value = String(i - 1);
+    option.textContent = "Spieler " + i;
+    select.appendChild(option);
+  }
+
+  if (
+    previousValue !== "" &&
+    Number(previousValue) < count
+  ) {
+    select.value = previousValue;
+  } else {
+    select.value = "0";
+  }
+}
+
+function updatePlayerFields() {
+  const count = Number(
+    document.getElementById("playerCount").value
+  );
+
+  const container = document.getElementById("playerFields");
   container.innerHTML = "";
 
   for (let i = 1; i <= count; i++) {
     container.innerHTML += `
       <label for="player${i}">Name Spieler ${i}</label>
-      <input type="text" id="player${i}" value="Spieler ${i}" maxlength="20">
+      <input
+        type="text"
+        id="player${i}"
+        value="Spieler ${i}"
+        maxlength="20"
+      >
     `;
   }
+
+  updateStartingPlayerOptions();
 
   const botOptions = document.getElementById("botOptions");
 
@@ -854,14 +806,22 @@ function updatePlayerFields() {
 }
 
 function toggleBotDifficulty() {
-  const isBot = document.getElementById("playerTwoBot").checked;
-  document.getElementById("botDifficultyBox")
+  const isBot =
+    document.getElementById("playerTwoBot").checked;
+
+  document
+    .getElementById("botDifficultyBox")
     .classList.toggle("hidden", !isBot);
 }
 
 function startGame() {
-  const count = Number(document.getElementById("playerCount").value);
-  const startScore = Number(document.getElementById("gameMode").value);
+  const count = Number(
+    document.getElementById("playerCount").value
+  );
+
+  const startScore = Number(
+    document.getElementById("gameMode").value
+  );
 
   const setsToWin = Math.max(
     1,
@@ -873,8 +833,22 @@ function startGame() {
     Number(document.getElementById("legsToWin").value) || 1
   );
 
-  const doubleOut = document.getElementById("doubleOut").checked;
-  const isBot = count === 2 &&
+  const doubleOut =
+    document.getElementById("doubleOut").checked;
+
+  const starterRotation =
+    document.getElementById("alternateStarter").checked;
+
+  const startingPlayer = Math.min(
+    count - 1,
+    Math.max(
+      0,
+      Number(document.getElementById("startingPlayer").value) || 0
+    )
+  );
+
+  const isBot =
+    count === 2 &&
     document.getElementById("playerTwoBot").checked;
 
   const botDifficulty =
@@ -883,7 +857,11 @@ function startGame() {
   const players = [];
 
   for (let i = 1; i <= count; i++) {
-    let name = document.getElementById("player" + i).value.trim();
+    let name = document
+      .getElementById("player" + i)
+      .value
+      .trim();
+
     const playerIsBot = i === 2 && isBot;
 
     if (playerIsBot) {
@@ -913,16 +891,31 @@ function startGame() {
     setsToWin,
     legsToWin,
     players,
-    currentPlayer:0,
+
+    /*
+      Das erste Leg beginnt beim ausgewählten Spieler.
+    */
+    startingPlayer,
+    currentPlayer:startingPlayer,
+    starterRotation,
+
     history:[]
   };
 
   currentInput = "";
   botThinking = false;
 
-  document.getElementById("setupScreen").classList.add("hidden");
-  document.getElementById("statsScreen").classList.add("hidden");
-  document.getElementById("gameScreen").classList.remove("hidden");
+  document
+    .getElementById("setupScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("statsScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("gameScreen")
+    .classList.remove("hidden");
 
   render();
   startBotIfNeeded();
@@ -982,7 +975,7 @@ function canFinish(score, darts, doubleOut) {
 }
 
 function legalCheckoutDarts(score) {
-  return [1, 2, 3].filter(darts =>
+  return [1,2,3].filter(darts =>
     canFinish(score, darts, state.doubleOut)
   );
 }
@@ -996,81 +989,90 @@ function render() {
     return;
   }
 
-  const playersContainer = document.getElementById("players");
+  const playersContainer =
+    document.getElementById("players");
 
   playersContainer.className =
     "player-grid players-" + state.players.length;
 
-  playersContainer.innerHTML = state.players.map((player, index) => {
-    const recentTurns = player.turns.slice(-5);
-    const rows = [];
+  playersContainer.innerHTML =
+    state.players.map((player, index) => {
+      const recentTurns = player.turns.slice(-5);
+      const rows = [];
 
-    for (let i = 0; i < 5; i++) {
-      const turn = recentTurns[i];
+      for (let i = 0; i < 5; i++) {
+        const turn = recentTurns[i];
 
-      if (!turn) {
-        rows.push(`
-          <tr>
-            <td></td><td></td><td></td><td></td>
-          </tr>
-        `);
-      } else {
-        rows.push(`
-          <tr>
-            <td>${turn.number}</td>
-            <td class="${turn.bust ? "bust" : ""}">
-              ${turn.bust ? "Bust" : turn.score}
-            </td>
-            <td>${turn.rest}</td>
-            <td class="${turn.checkoutDarts ? "checkout-mark" : ""}">
-              ${turn.checkoutDarts ? turn.checkoutDarts + "D" : ""}
-            </td>
-          </tr>
-        `);
+        if (!turn) {
+          rows.push(`
+            <tr>
+              <td></td><td></td><td></td><td></td>
+            </tr>
+          `);
+        } else {
+          rows.push(`
+            <tr>
+              <td>${turn.number}</td>
+              <td class="${turn.bust ? "bust" : ""}">
+                ${turn.bust ? "Bust" : turn.score}
+              </td>
+              <td>${turn.rest}</td>
+              <td class="${turn.checkoutDarts ? "checkout-mark" : ""}">
+                ${turn.checkoutDarts
+                  ? turn.checkoutDarts + "D"
+                  : ""}
+              </td>
+            </tr>
+          `);
+        }
       }
-    }
 
-    return `
-      <div class="player-card ${
-        index === state.currentPlayer ? "active" : ""
-      }">
-        <div class="player-name">
-          ${escapeHtml(player.name)}
-          ${player.isBot
-            ? '<span class="bot-label">BOT</span>'
-            : ""}
+      return `
+        <div class="player-card ${
+          index === state.currentPlayer ? "active" : ""
+        }">
+          <div class="player-name">
+            ${escapeHtml(player.name)}
+            ${player.isBot
+              ? '<span class="bot-label">BOT</span>'
+              : ""}
+          </div>
+
+          <div class="player-score">${player.score}</div>
+
+          <div class="player-legs">
+            Sätze: ${player.sets} · Legs: ${player.legs}
+          </div>
+
+          <div class="history-title">
+            Letzte 5 Aufnahmen
+          </div>
+
+          <div class="history-box">
+            <table class="score-history">
+              <thead>
+                <tr>
+                  <th>Aufn.</th>
+                  <th>Score</th>
+                  <th>Rest</th>
+                  <th>CO</th>
+                </tr>
+              </thead>
+              <tbody>${rows.join("")}</tbody>
+            </table>
+          </div>
         </div>
+      `;
+    }).join("");
 
-        <div class="player-score">${player.score}</div>
+  const checkoutArea =
+    document.getElementById("checkoutArea");
 
-        <div class="player-legs">
-          Sätze: ${player.sets} · Legs: ${player.legs}
-        </div>
+  const checkoutButtons =
+    document.getElementById("checkoutButtons");
 
-        <div class="history-title">Letzte 5 Aufnahmen</div>
-
-        <div class="history-box">
-          <table class="score-history">
-            <thead>
-              <tr>
-                <th>Aufn.</th>
-                <th>Score</th>
-                <th>Rest</th>
-                <th>CO</th>
-              </tr>
-            </thead>
-            <tbody>${rows.join("")}</tbody>
-          </table>
-        </div>
-      </div>
-    `;
-  }).join("");
-
-  const player = state.players[state.currentPlayer];
-  const checkoutArea = document.getElementById("checkoutArea");
-  const checkoutButtons = document.getElementById("checkoutButtons");
-
-  const pending = state.pendingCheckout !== null;
+  const pending =
+    state.pendingCheckout !== null;
 
   checkoutArea.classList.toggle("visible", pending);
   checkoutButtons.innerHTML = "";
@@ -1205,7 +1207,8 @@ function processScore(score) {
     return;
   }
 
-  const player = state.players[state.currentPlayer];
+  const player =
+    state.players[state.currentPlayer];
 
   if (score < 0 || score > 180) {
     return;
@@ -1242,6 +1245,7 @@ function processScore(score) {
 
     player.matchStats.totalTurns++;
     player.matchStats.totalDarts += 3;
+
     currentInput = "";
     nextPlayer();
     return;
@@ -1259,6 +1263,7 @@ function processScore(score) {
 
   player.matchStats.totalPoints += score;
   player.matchStats.totalTurns++;
+
   player.matchStats.highestScore =
     Math.max(player.matchStats.highestScore, score);
 
@@ -1291,15 +1296,20 @@ function processScore(score) {
 
     if (player.isBot) {
       const options = legalCheckoutDarts(oldScore);
-      const darts =
-        options[Math.floor(Math.random() * options.length)];
-      completeCheckout(darts);
+
+      if (options.length > 0) {
+        const darts =
+          options[Math.floor(Math.random() * options.length)];
+
+        setTimeout(() => completeCheckout(darts), 250);
+      }
     }
 
     return;
   }
 
   player.matchStats.totalDarts += 3;
+
   currentInput = "";
   nextPlayer();
 }
@@ -1309,15 +1319,22 @@ function completeCheckout(darts) {
     return;
   }
 
-  const checkoutScore = state.pendingCheckout.checkoutScore;
-  const legalOptions = legalCheckoutDarts(checkoutScore);
+  const checkoutScore =
+    state.pendingCheckout.checkoutScore;
+
+  const legalOptions =
+    legalCheckoutDarts(checkoutScore);
 
   if (!legalOptions.includes(darts)) {
     return;
   }
 
-  const playerIndex = state.pendingCheckout.playerIndex;
-  const turnIndex = state.pendingCheckout.turnIndex;
+  const playerIndex =
+    state.pendingCheckout.playerIndex;
+
+  const turnIndex =
+    state.pendingCheckout.turnIndex;
+
   const player = state.players[playerIndex];
   const turn = player.turns[turnIndex];
 
@@ -1334,15 +1351,23 @@ function completeCheckout(darts) {
   player.checkoutStats.totalDarts += darts;
 
   player.matchStats.totalDarts += darts;
+
   player.matchStats.highestCheckout =
-    Math.max(player.matchStats.highestCheckout, checkoutScore);
+    Math.max(
+      player.matchStats.highestCheckout,
+      checkoutScore
+    );
 
   finishLeg(player);
 }
 
 function finishLeg(player) {
-  const dartsInLeg = player.matchStats.totalDarts -
-    player.legResults.reduce((sum, leg) => sum + leg.darts, 0);
+  const dartsInLeg =
+    player.matchStats.totalDarts -
+    player.legResults.reduce(
+      (sum, leg) => sum + leg.darts,
+      0
+    );
 
   player.legResults.push({
     darts:dartsInLeg,
@@ -1364,6 +1389,7 @@ function finishLeg(player) {
   if (player.legs >= state.legsToWin) {
     player.sets++;
     player.matchStats.setsWon++;
+    player.legs = 0;
 
     if (player.sets >= state.setsToWin) {
       state.matchOver = true;
@@ -1373,17 +1399,32 @@ function finishLeg(player) {
       showStatistics();
       return;
     }
-
-    resetLegForAllPlayers();
-    state.currentPlayer = 0;
-  } else {
-    resetLegForAllPlayers();
-    state.currentPlayer = 0;
   }
 
+  /*
+    Der Startspieler des nächsten Legs wird hier festgelegt.
+
+    Beispiel bei zwei Spielern:
+    - startingPlayer = 0: Spieler 1 beginnt Leg 1
+    - startingPlayer = 1: Spieler 2 beginnt Leg 2
+    - startingPlayer = 0: Spieler 1 beginnt Leg 3
+
+    Bei deaktiviertem Schalter bleibt der ursprüngliche
+    Startspieler für jedes weitere Leg bestehen.
+  */
+  if (state.starterRotation) {
+    state.startingPlayer =
+      (state.startingPlayer + 1) %
+      state.players.length;
+  }
+
+  resetLegForAllPlayers();
+
+  state.currentPlayer = state.startingPlayer;
   state.pendingCheckout = null;
   botThinking = false;
   currentInput = "";
+
   render();
   startBotIfNeeded();
 }
@@ -1397,17 +1438,191 @@ function resetLegForAllPlayers() {
 
 function nextPlayer() {
   state.currentPlayer =
-    (state.currentPlayer + 1) % state.players.length;
+    (state.currentPlayer + 1) %
+    state.players.length;
 
   currentInput = "";
   botThinking = false;
+
   render();
   startBotIfNeeded();
 }
 
 /* -----------------------------
-   Bot
+   Dart-Bot
 ----------------------------- */
+
+const BOT_PROFILES = {
+  1:{average:40, checkout:0.05, triple:0.14},
+  2:{average:50, checkout:0.10, triple:0.19},
+  3:{average:60, checkout:0.15, triple:0.24},
+  4:{average:60, checkout:0.20, triple:0.28},
+  5:{average:80, checkout:0.33, triple:0.36}
+};
+
+function randomNormal() {
+  let u = 0;
+  let v = 0;
+
+  while (u === 0) {
+    u = Math.random();
+  }
+
+  while (v === 0) {
+    v = Math.random();
+  }
+
+  return Math.sqrt(-2 * Math.log(u)) *
+    Math.cos(2 * Math.PI * v);
+}
+
+function botPerformanceFactor() {
+  const chance = Math.random();
+
+  if (chance < 0.70) {
+    return 1 + randomNormal() * 0.10;
+  }
+
+  if (chance < 0.95) {
+    return 1 + randomNormal() * 0.24;
+  }
+
+  return 1 + randomNormal() * 0.48;
+}
+
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function botTargetSector() {
+  return Math.random() < 0.72 ? 20 : 19;
+}
+
+function adjacentMiss(sector) {
+  if (sector === 20) {
+    return Math.random() < 0.5 ? 1 : 5;
+  }
+
+  return Math.random() < 0.5 ? 3 : 7;
+}
+
+function randomSingleScore() {
+  return Math.floor(Math.random() * 20) + 1;
+}
+
+function simulateBotDart(profile, performance) {
+  const target = botTargetSector();
+
+  const tripleChance = clamp(
+    profile.triple * performance,
+    0.04,
+    0.62
+  );
+
+  const doubleChance = clamp(
+    0.08 * performance,
+    0.025,
+    0.18
+  );
+
+  const singleTargetChance = clamp(
+    0.22 + (performance - 1) * 0.06,
+    0.12,
+    0.30
+  );
+
+  const missChance = clamp(
+    0.30 - (performance - 1) * 0.04,
+    0.18,
+    0.38
+  );
+
+  const roll = Math.random();
+
+  if (roll < tripleChance) {
+    return target * 3;
+  }
+
+  if (roll < tripleChance + doubleChance) {
+    return target * 2;
+  }
+
+  if (
+    roll <
+    tripleChance +
+    doubleChance +
+    singleTargetChance
+  ) {
+    return target;
+  }
+
+  if (
+    roll <
+    tripleChance +
+    doubleChance +
+    singleTargetChance +
+    missChance
+  ) {
+    return adjacentMiss(target);
+  }
+
+  const remainderRoll = Math.random();
+
+  if (remainderRoll < 0.08) {
+    return 25;
+  }
+
+  if (remainderRoll < 0.10) {
+    return 50;
+  }
+
+  if (remainderRoll < 0.16) {
+    return 0;
+  }
+
+  return randomSingleScore();
+}
+
+function calculateBotScore(rest, difficulty) {
+  const profile =
+    BOT_PROFILES[difficulty] || BOT_PROFILES[3];
+
+  const performance = botPerformanceFactor();
+
+  if (rest > 1 && rest <= 170) {
+    const checkoutChance = clamp(
+      profile.checkout * performance,
+      0.005,
+      0.65
+    );
+
+    if (
+      Math.random() < checkoutChance &&
+      legalCheckoutDarts(rest).length > 0
+    ) {
+      return rest;
+    }
+  }
+
+  let total = 0;
+
+  for (let dart = 0; dart < 3; dart++) {
+    total += simulateBotDart(profile, performance);
+  }
+
+  const targetTurnAverage =
+    profile.average * performance;
+
+  if (Math.random() < 0.28 && total > 0) {
+    const correction =
+      (targetTurnAverage - total) *
+      (0.25 + Math.random() * 0.35);
+
+    total = Math.round(total + correction);
+  }
+
+  return clamp(Math.round(total), 0, 180);
+}
 
 function isCurrentPlayerBot() {
   const player = state.players[state.currentPlayer];
@@ -1429,8 +1644,9 @@ function startBotIfNeeded() {
   render();
 
   botTimer = setTimeout(() => {
+    botTimer = null;
     playBotTurn();
-  }, 900);
+  }, 850);
 }
 
 function playBotTurn() {
@@ -1441,10 +1657,12 @@ function playBotTurn() {
     !isCurrentPlayerBot()
   ) {
     botThinking = false;
+    render();
     return;
   }
 
   const bot = state.players[state.currentPlayer];
+
   const score = calculateBotScore(
     bot.score,
     bot.difficulty
@@ -1452,55 +1670,6 @@ function playBotTurn() {
 
   botThinking = false;
   processScore(score);
-}
-
-function calculateBotScore(rest, difficulty) {
-  if (
-    rest > 1 &&
-    rest <= 170 &&
-    Math.random() < .04 + difficulty * .045
-  ) {
-    const options = legalCheckoutDarts(rest);
-
-    if (options.length > 0) {
-      return rest;
-    }
-  }
-
-  const maximums = {
-    1:55,
-    2:75,
-    3:100,
-    4:135,
-    5:180
-  };
-
-  const minimums = {
-    1:0,
-    2:10,
-    3:20,
-    4:25,
-    5:30
-  };
-
-  const minimum = minimums[difficulty] || 20;
-  const maximum = maximums[difficulty] || 100;
-
-  let score = Math.round(
-    minimum + Math.random() * (maximum - minimum)
-  );
-
-  if (difficulty >= 4 && Math.random() < .18) {
-    const strongScores = [
-      100,121,125,140,141,150,180
-    ];
-
-    score = strongScores[
-      Math.floor(Math.random() * strongScores.length)
-    ];
-  }
-
-  return Math.max(0, Math.min(180, score));
 }
 
 /* -----------------------------
@@ -1511,6 +1680,8 @@ function saveHistory() {
   state.history.push({
     players:JSON.parse(JSON.stringify(state.players)),
     currentPlayer:state.currentPlayer,
+    startingPlayer:state.startingPlayer,
+    starterRotation:state.starterRotation,
     matchOver:state.matchOver,
     pendingCheckout:state.pendingCheckout
       ? JSON.parse(JSON.stringify(state.pendingCheckout))
@@ -1538,6 +1709,15 @@ function undo() {
 
   state.players = previous.players;
   state.currentPlayer = previous.currentPlayer;
+
+  if (typeof previous.startingPlayer === "number") {
+    state.startingPlayer = previous.startingPlayer;
+  }
+
+  if (typeof previous.starterRotation === "boolean") {
+    state.starterRotation = previous.starterRotation;
+  }
+
   state.matchOver = previous.matchOver;
   state.pendingCheckout = previous.pendingCheckout;
 
@@ -1564,9 +1744,17 @@ function newGame() {
 
   localStorage.removeItem("dartscorer");
 
-  document.getElementById("gameScreen").classList.add("hidden");
-  document.getElementById("statsScreen").classList.add("hidden");
-  document.getElementById("setupScreen").classList.remove("hidden");
+  document
+    .getElementById("gameScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("statsScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("setupScreen")
+    .classList.remove("hidden");
 
   updatePlayerFields();
 }
@@ -1597,7 +1785,9 @@ function checkoutPercentage(player) {
     return "0.00 %";
   }
 
-  return formatNumber(stats.hits / stats.attempts * 100) + " %";
+  return formatNumber(
+    stats.hits / stats.attempts * 100
+  ) + " %";
 }
 
 function threeDartAverage(player) {
@@ -1630,7 +1820,8 @@ function averageLegDarts(player) {
   }
 
   return formatNumber(
-    legs.reduce((sum, darts) => sum + darts, 0) / legs.length
+    legs.reduce((sum, darts) => sum + darts, 0) /
+    legs.length
   );
 }
 
@@ -1639,13 +1830,14 @@ function showStatistics() {
     return;
   }
 
-  const content = document.getElementById("statsContent");
+  const content =
+    document.getElementById("statsContent");
 
   content.innerHTML = `
     <p class="stat-note">
       Die Statistik wird während des Spiels laufend aktualisiert.
-      Ein Checkout-Versuch zählt, sobald ein Spieler mit einem Rest von
-      höchstens 170 Punkten an die Aufnahme geht.
+      Ein Checkout-Versuch zählt, sobald ein Spieler mit einem Rest
+      von höchstens 170 Punkten an die Aufnahme geht.
     </p>
 
     <table class="stats-table">
@@ -1657,6 +1849,7 @@ function showStatistics() {
           ).join("")}
         </tr>
       </thead>
+
       <tbody>
         ${statRow("3-Dart-Average", player =>
           threeDartAverage(player)
@@ -1731,9 +1924,17 @@ function showStatistics() {
     </table>
   `;
 
-  document.getElementById("gameScreen").classList.add("hidden");
-  document.getElementById("setupScreen").classList.add("hidden");
-  document.getElementById("statsScreen").classList.remove("hidden");
+  document
+    .getElementById("gameScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("setupScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("statsScreen")
+    .classList.remove("hidden");
 }
 
 function statRow(label, callback) {
@@ -1748,8 +1949,14 @@ function statRow(label, callback) {
 }
 
 function closeStatistics() {
-  document.getElementById("statsScreen").classList.add("hidden");
-  document.getElementById("gameScreen").classList.remove("hidden");
+  document
+    .getElementById("statsScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("gameScreen")
+    .classList.remove("hidden");
+
   render();
 }
 
@@ -1779,6 +1986,37 @@ function loadState() {
 
     state = parsed;
 
+    if (!state.history) {
+      state.history = [];
+    }
+
+    if (typeof state.setsToWin !== "number") {
+      state.setsToWin = 1;
+    }
+
+    if (typeof state.legsToWin !== "number") {
+      state.legsToWin = 3;
+    }
+
+    /*
+      Alte Spielstände erhalten sinnvolle Standardwerte:
+      Spieler 1 beginnt und der automatische Wechsel ist aktiv.
+    */
+    if (typeof state.startingPlayer !== "number") {
+      state.startingPlayer = 0;
+    }
+
+    if (
+      state.startingPlayer < 0 ||
+      state.startingPlayer >= state.players.length
+    ) {
+      state.startingPlayer = 0;
+    }
+
+    if (typeof state.starterRotation !== "boolean") {
+      state.starterRotation = true;
+    }
+
     state.players.forEach(player => {
       if (!Array.isArray(player.turns)) {
         player.turns = [];
@@ -1792,10 +2030,6 @@ function loadState() {
         player.checkoutStats = emptyCheckoutStats();
       }
 
-      if (typeof player.checkoutStats.hits !== "number") {
-        player.checkoutStats.hits = 0;
-      }
-
       if (!player.matchStats) {
         player.matchStats = emptyMatchStats();
       }
@@ -1807,13 +2041,16 @@ function loadState() {
       });
     });
 
-    document.getElementById("setupScreen")
+    document
+      .getElementById("setupScreen")
       .classList.add("hidden");
 
-    document.getElementById("statsScreen")
+    document
+      .getElementById("statsScreen")
       .classList.add("hidden");
 
-    document.getElementById("gameScreen")
+    document
+      .getElementById("gameScreen")
       .classList.remove("hidden");
 
     render();
@@ -1868,6 +2105,6 @@ document.addEventListener("keydown", event => {
 updatePlayerFields();
 loadState();
 </script>
-
 </body>
 </html>
+
