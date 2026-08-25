@@ -149,18 +149,19 @@ button:disabled{opacity:.45;cursor:not-allowed}
 }
 
 /*
-  Die Spielerübersicht erhält weniger Höhe.
-  Dadurch wird der Scoring-Bereich größer und die
-  unteren Aktionsbuttons bleiben auf dem iPad sichtbar.
+  Der obere Bereich ist wieder etwas größer.
+  Dadurch stehen die letzten fünf Aufnahmen großzügiger
+  zur Verfügung. Der freie Platz am unteren iPad-Rand
+  wird gleichzeitig besser genutzt.
 */
 #gameScreen>.card:first-child{
- flex:0 0 43%;
+ flex:0 0 48%;
  min-height:0;
  overflow:hidden;
 }
 
 #gameScreen>.card:last-child{
- flex:1 1 57%;
+ flex:1 1 52%;
  min-height:0;
  overflow:hidden;
 }
@@ -215,35 +216,35 @@ button:disabled{opacity:.45;cursor:not-allowed}
 }
 
 .player-score{
- height:34px;
- font-size:30px;
+ /*
+   Die verbleibende Punktzahl ist jetzt doppelt so groß
+   wie zuvor: 60px statt 30px.
+ */
+ height:60px;
+ font-size:60px;
  font-weight:bold;
- line-height:34px;
+ line-height:60px;
 }
 
 .player-legs{
- height:17px;
+ height:18px;
  color:var(--muted);
  font-size:11px;
- line-height:17px;
-}
-
-.history-title{
- height:18px;
- margin-top:1px;
- color:var(--muted);
- text-align:left;
- font-size:12px;
- font-weight:bold;
  line-height:18px;
 }
 
-/*
-  Die Zeilen der letzten fünf Aufnahmen sind kompakter,
-  die Schriftgröße bleibt unverändert.
-*/
+.history-title{
+ height:20px;
+ margin-top:2px;
+ color:var(--muted);
+ text-align:left;
+ font-size:13px;
+ font-weight:bold;
+ line-height:20px;
+}
+
 .history-box{
- height:calc(100% - 87px);
+ height:calc(100% - 118px);
  min-height:0;
  overflow:hidden;
  border-radius:5px;
@@ -254,15 +255,15 @@ button:disabled{opacity:.45;cursor:not-allowed}
  width:100%;
  border-collapse:collapse;
  table-layout:fixed;
- font-size:17px;
+ font-size:19px;
  line-height:1.1;
  text-align:left;
 }
 
 .score-history th,
 .score-history td{
- height:22px;
- padding:2px 4px;
+ height:26px;
+ padding:3px 4px;
  overflow:hidden;
  border-bottom:1px solid var(--line);
  white-space:nowrap;
@@ -453,7 +454,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
  font-size:11px;
 }
 
-/* Zusätzliche Komprimierung bei geringer Bildschirmhöhe */
+/* Anpassung für kleinere iPad-Fenster und Querformat */
 @media(max-height:700px){
  header{
   flex-basis:43px;
@@ -472,11 +473,11 @@ button:disabled{opacity:.45;cursor:not-allowed}
  }
 
  #gameScreen>.card:first-child{
-  flex-basis:40%;
+  flex-basis:45%;
  }
 
  #gameScreen>.card:last-child{
-  flex-basis:60%;
+  flex-basis:55%;
  }
 
  .card{
@@ -494,29 +495,29 @@ button:disabled{opacity:.45;cursor:not-allowed}
  }
 
  .player-score{
-  height:30px;
-  font-size:26px;
-  line-height:30px;
+  height:50px;
+  font-size:50px;
+  line-height:50px;
  }
 
  .player-legs{
-  height:15px;
-  font-size:10px;
-  line-height:15px;
- }
-
- .history-title{
   height:16px;
   font-size:10px;
   line-height:16px;
  }
 
+ .history-title{
+  height:18px;
+  font-size:11px;
+  line-height:18px;
+ }
+
  .history-box{
-  height:calc(100% - 77px);
+  height:calc(100% - 100px);
  }
 
  .score-history{
-  font-size:14px;
+  font-size:17px;
  }
 
  .score-history th{
@@ -525,8 +526,8 @@ button:disabled{opacity:.45;cursor:not-allowed}
 
  .score-history th,
  .score-history td{
-  height:20px;
-  padding:1px 2px;
+  height:23px;
+  padding:2px;
  }
 
  .input-display{
@@ -673,7 +674,10 @@ button:disabled{opacity:.45;cursor:not-allowed}
     </div>
 
     <div id="legNextArea" class="leg-next-area">
-     <div id="legNextTitle" class="leg-next-title">Leg beendet</div>
+     <div id="legNextTitle" class="leg-next-title">
+      Leg beendet
+     </div>
+
      <button class="next-leg-button" onclick="startNextLeg()">
       Nächstes Leg beginnen
      </button>
@@ -823,6 +827,7 @@ function updatePlayerFields(){
 
 function toggleBotDifficulty(){
  const checked=document.getElementById("playerTwoBot").checked;
+
  document.getElementById("botDifficultyBox")
   .classList.toggle("hidden",!checked);
 }
@@ -830,16 +835,20 @@ function toggleBotDifficulty(){
 function startGame(){
  const count=Number(document.getElementById("playerCount").value);
  const startScore=Number(document.getElementById("gameMode").value);
+
  const setsToWin=Math.max(
   1,
   Number(document.getElementById("setsToWin").value)||1
  );
+
  const legsToWin=Math.max(
   1,
   Number(document.getElementById("legsToWin").value)||1
  );
+
  const doubleOut=document.getElementById("doubleOut").checked;
- const starterRotation=document.getElementById("alternateStarter").checked;
+ const starterRotation=
+  document.getElementById("alternateStarter").checked;
 
  const startingPlayer=Math.min(
   count-1,
@@ -849,7 +858,9 @@ function startGame(){
   )
  );
 
- const isBot=count===2&&document.getElementById("playerTwoBot").checked;
+ const isBot=
+  count===2&&document.getElementById("playerTwoBot").checked;
+
  const botDifficulty=Number(
   document.getElementById("botDifficulty").value
  );
@@ -1024,9 +1035,11 @@ function render(){
   legalCheckoutDarts(state.pendingCheckout.checkoutScore)
    .forEach(darts=>{
     const button=document.createElement("button");
+
     button.textContent=darts;
     button.disabled=botThinking||state.matchOver;
     button.onclick=()=>completeCheckout(darts);
+
     checkoutButtons.appendChild(button);
    });
  }
@@ -1038,6 +1051,7 @@ function render(){
 
  if(legFinished){
   const winner=state.players[state.legFinished.winnerIndex];
+
   nextTitle.textContent=
    winner.name+" gewinnt das Leg – bereit für das nächste Leg?";
  }
@@ -1228,12 +1242,19 @@ function processScore(score){
 
 function chooseBotCheckoutDarts(options,difficulty){
  if(difficulty>=5)return options[0];
+
  if(difficulty>=4){
-  return Math.random()<.75?options[0]:options[options.length-1];
+  return Math.random()<.75?
+   options[0]:
+   options[options.length-1];
  }
+
  if(difficulty>=3){
-  return Math.random()<.55?options[0]:options[options.length-1];
+  return Math.random()<.55?
+   options[0]:
+   options[options.length-1];
  }
+
  return options[Math.floor(Math.random()*options.length)];
 }
 
@@ -1301,6 +1322,7 @@ function finishLeg(player){
    state.pendingCheckout=null;
    state.legFinished=null;
    botThinking=false;
+
    render();
    showStatistics();
    return;
@@ -1411,6 +1433,7 @@ function calculateBotScore(rest,difficulty){
 
 function isCurrentPlayerBot(){
  const player=state.players[state.currentPlayer];
+
  return player&&player.isBot===true;
 }
 
@@ -1447,6 +1470,7 @@ function playBotTurn(){
  }
 
  const bot=state.players[state.currentPlayer];
+
  const score=calculateBotScore(
   bot.score,
   bot.difficulty
@@ -1492,14 +1516,14 @@ function undo(){
   state.players=previous.players;
   state.currentPlayer=previous.currentPlayer;
   state.startingPlayer=
-   typeof previous.startingPlayer==="number"
-    ?previous.startingPlayer
-    :0;
+   typeof previous.startingPlayer==="number"?
+    previous.startingPlayer:
+    0;
 
   state.starterRotation=
-   typeof previous.starterRotation==="boolean"
-    ?previous.starterRotation
-    :true;
+   typeof previous.starterRotation==="boolean"?
+    previous.starterRotation:
+    true;
 
   state.matchOver=previous.matchOver;
   state.pendingCheckout=previous.pendingCheckout||null;
@@ -1627,9 +1651,9 @@ function showStatistics(){
     ${statRow("Durchschnittliche Leg-Darts",player=>averageLegDarts(player))}
     ${statRow(
      "Bestes Leg",
-     player=>player.matchStats.bestLeg===null
-      ?"-"
-      :player.matchStats.bestLeg+" Darts"
+     player=>player.matchStats.bestLeg===null?
+      "-":
+      player.matchStats.bestLeg+" Darts"
     )}
    </tbody>
   </table>
@@ -1654,6 +1678,7 @@ function statRow(label,callback){
 function closeStatistics(){
  document.getElementById("statsScreen").classList.add("hidden");
  document.getElementById("gameScreen").classList.remove("hidden");
+
  render();
 }
 
@@ -1683,7 +1708,10 @@ function loadState(){
   if(!state.legFinished)state.legFinished=null;
   if(typeof state.setsToWin!=="number")state.setsToWin=1;
   if(typeof state.legsToWin!=="number")state.legsToWin=3;
-  if(typeof state.startingPlayer!=="number")state.startingPlayer=0;
+  if(typeof state.startingPlayer!=="number"){
+   state.startingPlayer=0;
+  }
+
   if(typeof state.starterRotation!=="boolean"){
    state.starterRotation=true;
   }
@@ -1697,10 +1725,14 @@ function loadState(){
 
   state.players.forEach(player=>{
    if(!Array.isArray(player.turns))player.turns=[];
-   if(!Array.isArray(player.legResults))player.legResults=[];
+   if(!Array.isArray(player.legResults)){
+    player.legResults=[];
+   }
+
    if(!player.checkoutStats){
     player.checkoutStats=emptyCheckoutStats();
    }
+
    if(!player.matchStats){
     player.matchStats=emptyMatchStats();
    }
@@ -1753,6 +1785,7 @@ loadState();
 </script>
 </body>
 </html>
+
 
 
 
