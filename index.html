@@ -8,262 +8,272 @@
 
 <style>
 :root{
-  --background:#10151c;
-  --header:#0b1016;
-  --panel:#1b2430;
-  --panel-light:#293848;
-  --text:#f4f7fa;
-  --muted:#aeb8c4;
-  --green:#25c281;
-  --red:#e74c3c;
-  --blue:#34475b;
-  --purple:#7658b8;
-  --line:#46586b;
-  --gold:#e6b84e;
+ --background:#10151c;
+ --header:#0b1016;
+ --panel:#1b2430;
+ --panel-light:#293848;
+ --text:#f4f7fa;
+ --muted:#aeb8c4;
+ --green:#25c281;
+ --red:#e74c3c;
+ --blue:#34475b;
+ --purple:#7658b8;
+ --line:#46586b;
+ --gold:#e6b84e;
 }
 
 *{box-sizing:border-box}
 
-html,body{
-  width:100%;
-  height:100%;
-  margin:0;
-  overflow:hidden;
+html,
+body{
+ width:100%;
+ height:100%;
+ margin:0;
+ overflow:hidden;
 }
 
 body{
-  display:flex;
-  flex-direction:column;
-  background:var(--background);
-  color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;
+ display:flex;
+ flex-direction:column;
+ background:var(--background);
+ color:var(--text);
+ font-family:Arial,Helvetica,sans-serif;
 }
 
 header{
-  flex:0 0 48px;
-  height:48px;
-  padding:11px;
-  background:var(--header);
-  text-align:center;
-  font-size:21px;
-  font-weight:bold;
+ flex:0 0 48px;
+ height:48px;
+ padding:11px;
+ background:var(--header);
+ text-align:center;
+ font-size:21px;
+ font-weight:bold;
 }
 
 main{
-  width:min(1050px,100%);
-  height:calc(100dvh - 48px);
-  min-height:0;
-  margin:0 auto;
-  padding:6px;
-  overflow:hidden;
+ width:min(1050px,100%);
+ height:calc(100dvh - 48px);
+ min-height:0;
+ margin:0 auto;
+ padding:5px;
+ overflow:hidden;
 }
 
 .hidden{display:none!important}
 
 .card{
-  padding:8px;
-  border-radius:9px;
-  background:var(--panel);
+ padding:7px;
+ border-radius:9px;
+ background:var(--panel);
 }
 
 h2{
-  margin:0 0 8px;
-  font-size:20px;
+ margin:0 0 8px;
+ font-size:20px;
 }
 
 label{
-  display:block;
-  margin:6px 0 3px;
-  color:var(--muted);
+ display:block;
+ margin:6px 0 3px;
+ color:var(--muted);
 }
 
 input[type=text],
 input[type=number],
 select{
-  width:100%;
-  padding:8px;
-  border:0;
-  border-radius:6px;
-  background:#fff;
-  color:#111;
-  font-size:15px;
+ width:100%;
+ padding:8px;
+ border:0;
+ border-radius:6px;
+ background:#fff;
+ color:#111;
+ font-size:15px;
 }
 
 input[type=checkbox]{
-  margin-right:7px;
-  accent-color:var(--green);
-  transform:scale(1.1);
+ margin-right:7px;
+ accent-color:var(--green);
+ transform:scale(1.1);
 }
 
 button{
-  min-height:40px;
-  padding:6px;
-  border:0;
-  border-radius:7px;
-  background:var(--blue);
-  color:#fff;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-  touch-action:manipulation;
+ min-height:40px;
+ padding:6px;
+ border:0;
+ border-radius:7px;
+ background:var(--blue);
+ color:#fff;
+ font-size:16px;
+ font-weight:bold;
+ cursor:pointer;
+ touch-action:manipulation;
 }
 
 button:active{transform:scale(.97)}
 button:disabled{opacity:.45;cursor:not-allowed}
 
 .primary{
-  width:100%;
-  margin-top:10px;
-  background:var(--green);
-  color:#062719;
+ width:100%;
+ margin-top:8px;
+ background:var(--green);
+ color:#062719;
 }
 
 .secondary{background:#607286}
 
 .danger{
-  width:100%;
-  margin-top:6px;
-  background:var(--red);
+ width:100%;
+ margin-top:5px;
+ background:var(--red);
 }
 
 .hint{
-  margin:7px 0;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.3;
+ margin:7px 0;
+ color:var(--muted);
+ font-size:12px;
+ line-height:1.3;
 }
 
 #setupScreen{
-  max-height:100%;
-  overflow-y:auto;
+ max-height:100%;
+ overflow-y:auto;
 }
 
 #gameScreen{
-  width:100%;
-  height:100%;
-  min-height:0;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
+ width:100%;
+ height:100%;
+ min-height:0;
+ display:flex;
+ flex-direction:column;
+ gap:5px;
 }
 
+/*
+  Die Spielerübersicht erhält weniger Höhe.
+  Dadurch wird der Scoring-Bereich größer und die
+  unteren Aktionsbuttons bleiben auf dem iPad sichtbar.
+*/
 #gameScreen>.card:first-child{
-  flex:0 0 55%;
-  min-height:0;
-  overflow:hidden;
+ flex:0 0 43%;
+ min-height:0;
+ overflow:hidden;
 }
 
 #gameScreen>.card:last-child{
-  flex:1 1 45%;
-  min-height:0;
-  overflow:hidden;
+ flex:1 1 57%;
+ min-height:0;
+ overflow:hidden;
 }
 
 .player-grid{
-  width:100%;
-  height:100%;
-  min-height:0;
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:6px;
+ width:100%;
+ height:100%;
+ min-height:0;
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:5px;
 }
 
 .player-grid.players-1,
 .player-grid.players-2{
-  grid-template-rows:minmax(0,1fr);
+ grid-template-rows:minmax(0,1fr);
 }
 
 .player-grid.players-3,
 .player-grid.players-4{
-  grid-template-rows:repeat(2,minmax(0,1fr));
+ grid-template-rows:repeat(2,minmax(0,1fr));
 }
 
 .player-card{
-  min-width:0;
-  min-height:0;
-  padding:5px;
-  border:2px solid transparent;
-  border-radius:8px;
-  background:var(--panel-light);
-  text-align:center;
-  overflow:hidden;
+ min-width:0;
+ min-height:0;
+ padding:4px;
+ border:2px solid transparent;
+ border-radius:8px;
+ background:var(--panel-light);
+ text-align:center;
+ overflow:hidden;
 }
 
 .player-card.active{border-color:var(--green)}
 
 .player-name{
-  height:18px;
-  overflow:hidden;
-  color:var(--muted);
-  font-size:14px;
-  line-height:18px;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+ height:18px;
+ overflow:hidden;
+ color:var(--muted);
+ font-size:14px;
+ line-height:18px;
+ text-overflow:ellipsis;
+ white-space:nowrap;
 }
 
 .bot-label{
-  display:inline-block;
-  margin-left:4px;
-  color:var(--gold);
-  font-size:10px;
+ display:inline-block;
+ margin-left:4px;
+ color:var(--gold);
+ font-size:10px;
 }
 
 .player-score{
-  height:36px;
-  font-size:31px;
-  font-weight:bold;
-  line-height:36px;
+ height:34px;
+ font-size:30px;
+ font-weight:bold;
+ line-height:34px;
 }
 
 .player-legs{
-  height:18px;
-  color:var(--muted);
-  font-size:11px;
-  line-height:18px;
+ height:17px;
+ color:var(--muted);
+ font-size:11px;
+ line-height:17px;
 }
 
 .history-title{
-  height:20px;
-  margin-top:2px;
-  color:var(--muted);
-  text-align:left;
-  font-size:12px;
-  font-weight:bold;
-  line-height:20px;
+ height:18px;
+ margin-top:1px;
+ color:var(--muted);
+ text-align:left;
+ font-size:12px;
+ font-weight:bold;
+ line-height:18px;
 }
 
+/*
+  Die Zeilen der letzten fünf Aufnahmen sind kompakter,
+  die Schriftgröße bleibt unverändert.
+*/
 .history-box{
-  height:calc(100% - 94px);
-  min-height:0;
-  overflow:hidden;
-  border-radius:5px;
-  background:rgba(0,0,0,.16);
+ height:calc(100% - 87px);
+ min-height:0;
+ overflow:hidden;
+ border-radius:5px;
+ background:rgba(0,0,0,.16);
 }
 
 .score-history{
-  width:100%;
-  border-collapse:collapse;
-  table-layout:fixed;
-  font-size:17px;
-  line-height:1.1;
-  text-align:left;
+ width:100%;
+ border-collapse:collapse;
+ table-layout:fixed;
+ font-size:17px;
+ line-height:1.1;
+ text-align:left;
 }
 
 .score-history th,
 .score-history td{
-  height:27px;
-  padding:3px 4px;
-  overflow:hidden;
-  border-bottom:1px solid var(--line);
-  white-space:nowrap;
-  text-overflow:ellipsis;
+ height:22px;
+ padding:2px 4px;
+ overflow:hidden;
+ border-bottom:1px solid var(--line);
+ white-space:nowrap;
+ text-overflow:ellipsis;
 }
 
 .score-history th{
-  background:rgba(0,0,0,.18);
-  color:var(--muted);
-  font-size:13px;
-  font-weight:normal;
+ background:rgba(0,0,0,.18);
+ color:var(--muted);
+ font-size:13px;
+ font-weight:normal;
 }
 
 .score-history th:first-child,
@@ -277,252 +287,288 @@ button:disabled{opacity:.45;cursor:not-allowed}
 
 .score-history th:last-child,
 .score-history td:last-child{
-  width:20%;
-  text-align:right;
+ width:20%;
+ text-align:right;
 }
 
 .bust{color:var(--red);font-weight:bold}
 .checkout-mark{color:var(--gold);font-weight:bold}
 
 .scoring-area{
-  width:100%;
-  height:100%;
-  min-height:0;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  overflow:hidden;
+ width:100%;
+ height:100%;
+ min-height:0;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:7px;
+ overflow:hidden;
 }
 
 .input-column,
 .quick-column{
-  min-width:0;
-  min-height:0;
-  overflow:hidden;
+ min-width:0;
+ min-height:0;
+ overflow:hidden;
 }
 
 .input-display{
-  height:46px;
-  margin-bottom:8px;
-  padding:6px;
-  border-radius:7px;
-  background:#090d12;
-  color:var(--green);
-  text-align:center;
-  font-size:31px;
-  font-weight:bold;
-  letter-spacing:5px;
-  line-height:34px;
+ height:42px;
+ margin-bottom:6px;
+ padding:4px;
+ border-radius:7px;
+ background:#090d12;
+ color:var(--green);
+ text-align:center;
+ font-size:29px;
+ font-weight:bold;
+ letter-spacing:5px;
+ line-height:34px;
 }
 
 .keypad{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:6px;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:4px;
 }
 
 .keypad button{
-  min-height:52px;
-  font-size:21px;
+ min-height:46px;
+ font-size:20px;
 }
 
 .quick-scores{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:7px;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:5px;
 }
 
 .quick-scores button{
-  min-height:55px;
-  background:var(--purple);
-  font-size:18px;
+ min-height:48px;
+ background:var(--purple);
+ font-size:17px;
 }
 
 .checkout-area{
-  display:none;
-  margin-top:7px;
+ display:none;
+ margin-top:5px;
 }
 
 .checkout-area.visible{display:block}
 
 .checkout-title{
-  margin-bottom:5px;
-  color:var(--gold);
-  font-size:12px;
-  font-weight:bold;
-  text-align:center;
+ margin-bottom:4px;
+ color:var(--gold);
+ font-size:12px;
+ font-weight:bold;
+ text-align:center;
 }
 
 .checkout-buttons{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:5px;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:4px;
 }
 
 .checkout-buttons button{
-  min-height:45px;
-  background:var(--gold);
-  color:#211700;
-  font-size:17px;
+ min-height:40px;
+ background:var(--gold);
+ color:#211700;
+ font-size:16px;
 }
 
 .leg-next-area{
-  display:none;
-  margin-top:7px;
+ display:none;
+ margin-top:5px;
 }
 
 .leg-next-area.visible{display:block}
 
 .leg-next-title{
-  margin-bottom:5px;
-  color:var(--gold);
-  font-size:13px;
-  font-weight:bold;
-  text-align:center;
+ margin-bottom:4px;
+ color:var(--gold);
+ font-size:13px;
+ font-weight:bold;
+ text-align:center;
 }
 
 .next-leg-button{
-  width:100%;
-  min-height:46px;
-  background:var(--gold);
-  color:#211700;
-  font-size:16px;
+ width:100%;
+ min-height:42px;
+ background:var(--gold);
+ color:#211700;
+ font-size:16px;
 }
 
 .action-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:6px;
-  margin-top:7px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:5px;
+ margin-top:5px;
 }
 
 .action-row button{
-  min-height:46px;
-  font-size:15px;
+ min-height:42px;
+ font-size:15px;
 }
 
 #statsScreen{
-  width:100%;
-  height:100%;
-  overflow:hidden;
+ width:100%;
+ height:100%;
+ overflow:hidden;
 }
 
 .stats-wrap{
-  width:100%;
-  height:100%;
-  overflow-y:auto;
+ width:100%;
+ height:100%;
+ overflow-y:auto;
 }
 
 .stats-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:7px;
-  font-size:13px;
+ width:100%;
+ border-collapse:collapse;
+ margin-top:7px;
+ font-size:13px;
 }
 
 .stats-table th,
 .stats-table td{
-  padding:6px 4px;
-  border-bottom:1px solid var(--line);
-  text-align:left;
+ padding:6px 4px;
+ border-bottom:1px solid var(--line);
+ text-align:left;
 }
 
 .stats-table th{
-  color:var(--muted);
-  font-weight:normal;
+ color:var(--muted);
+ font-weight:normal;
 }
 
 .stats-table td:not(:first-child),
 .stats-table th:not(:first-child){
-  text-align:right;
+ text-align:right;
 }
 
 .stat-note{
-  margin:7px 0;
-  color:var(--muted);
-  font-size:11px;
+ margin:7px 0;
+ color:var(--muted);
+ font-size:11px;
 }
 
+/* Zusätzliche Komprimierung bei geringer Bildschirmhöhe */
 @media(max-height:700px){
-  header{
-    flex-basis:43px;
-    height:43px;
-    padding:9px;
-    font-size:19px;
-  }
+ header{
+  flex-basis:43px;
+  height:43px;
+  padding:9px;
+  font-size:19px;
+ }
 
-  main{
-    height:calc(100dvh - 43px);
-    padding:5px;
-  }
+ main{
+  height:calc(100dvh - 43px);
+  padding:4px;
+ }
 
-  #gameScreen{gap:5px}
+ #gameScreen{
+  gap:4px;
+ }
 
-  #gameScreen>.card:first-child{flex-basis:51%}
-  #gameScreen>.card:last-child{flex-basis:49%}
+ #gameScreen>.card:first-child{
+  flex-basis:40%;
+ }
 
-  .card{padding:6px}
-  .player-card{padding:3px}
+ #gameScreen>.card:last-child{
+  flex-basis:60%;
+ }
 
-  .player-name{
-    height:16px;
-    font-size:12px;
-    line-height:16px;
-  }
+ .card{
+  padding:5px;
+ }
 
-  .player-score{
-    height:32px;
-    font-size:27px;
-    line-height:32px;
-  }
+ .player-card{
+  padding:3px;
+ }
 
-  .player-legs{
-    height:16px;
-    font-size:10px;
-    line-height:16px;
-  }
+ .player-name{
+  height:16px;
+  font-size:12px;
+  line-height:16px;
+ }
 
-  .history-title{
-    height:17px;
-    font-size:10px;
-    line-height:17px;
-  }
+ .player-score{
+  height:30px;
+  font-size:26px;
+  line-height:30px;
+ }
 
-  .history-box{height:calc(100% - 85px)}
-  .score-history{font-size:14px}
-  .score-history th{font-size:11px}
+ .player-legs{
+  height:15px;
+  font-size:10px;
+  line-height:15px;
+ }
 
-  .score-history th,
-  .score-history td{
-    height:23px;
-    padding:2px;
-  }
+ .history-title{
+  height:16px;
+  font-size:10px;
+  line-height:16px;
+ }
 
-  .keypad{gap:4px}
+ .history-box{
+  height:calc(100% - 77px);
+ }
 
-  .keypad button{
-    min-height:42px;
-    font-size:18px;
-  }
+ .score-history{
+  font-size:14px;
+ }
 
-  .quick-scores{gap:5px}
+ .score-history th{
+  font-size:11px;
+ }
 
-  .quick-scores button{
-    min-height:43px;
-    font-size:15px;
-  }
+ .score-history th,
+ .score-history td{
+  height:20px;
+  padding:1px 2px;
+ }
 
-  .checkout-buttons button{
-    min-height:36px;
-    font-size:15px;
-  }
+ .input-display{
+  height:38px;
+  margin-bottom:5px;
+  font-size:26px;
+  line-height:30px;
+ }
 
-  .next-leg-button,
-  .action-row button,
-  .danger{
-    min-height:36px;
-    font-size:13px;
-  }
+ .keypad{
+  gap:3px;
+ }
+
+ .keypad button{
+  min-height:40px;
+  font-size:18px;
+ }
+
+ .quick-scores{
+  gap:4px;
+ }
+
+ .quick-scores button{
+  min-height:41px;
+  font-size:15px;
+ }
+
+ .checkout-area{
+  margin-top:4px;
+ }
+
+ .checkout-buttons button{
+  min-height:34px;
+  font-size:14px;
+ }
+
+ .next-leg-button,
+ .action-row button,
+ .danger{
+  min-height:36px;
+  font-size:13px;
+ }
 }
 </style>
 </head>
@@ -532,160 +578,162 @@ button:disabled{opacity:.45;cursor:not-allowed}
 
 <main>
 <section id="setupScreen" class="card">
-  <h2>Neues Spiel</h2>
+ <h2>Neues Spiel</h2>
 
-  <label for="gameMode">Startpunktzahl</label>
-  <select id="gameMode">
-    <option value="301">301</option>
-    <option value="501" selected>501</option>
-    <option value="1001">1001</option>
-  </select>
+ <label for="gameMode">Startpunktzahl</label>
+ <select id="gameMode">
+  <option value="301">301</option>
+  <option value="501" selected>501</option>
+  <option value="1001">1001</option>
+ </select>
 
-  <label for="playerCount">Anzahl Spieler</label>
-  <select id="playerCount" onchange="updatePlayerFields()">
-    <option value="1">1 Spieler</option>
-    <option value="2" selected>2 Spieler</option>
-    <option value="3">3 Spieler</option>
-    <option value="4">4 Spieler</option>
-  </select>
+ <label for="playerCount">Anzahl Spieler</label>
+ <select id="playerCount" onchange="updatePlayerFields()">
+  <option value="1">1 Spieler</option>
+  <option value="2" selected>2 Spieler</option>
+  <option value="3">3 Spieler</option>
+  <option value="4">4 Spieler</option>
+ </select>
 
-  <label for="setsToWin">Benötigte Sätze zum Matchgewinn</label>
-  <input type="number" id="setsToWin" min="1" max="99" value="1">
+ <label for="setsToWin">Benötigte Sätze zum Matchgewinn</label>
+ <input type="number" id="setsToWin" min="1" max="99" value="1">
 
-  <label for="legsToWin">Benötigte Legs pro Satz</label>
-  <input type="number" id="legsToWin" min="1" max="99" value="3">
+ <label for="legsToWin">Benötigte Legs pro Satz</label>
+ <input type="number" id="legsToWin" min="1" max="99" value="3">
 
-  <label for="startingPlayer">Wer beginnt das erste Leg?</label>
-  <select id="startingPlayer"></select>
+ <label for="startingPlayer">Wer beginnt das erste Leg?</label>
+ <select id="startingPlayer"></select>
 
+ <label>
+  <input type="checkbox" id="alternateStarter" checked>
+  Startspieler nach jedem Leg automatisch wechseln
+ </label>
+
+ <div id="playerFields"></div>
+
+ <label>
+  <input type="checkbox" id="doubleOut" checked>
+  Double-Out verwenden
+ </label>
+
+ <div id="botOptions">
   <label>
-    <input type="checkbox" id="alternateStarter" checked>
-    Startspieler nach jedem Leg automatisch wechseln
+   <input type="checkbox" id="playerTwoBot" onchange="toggleBotDifficulty()">
+   Spieler 2 ist ein Bot
   </label>
 
-  <div id="playerFields"></div>
-
-  <label>
-    <input type="checkbox" id="doubleOut" checked>
-    Double-Out verwenden
-  </label>
-
-  <div id="botOptions">
-    <label>
-      <input type="checkbox" id="playerTwoBot" onchange="toggleBotDifficulty()">
-      Spieler 2 ist ein Bot
-    </label>
-
-    <div id="botDifficultyBox" class="hidden">
-      <label for="botDifficulty">Bot-Schwierigkeit</label>
-      <select id="botDifficulty">
-        <option value="1">Stufe 1 – Anfänger</option>
-        <option value="2">Stufe 2 – Gelegenheitsspieler</option>
-        <option value="3" selected>Stufe 3 – Durchschnittlich</option>
-        <option value="4">Stufe 4 – Fortgeschritten</option>
-        <option value="5">Stufe 5 – Sehr stark</option>
-      </select>
-    </div>
+  <div id="botDifficultyBox" class="hidden">
+   <label for="botDifficulty">Bot-Schwierigkeit</label>
+   <select id="botDifficulty">
+    <option value="1">Stufe 1 – Anfänger</option>
+    <option value="2">Stufe 2 – Gelegenheitsspieler</option>
+    <option value="3" selected>Stufe 3 – Durchschnittlich</option>
+    <option value="4">Stufe 4 – Fortgeschritten</option>
+    <option value="5">Stufe 5 – Sehr stark</option>
+   </select>
   </div>
+ </div>
 
-  <p class="hint">
-    Wenn der automatische Wechsel aktiviert ist, beginnt im zweiten Leg
-    automatisch der nächste Spieler.
-  </p>
+ <p class="hint">
+  Wenn der automatische Wechsel aktiviert ist, beginnt im zweiten Leg
+  automatisch der nächste Spieler.
+ </p>
 
-  <button class="primary" onclick="startGame()">Spiel starten</button>
+ <button class="primary" onclick="startGame()">Spiel starten</button>
 </section>
 
 <section id="gameScreen" class="hidden">
-  <div class="card">
-    <div id="players" class="player-grid"></div>
-  </div>
+ <div class="card">
+  <div id="players" class="player-grid"></div>
+ </div>
 
-  <div class="card">
-    <div class="scoring-area">
-      <div class="input-column">
-        <div id="inputDisplay" class="input-display">000</div>
+ <div class="card">
+  <div class="scoring-area">
+   <div class="input-column">
+    <div id="inputDisplay" class="input-display">000</div>
 
-        <div class="keypad">
-          <button onclick="pressKey('1')">1</button>
-          <button onclick="pressKey('2')">2</button>
-          <button onclick="pressKey('3')">3</button>
-          <button onclick="pressKey('4')">4</button>
-          <button onclick="pressKey('5')">5</button>
-          <button onclick="pressKey('6')">6</button>
-          <button onclick="pressKey('7')">7</button>
-          <button onclick="pressKey('8')">8</button>
-          <button onclick="pressKey('9')">9</button>
-          <button class="secondary" onclick="clearInput()">C</button>
-          <button onclick="pressKey('0')">0</button>
-          <button class="secondary" onclick="backspace()">⌫</button>
-        </div>
-
-        <div id="checkoutArea" class="checkout-area">
-          <div class="checkout-title">Checkout-Darts auswählen</div>
-          <div id="checkoutButtons" class="checkout-buttons"></div>
-        </div>
-
-        <div id="legNextArea" class="leg-next-area">
-          <div id="legNextTitle" class="leg-next-title">
-            Leg beendet
-          </div>
-          <button class="next-leg-button" onclick="startNextLeg()">
-            Nächstes Leg beginnen
-          </button>
-        </div>
-
-        <div class="action-row">
-          <button class="secondary" onclick="undo()">Rückgängig</button>
-          <button class="primary" onclick="submitScore()">Eingeben</button>
-        </div>
-      </div>
-
-      <div class="quick-column">
-        <div class="quick-scores">
-          <button onclick="quickScore(26)">26</button>
-          <button onclick="quickScore(41)">41</button>
-          <button onclick="quickScore(45)">45</button>
-          <button onclick="quickScore(57)">57</button>
-          <button onclick="quickScore(60)">60</button>
-          <button onclick="quickScore(81)">81</button>
-          <button onclick="quickScore(85)">85</button>
-          <button onclick="quickScore(100)">100</button>
-          <button onclick="quickScore(140)">140</button>
-        </div>
-
-        <button class="danger" onclick="showStatistics()">Statistik</button>
-        <button class="danger" onclick="newGame()">Neues Spiel</button>
-      </div>
+    <div class="keypad">
+     <button onclick="pressKey('1')">1</button>
+     <button onclick="pressKey('2')">2</button>
+     <button onclick="pressKey('3')">3</button>
+     <button onclick="pressKey('4')">4</button>
+     <button onclick="pressKey('5')">5</button>
+     <button onclick="pressKey('6')">6</button>
+     <button onclick="pressKey('7')">7</button>
+     <button onclick="pressKey('8')">8</button>
+     <button onclick="pressKey('9')">9</button>
+     <button class="secondary" onclick="clearInput()">C</button>
+     <button onclick="pressKey('0')">0</button>
+     <button class="secondary" onclick="backspace()">⌫</button>
     </div>
+
+    <div id="checkoutArea" class="checkout-area">
+     <div class="checkout-title">Checkout-Darts auswählen</div>
+     <div id="checkoutButtons" class="checkout-buttons"></div>
+    </div>
+
+    <div id="legNextArea" class="leg-next-area">
+     <div id="legNextTitle" class="leg-next-title">Leg beendet</div>
+     <button class="next-leg-button" onclick="startNextLeg()">
+      Nächstes Leg beginnen
+     </button>
+    </div>
+
+    <div class="action-row">
+     <button class="secondary" onclick="undo()">Rückgängig</button>
+     <button class="primary" onclick="submitScore()">Eingeben</button>
+    </div>
+   </div>
+
+   <div class="quick-column">
+    <div class="quick-scores">
+     <button onclick="quickScore(26)">26</button>
+     <button onclick="quickScore(41)">41</button>
+     <button onclick="quickScore(45)">45</button>
+     <button onclick="quickScore(57)">57</button>
+     <button onclick="quickScore(60)">60</button>
+     <button onclick="quickScore(81)">81</button>
+     <button onclick="quickScore(85)">85</button>
+     <button onclick="quickScore(100)">100</button>
+     <button onclick="quickScore(140)">140</button>
+    </div>
+
+    <button class="danger" onclick="showStatistics()">Statistik</button>
+    <button class="danger" onclick="newGame()">Neues Spiel</button>
+   </div>
   </div>
+ </div>
 </section>
 
 <section id="statsScreen" class="card hidden">
-  <div class="stats-wrap">
-    <h2>Match-Statistik</h2>
-    <div id="statsContent"></div>
-    <button class="primary" onclick="closeStatistics()">Zum Spiel zurück</button>
-    <button class="danger" onclick="newGame()">Neues Spiel</button>
-  </div>
+ <div class="stats-wrap">
+  <h2>Match-Statistik</h2>
+  <div id="statsContent"></div>
+
+  <button class="primary" onclick="closeStatistics()">
+   Zum Spiel zurück
+  </button>
+
+  <button class="danger" onclick="newGame()">Neues Spiel</button>
+ </div>
 </section>
 </main>
 
 <script>
 let state={
-  started:false,
-  matchOver:false,
-  pendingCheckout:null,
-  legFinished:null,
-  startScore:501,
-  doubleOut:true,
-  setsToWin:1,
-  legsToWin:3,
-  players:[],
-  currentPlayer:0,
-  startingPlayer:0,
-  starterRotation:true,
-  history:[]
+ started:false,
+ matchOver:false,
+ pendingCheckout:null,
+ legFinished:null,
+ startScore:501,
+ doubleOut:true,
+ setsToWin:1,
+ legsToWin:3,
+ players:[],
+ currentPlayer:0,
+ startingPlayer:0,
+ starterRotation:true,
+ history:[]
 };
 
 let currentInput="";
@@ -693,952 +741,1011 @@ let botTimer=null;
 let botThinking=false;
 
 const BOT_PROFILES={
-  1:{average:40,checkout:.05,variation:.48},
-  2:{average:50,checkout:.10,variation:.42},
-  3:{average:60,checkout:.15,variation:.36},
-  4:{average:60,checkout:.20,variation:.30},
-  5:{average:80,checkout:.33,variation:.24}
+ 1:{average:40,checkout:.05,variation:.48},
+ 2:{average:50,checkout:.10,variation:.42},
+ 3:{average:60,checkout:.15,variation:.36},
+ 4:{average:60,checkout:.20,variation:.30},
+ 5:{average:80,checkout:.33,variation:.24}
 };
 
 function emptyCheckoutStats(){
-  return{attempts:0,hits:0,darts1:0,darts2:0,darts3:0,totalDarts:0};
+ return{
+  attempts:0,
+  hits:0,
+  darts1:0,
+  darts2:0,
+  darts3:0,
+  totalDarts:0
+ };
 }
 
 function emptyMatchStats(){
-  return{
-    totalPoints:0,
-    totalDarts:0,
-    totalTurns:0,
-    firstNinePoints:0,
-    firstNineTurns:0,
-    highestScore:0,
-    highestCheckout:0,
-    scores100:0,
-    scores140:0,
-    scores180:0,
-    legsWon:0,
-    setsWon:0,
-    legDarts:[],
-    bestLeg:null
-  };
+ return{
+  totalPoints:0,
+  totalDarts:0,
+  totalTurns:0,
+  firstNinePoints:0,
+  firstNineTurns:0,
+  highestScore:0,
+  highestCheckout:0,
+  scores100:0,
+  scores140:0,
+  scores180:0,
+  legsWon:0,
+  setsWon:0,
+  legDarts:[],
+  bestLeg:null
+ };
 }
 
 function updateStartingPlayerOptions(){
-  const count=Number(document.getElementById("playerCount").value);
-  const select=document.getElementById("startingPlayer");
-  const old=select.value;
+ const count=Number(document.getElementById("playerCount").value);
+ const select=document.getElementById("startingPlayer");
+ const old=select.value;
 
-  select.innerHTML="";
+ select.innerHTML="";
 
-  for(let i=1;i<=count;i++){
-    const option=document.createElement("option");
-    option.value=String(i-1);
-    option.textContent="Spieler "+i;
-    select.appendChild(option);
-  }
+ for(let i=1;i<=count;i++){
+  const option=document.createElement("option");
+  option.value=String(i-1);
+  option.textContent="Spieler "+i;
+  select.appendChild(option);
+ }
 
-  select.value=old!==""&&Number(old)<count?old:"0";
+ select.value=old!==""&&Number(old)<count?old:"0";
 }
 
 function updatePlayerFields(){
-  const count=Number(document.getElementById("playerCount").value);
-  const container=document.getElementById("playerFields");
+ const count=Number(document.getElementById("playerCount").value);
+ const container=document.getElementById("playerFields");
 
-  container.innerHTML="";
+ container.innerHTML="";
 
-  for(let i=1;i<=count;i++){
-    container.innerHTML+=`
-      <label for="player${i}">Name Spieler ${i}</label>
-      <input type="text" id="player${i}" value="Spieler ${i}" maxlength="20">
-    `;
-  }
+ for(let i=1;i<=count;i++){
+  container.innerHTML+=`
+   <label for="player${i}">Name Spieler ${i}</label>
+   <input type="text" id="player${i}" value="Spieler ${i}" maxlength="20">
+  `;
+ }
 
-  updateStartingPlayerOptions();
+ updateStartingPlayerOptions();
 
-  const botOptions=document.getElementById("botOptions");
+ const botOptions=document.getElementById("botOptions");
 
-  if(count===2){
-    botOptions.classList.remove("hidden");
-  }else{
-    botOptions.classList.add("hidden");
-    document.getElementById("playerTwoBot").checked=false;
-    document.getElementById("botDifficultyBox").classList.add("hidden");
-  }
+ if(count===2){
+  botOptions.classList.remove("hidden");
+ }else{
+  botOptions.classList.add("hidden");
+  document.getElementById("playerTwoBot").checked=false;
+  document.getElementById("botDifficultyBox").classList.add("hidden");
+ }
 }
 
 function toggleBotDifficulty(){
-  const checked=document.getElementById("playerTwoBot").checked;
-  document.getElementById("botDifficultyBox").classList.toggle("hidden",!checked);
+ const checked=document.getElementById("playerTwoBot").checked;
+ document.getElementById("botDifficultyBox")
+  .classList.toggle("hidden",!checked);
 }
 
 function startGame(){
-  const count=Number(document.getElementById("playerCount").value);
-  const startScore=Number(document.getElementById("gameMode").value);
-  const setsToWin=Math.max(1,Number(document.getElementById("setsToWin").value)||1);
-  const legsToWin=Math.max(1,Number(document.getElementById("legsToWin").value)||1);
-  const doubleOut=document.getElementById("doubleOut").checked;
-  const starterRotation=document.getElementById("alternateStarter").checked;
+ const count=Number(document.getElementById("playerCount").value);
+ const startScore=Number(document.getElementById("gameMode").value);
+ const setsToWin=Math.max(
+  1,
+  Number(document.getElementById("setsToWin").value)||1
+ );
+ const legsToWin=Math.max(
+  1,
+  Number(document.getElementById("legsToWin").value)||1
+ );
+ const doubleOut=document.getElementById("doubleOut").checked;
+ const starterRotation=document.getElementById("alternateStarter").checked;
 
-  const startingPlayer=Math.min(
-    count-1,
-    Math.max(0,Number(document.getElementById("startingPlayer").value)||0)
-  );
+ const startingPlayer=Math.min(
+  count-1,
+  Math.max(
+   0,
+   Number(document.getElementById("startingPlayer").value)||0
+  )
+ );
 
-  const isBot=count===2&&document.getElementById("playerTwoBot").checked;
-  const botDifficulty=Number(document.getElementById("botDifficulty").value);
-  const players=[];
+ const isBot=count===2&&document.getElementById("playerTwoBot").checked;
+ const botDifficulty=Number(
+  document.getElementById("botDifficulty").value
+ );
 
-  for(let i=1;i<=count;i++){
-    let name=document.getElementById("player"+i).value.trim();
-    const playerIsBot=i===2&&isBot;
+ const players=[];
 
-    if(playerIsBot)name="Bot";
+ for(let i=1;i<=count;i++){
+  let name=document.getElementById("player"+i).value.trim();
+  const playerIsBot=i===2&&isBot;
 
-    players.push({
-      name:name||"Spieler "+i,
-      score:startScore,
-      legs:0,
-      sets:0,
-      turns:[],
-      legResults:[],
-      isBot:playerIsBot,
-      difficulty:playerIsBot?botDifficulty:0,
-      checkoutStats:emptyCheckoutStats(),
-      matchStats:emptyMatchStats()
-    });
-  }
+  if(playerIsBot)name="Bot";
 
-  state={
-    started:true,
-    matchOver:false,
-    pendingCheckout:null,
-    legFinished:null,
-    startScore,
-    doubleOut,
-    setsToWin,
-    legsToWin,
-    players,
-    currentPlayer:startingPlayer,
-    startingPlayer,
-    starterRotation,
-    history:[]
-  };
+  players.push({
+   name:name||"Spieler "+i,
+   score:startScore,
+   legs:0,
+   sets:0,
+   turns:[],
+   legResults:[],
+   isBot:playerIsBot,
+   difficulty:playerIsBot?botDifficulty:0,
+   checkoutStats:emptyCheckoutStats(),
+   matchStats:emptyMatchStats()
+  });
+ }
 
-  currentInput="";
-  botThinking=false;
+ state={
+  started:true,
+  matchOver:false,
+  pendingCheckout:null,
+  legFinished:null,
+  startScore,
+  doubleOut,
+  setsToWin,
+  legsToWin,
+  players,
+  currentPlayer:startingPlayer,
+  startingPlayer,
+  starterRotation,
+  history:[]
+ };
 
-  document.getElementById("setupScreen").classList.add("hidden");
-  document.getElementById("statsScreen").classList.add("hidden");
-  document.getElementById("gameScreen").classList.remove("hidden");
+ currentInput="";
+ botThinking=false;
 
-  render();
-  startBotIfNeeded();
+ document.getElementById("setupScreen").classList.add("hidden");
+ document.getElementById("statsScreen").classList.add("hidden");
+ document.getElementById("gameScreen").classList.remove("hidden");
+
+ render();
+ startBotIfNeeded();
 }
 
 function checkoutValues(doubleOut){
-  if(!doubleOut)return Array.from({length:60},(_,i)=>i+1);
+ if(!doubleOut){
+  return Array.from({length:60},(_,i)=>i+1);
+ }
 
-  const values=[];
+ const values=[];
 
-  for(let i=1;i<=20;i++)values.push(i*2);
+ for(let i=1;i<=20;i++)values.push(i*2);
 
-  values.push(50);
-  return values;
+ values.push(50);
+ return values;
 }
 
 function canFinish(score,darts,doubleOut){
-  if(score<=0||darts<1||darts>3)return false;
+ if(score<=0||darts<1||darts>3)return false;
 
-  const finals=checkoutValues(doubleOut);
+ const finals=checkoutValues(doubleOut);
 
-  if(darts===1)return finals.includes(score);
+ if(darts===1)return finals.includes(score);
 
-  let reachable=new Set([0]);
+ let reachable=new Set([0]);
 
-  for(let i=0;i<darts-1;i++){
-    const next=new Set();
+ for(let i=0;i<darts-1;i++){
+  const next=new Set();
 
-    for(const current of reachable){
-      for(let value=0;value<=60;value++){
-        next.add(current+value);
-      }
-    }
-
-    reachable=next;
+  for(const current of reachable){
+   for(let value=0;value<=60;value++){
+    next.add(current+value);
+   }
   }
 
-  return finals.some(value=>reachable.has(score-value));
+  reachable=next;
+ }
+
+ return finals.some(value=>reachable.has(score-value));
 }
 
 function legalCheckoutDarts(score){
-  return[1,2,3].filter(darts=>canFinish(score,darts,state.doubleOut));
+ return[1,2,3].filter(darts=>
+  canFinish(score,darts,state.doubleOut)
+ );
 }
 
 function render(){
-  if(!state.started)return;
+ if(!state.started)return;
 
-  const playersContainer=document.getElementById("players");
+ const playersContainer=document.getElementById("players");
 
-  playersContainer.className="player-grid players-"+state.players.length;
+ playersContainer.className=
+  "player-grid players-"+state.players.length;
 
-  playersContainer.innerHTML=state.players.map((player,index)=>{
-    const recent=player.turns.slice(-5);
-    const rows=[];
+ playersContainer.innerHTML=state.players.map((player,index)=>{
+  const recent=player.turns.slice(-5);
+  const rows=[];
 
-    for(let i=0;i<5;i++){
-      const turn=recent[i];
+  for(let i=0;i<5;i++){
+   const turn=recent[i];
 
-      if(!turn){
-        rows.push("<tr><td></td><td></td><td></td><td></td></tr>");
-      }else{
-        rows.push(`
-          <tr>
-            <td>${turn.number}</td>
-            <td class="${turn.bust?"bust":""}">
-              ${turn.bust?"Bust":turn.score}
-            </td>
-            <td>${turn.rest}</td>
-            <td class="${turn.checkoutDarts?"checkout-mark":""}">
-              ${turn.checkoutDarts?turn.checkoutDarts+"D":""}
-            </td>
-          </tr>
-        `);
-      }
-    }
-
-    return`
-      <div class="player-card ${index===state.currentPlayer?"active":""}">
-        <div class="player-name">
-          ${escapeHtml(player.name)}
-          ${player.isBot?'<span class="bot-label">BOT</span>':""}
-        </div>
-        <div class="player-score">${player.score}</div>
-        <div class="player-legs">
-          Sätze: ${player.sets} · Legs: ${player.legs}
-        </div>
-        <div class="history-title">Letzte 5 Aufnahmen</div>
-        <div class="history-box">
-          <table class="score-history">
-            <thead>
-              <tr>
-                <th>Aufn.</th>
-                <th>Score</th>
-                <th>Rest</th>
-                <th>CO</th>
-              </tr>
-            </thead>
-            <tbody>${rows.join("")}</tbody>
-          </table>
-        </div>
-      </div>
-    `;
-  }).join("");
-
-  const pending=state.pendingCheckout!==null;
-  const legFinished=state.legFinished!==null;
-
-  document.getElementById("checkoutArea")
-    .classList.toggle("visible",pending);
-
-  const checkoutButtons=document.getElementById("checkoutButtons");
-  checkoutButtons.innerHTML="";
-
-  if(pending){
-    legalCheckoutDarts(state.pendingCheckout.checkoutScore).forEach(darts=>{
-      const button=document.createElement("button");
-      button.textContent=darts;
-      button.disabled=botThinking||state.matchOver;
-      button.onclick=()=>completeCheckout(darts);
-      checkoutButtons.appendChild(button);
-    });
+   if(!turn){
+    rows.push("<tr><td></td><td></td><td></td><td></td></tr>");
+   }else{
+    rows.push(`
+     <tr>
+      <td>${turn.number}</td>
+      <td class="${turn.bust?"bust":""}">
+       ${turn.bust?"Bust":turn.score}
+      </td>
+      <td>${turn.rest}</td>
+      <td class="${turn.checkoutDarts?"checkout-mark":""}">
+       ${turn.checkoutDarts?turn.checkoutDarts+"D":""}
+      </td>
+     </tr>
+    `);
+   }
   }
 
-  const nextArea=document.getElementById("legNextArea");
-  const nextTitle=document.getElementById("legNextTitle");
+  return`
+   <div class="player-card ${index===state.currentPlayer?"active":""}">
+    <div class="player-name">
+     ${escapeHtml(player.name)}
+     ${player.isBot?'<span class="bot-label">BOT</span>':""}
+    </div>
 
-  nextArea.classList.toggle("visible",legFinished);
+    <div class="player-score">${player.score}</div>
 
-  if(legFinished){
-    const winner=state.players[state.legFinished.winnerIndex];
-    nextTitle.textContent=
-      winner.name+" gewinnt das Leg – bereit für das nächste Leg?";
-  }
+    <div class="player-legs">
+     Sätze: ${player.sets} · Legs: ${player.legs}
+    </div>
 
-  document.getElementById("inputDisplay").textContent=
-    currentInput===""?"000":currentInput.padStart(3,"0");
+    <div class="history-title">Letzte 5 Aufnahmen</div>
 
-  document.querySelectorAll(
-    ".keypad button,.quick-scores button,.action-row button"
-  ).forEach(button=>{
-    button.disabled=
-      botThinking||
-      state.matchOver||
-      pending||
-      legFinished||
-      isCurrentPlayerBot();
-  });
+    <div class="history-box">
+     <table class="score-history">
+      <thead>
+       <tr>
+        <th>Aufn.</th>
+        <th>Score</th>
+        <th>Rest</th>
+        <th>CO</th>
+       </tr>
+      </thead>
+      <tbody>${rows.join("")}</tbody>
+     </table>
+    </div>
+   </div>
+  `;
+ }).join("");
 
-  saveState();
+ const pending=state.pendingCheckout!==null;
+ const legFinished=state.legFinished!==null;
+
+ document.getElementById("checkoutArea")
+  .classList.toggle("visible",pending);
+
+ const checkoutButtons=document.getElementById("checkoutButtons");
+ checkoutButtons.innerHTML="";
+
+ if(pending){
+  legalCheckoutDarts(state.pendingCheckout.checkoutScore)
+   .forEach(darts=>{
+    const button=document.createElement("button");
+    button.textContent=darts;
+    button.disabled=botThinking||state.matchOver;
+    button.onclick=()=>completeCheckout(darts);
+    checkoutButtons.appendChild(button);
+   });
+ }
+
+ const nextArea=document.getElementById("legNextArea");
+ const nextTitle=document.getElementById("legNextTitle");
+
+ nextArea.classList.toggle("visible",legFinished);
+
+ if(legFinished){
+  const winner=state.players[state.legFinished.winnerIndex];
+  nextTitle.textContent=
+   winner.name+" gewinnt das Leg – bereit für das nächste Leg?";
+ }
+
+ document.getElementById("inputDisplay").textContent=
+  currentInput===""?"000":currentInput.padStart(3,"0");
+
+ document.querySelectorAll(
+  ".keypad button,.quick-scores button,.action-row button"
+ ).forEach(button=>{
+  button.disabled=
+   botThinking||
+   state.matchOver||
+   pending||
+   legFinished||
+   isCurrentPlayerBot();
+ });
+
+ saveState();
 }
 
 function pressKey(number){
-  if(
-    botThinking||
-    state.matchOver||
-    state.pendingCheckout||
-    state.legFinished||
-    isCurrentPlayerBot()
-  )return;
+ if(
+  botThinking||
+  state.matchOver||
+  state.pendingCheckout||
+  state.legFinished||
+  isCurrentPlayerBot()
+ )return;
 
-  if(currentInput.length>=3)return;
+ if(currentInput.length>=3)return;
 
-  const proposed=currentInput+number;
+ const proposed=currentInput+number;
 
-  if(Number(proposed)>180)return;
+ if(Number(proposed)>180)return;
 
-  currentInput=proposed;
-  render();
+ currentInput=proposed;
+ render();
 }
 
 function quickScore(score){
-  if(
-    botThinking||
-    state.matchOver||
-    state.pendingCheckout||
-    state.legFinished||
-    isCurrentPlayerBot()
-  )return;
+ if(
+  botThinking||
+  state.matchOver||
+  state.pendingCheckout||
+  state.legFinished||
+  isCurrentPlayerBot()
+ )return;
 
-  currentInput=String(score);
-  submitScore();
+ currentInput=String(score);
+ submitScore();
 }
 
 function clearInput(){
-  if(
-    botThinking||
-    state.matchOver||
-    state.pendingCheckout||
-    state.legFinished||
-    isCurrentPlayerBot()
-  )return;
+ if(
+  botThinking||
+  state.matchOver||
+  state.pendingCheckout||
+  state.legFinished||
+  isCurrentPlayerBot()
+ )return;
 
-  currentInput="";
-  render();
+ currentInput="";
+ render();
 }
 
 function backspace(){
-  if(
-    botThinking||
-    state.matchOver||
-    state.pendingCheckout||
-    state.legFinished||
-    isCurrentPlayerBot()
-  )return;
+ if(
+  botThinking||
+  state.matchOver||
+  state.pendingCheckout||
+  state.legFinished||
+  isCurrentPlayerBot()
+ )return;
 
-  currentInput=currentInput.slice(0,-1);
-  render();
+ currentInput=currentInput.slice(0,-1);
+ render();
 }
 
 function submitScore(){
-  if(
-    !state.started||
-    state.matchOver||
-    state.pendingCheckout||
-    state.legFinished||
-    isCurrentPlayerBot()
-  )return;
+ if(
+  !state.started||
+  state.matchOver||
+  state.pendingCheckout||
+  state.legFinished||
+  isCurrentPlayerBot()
+ )return;
 
-  processScore(Number(currentInput||0));
+ processScore(Number(currentInput||0));
 }
 
 function processScore(score){
-  if(
-    !state.started||
-    state.matchOver||
-    state.pendingCheckout||
-    state.legFinished
-  )return;
+ if(
+  !state.started||
+  state.matchOver||
+  state.pendingCheckout||
+  state.legFinished
+ )return;
 
-  if(score<0||score>180)return;
+ if(score<0||score>180)return;
 
-  saveHistory();
+ saveHistory();
 
-  const player=state.players[state.currentPlayer];
-  const oldScore=player.score;
-  const newScore=oldScore-score;
-  const turnNumber=player.turns.length+1;
+ const player=state.players[state.currentPlayer];
+ const oldScore=player.score;
+ const newScore=oldScore-score;
+ const turnNumber=player.turns.length+1;
 
-  if(oldScore>0&&oldScore<=170){
-    player.checkoutStats.attempts++;
-  }
+ if(oldScore>0&&oldScore<=170){
+  player.checkoutStats.attempts++;
+ }
 
-  let bust=false;
+ let bust=false;
 
-  if(newScore<0)bust=true;
-  if(state.doubleOut&&newScore===1)bust=true;
+ if(newScore<0)bust=true;
+ if(state.doubleOut&&newScore===1)bust=true;
 
-  if(bust){
-    player.turns.push({
-      number:turnNumber,
-      score,
-      rest:oldScore,
-      bust:true,
-      checkoutDarts:null
-    });
-
-    player.matchStats.totalTurns++;
-    player.matchStats.totalDarts+=3;
-    currentInput="";
-    nextPlayer();
-    return;
-  }
-
-  player.score=newScore;
-
+ if(bust){
   player.turns.push({
-    number:turnNumber,
-    score,
-    rest:newScore,
-    bust:false,
-    checkoutDarts:null
+   number:turnNumber,
+   score,
+   rest:oldScore,
+   bust:true,
+   checkoutDarts:null
   });
 
-  player.matchStats.totalPoints+=score;
   player.matchStats.totalTurns++;
   player.matchStats.totalDarts+=3;
-  player.matchStats.highestScore=
-    Math.max(player.matchStats.highestScore,score);
-
-  if(score>=100)player.matchStats.scores100++;
-  if(score>=140)player.matchStats.scores140++;
-  if(score===180)player.matchStats.scores180++;
-
-  if(player.turns.length<=3){
-    player.matchStats.firstNinePoints+=score;
-    player.matchStats.firstNineTurns++;
-  }
-
-  if(newScore===0){
-    state.pendingCheckout={
-      playerIndex:state.currentPlayer,
-      turnIndex:player.turns.length-1,
-      checkoutScore:oldScore
-    };
-
-    currentInput="";
-    render();
-
-    if(player.isBot){
-      const options=legalCheckoutDarts(oldScore);
-
-      if(options.length){
-        const darts=chooseBotCheckoutDarts(options,player.difficulty);
-        setTimeout(()=>completeCheckout(darts),250);
-      }
-    }
-
-    return;
-  }
-
   currentInput="";
   nextPlayer();
+  return;
+ }
+
+ player.score=newScore;
+
+ player.turns.push({
+  number:turnNumber,
+  score,
+  rest:newScore,
+  bust:false,
+  checkoutDarts:null
+ });
+
+ player.matchStats.totalPoints+=score;
+ player.matchStats.totalTurns++;
+ player.matchStats.totalDarts+=3;
+ player.matchStats.highestScore=
+  Math.max(player.matchStats.highestScore,score);
+
+ if(score>=100)player.matchStats.scores100++;
+ if(score>=140)player.matchStats.scores140++;
+ if(score===180)player.matchStats.scores180++;
+
+ if(player.turns.length<=3){
+  player.matchStats.firstNinePoints+=score;
+  player.matchStats.firstNineTurns++;
+ }
+
+ if(newScore===0){
+  state.pendingCheckout={
+   playerIndex:state.currentPlayer,
+   turnIndex:player.turns.length-1,
+   checkoutScore:oldScore
+  };
+
+  currentInput="";
+  render();
+
+  if(player.isBot){
+   const options=legalCheckoutDarts(oldScore);
+
+   if(options.length){
+    const darts=chooseBotCheckoutDarts(
+     options,
+     player.difficulty
+    );
+
+    setTimeout(()=>completeCheckout(darts),250);
+   }
+  }
+
+  return;
+ }
+
+ currentInput="";
+ nextPlayer();
 }
 
 function chooseBotCheckoutDarts(options,difficulty){
-  if(difficulty>=5)return options[0];
-  if(difficulty>=4)return Math.random()<.75?options[0]:options[options.length-1];
-  if(difficulty>=3)return Math.random()<.55?options[0]:options[options.length-1];
-
-  return options[Math.floor(Math.random()*options.length)];
+ if(difficulty>=5)return options[0];
+ if(difficulty>=4){
+  return Math.random()<.75?options[0]:options[options.length-1];
+ }
+ if(difficulty>=3){
+  return Math.random()<.55?options[0]:options[options.length-1];
+ }
+ return options[Math.floor(Math.random()*options.length)];
 }
 
 function completeCheckout(darts){
-  if(!state.pendingCheckout||state.matchOver)return;
+ if(!state.pendingCheckout||state.matchOver)return;
 
-  const checkoutScore=state.pendingCheckout.checkoutScore;
-  const legalOptions=legalCheckoutDarts(checkoutScore);
+ const checkoutScore=state.pendingCheckout.checkoutScore;
+ const legalOptions=legalCheckoutDarts(checkoutScore);
 
-  if(!legalOptions.includes(darts))return;
+ if(!legalOptions.includes(darts))return;
 
-  const player=state.players[state.pendingCheckout.playerIndex];
-  const turn=player.turns[state.pendingCheckout.turnIndex];
+ const player=state.players[state.pendingCheckout.playerIndex];
+ const turn=player.turns[state.pendingCheckout.turnIndex];
 
-  if(!turn){
-    state.pendingCheckout=null;
-    render();
-    return;
-  }
+ if(!turn){
+  state.pendingCheckout=null;
+  render();
+  return;
+ }
 
-  turn.checkoutDarts=darts;
+ turn.checkoutDarts=darts;
+ player.checkoutStats.hits++;
+ player.checkoutStats["darts"+darts]++;
+ player.checkoutStats.totalDarts+=darts;
+ player.matchStats.totalDarts-=3-darts;
+ player.matchStats.highestCheckout=
+  Math.max(player.matchStats.highestCheckout,checkoutScore);
 
-  player.checkoutStats.hits++;
-  player.checkoutStats["darts"+darts]++;
-  player.checkoutStats.totalDarts+=darts;
-
-  player.matchStats.totalDarts-=3-darts;
-
-  player.matchStats.highestCheckout=
-    Math.max(player.matchStats.highestCheckout,checkoutScore);
-
-  finishLeg(player);
+ finishLeg(player);
 }
 
 function finishLeg(player){
-  const previousLegDarts=player.legResults.reduce(
-    (sum,leg)=>sum+leg.darts,0
-  );
+ const previousLegDarts=player.legResults.reduce(
+  (sum,leg)=>sum+leg.darts,
+  0
+ );
 
-  const dartsInLeg=player.matchStats.totalDarts-previousLegDarts;
+ const dartsInLeg=
+  player.matchStats.totalDarts-previousLegDarts;
 
-  player.legResults.push({
-    darts:dartsInLeg,
-    points:state.startScore
-  });
+ player.legResults.push({
+  darts:dartsInLeg,
+  points:state.startScore
+ });
 
-  player.matchStats.legsWon++;
-  player.matchStats.legDarts.push(dartsInLeg);
+ player.matchStats.legsWon++;
+ player.matchStats.legDarts.push(dartsInLeg);
 
-  if(
-    player.matchStats.bestLeg===null||
-    dartsInLeg<player.matchStats.bestLeg
-  ){
-    player.matchStats.bestLeg=dartsInLeg;
+ if(
+  player.matchStats.bestLeg===null||
+  dartsInLeg<player.matchStats.bestLeg
+ ){
+  player.matchStats.bestLeg=dartsInLeg;
+ }
+
+ player.legs++;
+
+ if(player.legs>=state.legsToWin){
+  player.sets++;
+  player.matchStats.setsWon++;
+  player.legs=0;
+
+  if(player.sets>=state.setsToWin){
+   state.matchOver=true;
+   state.pendingCheckout=null;
+   state.legFinished=null;
+   botThinking=false;
+   render();
+   showStatistics();
+   return;
   }
+ }
 
-  player.legs++;
+ if(state.starterRotation){
+  state.startingPlayer=
+   (state.startingPlayer+1)%state.players.length;
+ }
 
-  if(player.legs>=state.legsToWin){
-    player.sets++;
-    player.matchStats.setsWon++;
-    player.legs=0;
+ state.pendingCheckout=null;
 
-    if(player.sets>=state.setsToWin){
-      state.matchOver=true;
-      state.pendingCheckout=null;
-      state.legFinished=null;
-      botThinking=false;
-      render();
-      showStatistics();
-      return;
-    }
-  }
+ state.legFinished={
+  winnerIndex:state.players.indexOf(player)
+ };
 
-  if(state.starterRotation){
-    state.startingPlayer=
-      (state.startingPlayer+1)%state.players.length;
-  }
-
-  state.pendingCheckout=null;
-  state.legFinished={
-    winnerIndex:state.players.indexOf(player)
-  };
-
-  botThinking=false;
-  currentInput="";
-  render();
+ botThinking=false;
+ currentInput="";
+ render();
 }
 
 function startNextLeg(){
-  if(!state.legFinished||state.matchOver)return;
+ if(!state.legFinished||state.matchOver)return;
 
-  resetLegForAllPlayers();
+ resetLegForAllPlayers();
 
-  state.currentPlayer=state.startingPlayer;
-  state.pendingCheckout=null;
-  state.legFinished=null;
-  botThinking=false;
-  currentInput="";
+ state.currentPlayer=state.startingPlayer;
+ state.pendingCheckout=null;
+ state.legFinished=null;
+ botThinking=false;
+ currentInput="";
 
-  render();
-  startBotIfNeeded();
+ render();
+ startBotIfNeeded();
 }
 
 function resetLegForAllPlayers(){
-  state.players.forEach(player=>{
-    player.score=state.startScore;
-    player.turns=[];
-  });
+ state.players.forEach(player=>{
+  player.score=state.startScore;
+  player.turns=[];
+ });
 }
 
 function nextPlayer(){
-  state.currentPlayer=
-    (state.currentPlayer+1)%state.players.length;
+ state.currentPlayer=
+  (state.currentPlayer+1)%state.players.length;
 
-  currentInput="";
-  botThinking=false;
+ currentInput="";
+ botThinking=false;
 
-  render();
-  startBotIfNeeded();
+ render();
+ startBotIfNeeded();
 }
 
 function randomNormal(){
-  let u=0;
-  let v=0;
+ let u=0;
+ let v=0;
 
-  while(u===0)u=Math.random();
-  while(v===0)v=Math.random();
+ while(u===0)u=Math.random();
+ while(v===0)v=Math.random();
 
-  return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
+ return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
 }
 
 function clamp(value,min,max){
-  return Math.max(min,Math.min(max,value));
+ return Math.max(min,Math.min(max,value));
 }
 
 function botPerformanceFactor(){
-  return clamp(1+randomNormal()*.13,.55,1.45);
+ return clamp(1+randomNormal()*.13,.55,1.45);
 }
 
 function randomDartScore(profile,performance){
-  const averagePerDart=profile.average/3;
+ const averagePerDart=profile.average/3;
 
-  const raw=
-    averagePerDart*performance+
-    randomNormal()*averagePerDart*profile.variation;
+ const raw=
+  averagePerDart*performance+
+  randomNormal()*averagePerDart*profile.variation;
 
-  return clamp(Math.round(raw),0,60);
+ return clamp(Math.round(raw),0,60);
 }
 
 function calculateBotScore(rest,difficulty){
-  const profile=BOT_PROFILES[difficulty]||BOT_PROFILES[3];
-  const performance=botPerformanceFactor();
+ const profile=BOT_PROFILES[difficulty]||BOT_PROFILES[3];
+ const performance=botPerformanceFactor();
 
-  if(
-    rest>1&&
-    rest<=170&&
-    legalCheckoutDarts(rest).length&&
-    Math.random()<profile.checkout*performance
-  ){
-    return rest;
-  }
+ if(
+  rest>1&&
+  rest<=170&&
+  legalCheckoutDarts(rest).length&&
+  Math.random()<profile.checkout*performance
+ ){
+  return rest;
+ }
 
-  let total=0;
+ let total=0;
 
-  for(let dart=0;dart<3;dart++){
-    total+=randomDartScore(profile,performance);
-  }
+ for(let dart=0;dart<3;dart++){
+  total+=randomDartScore(profile,performance);
+ }
 
-  if(Math.random()<.06)total=0;
-  if(Math.random()<.05)total=25;
+ if(Math.random()<.06)total=0;
+ if(Math.random()<.05)total=25;
 
-  return clamp(Math.round(total),0,180);
+ return clamp(Math.round(total),0,180);
 }
 
 function isCurrentPlayerBot(){
-  const player=state.players[state.currentPlayer];
-  return player&&player.isBot===true;
+ const player=state.players[state.currentPlayer];
+ return player&&player.isBot===true;
 }
 
 function startBotIfNeeded(){
-  if(
-    !state.started||
-    state.matchOver||
-    state.pendingCheckout||
-    state.legFinished||
-    !isCurrentPlayerBot()||
-    botThinking
-  )return;
+ if(
+  !state.started||
+  state.matchOver||
+  state.pendingCheckout||
+  state.legFinished||
+  !isCurrentPlayerBot()||
+  botThinking
+ )return;
 
-  botThinking=true;
-  render();
+ botThinking=true;
+ render();
 
-  botTimer=setTimeout(()=>{
-    botTimer=null;
-    playBotTurn();
-  },850);
+ botTimer=setTimeout(()=>{
+  botTimer=null;
+  playBotTurn();
+ },850);
 }
 
 function playBotTurn(){
-  if(
-    !state.started||
-    state.matchOver||
-    state.pendingCheckout||
-    state.legFinished||
-    !isCurrentPlayerBot()
-  ){
-    botThinking=false;
-    render();
-    return;
-  }
-
-  const bot=state.players[state.currentPlayer];
-  const score=calculateBotScore(bot.score,bot.difficulty);
-
+ if(
+  !state.started||
+  state.matchOver||
+  state.pendingCheckout||
+  state.legFinished||
+  !isCurrentPlayerBot()
+ ){
   botThinking=false;
-  processScore(score);
+  render();
+  return;
+ }
+
+ const bot=state.players[state.currentPlayer];
+ const score=calculateBotScore(
+  bot.score,
+  bot.difficulty
+ );
+
+ botThinking=false;
+ processScore(score);
 }
 
 function saveHistory(){
-  state.history.push({
-    players:JSON.parse(JSON.stringify(state.players)),
-    currentPlayer:state.currentPlayer,
-    startingPlayer:state.startingPlayer,
-    starterRotation:state.starterRotation,
-    matchOver:state.matchOver,
-    pendingCheckout:state.pendingCheckout?
-      JSON.parse(JSON.stringify(state.pendingCheckout)):null,
-    legFinished:state.legFinished?
-      JSON.parse(JSON.stringify(state.legFinished)):null
-  });
+ state.history.push({
+  players:JSON.parse(JSON.stringify(state.players)),
+  currentPlayer:state.currentPlayer,
+  startingPlayer:state.startingPlayer,
+  starterRotation:state.starterRotation,
+  matchOver:state.matchOver,
+  pendingCheckout:state.pendingCheckout?
+   JSON.parse(JSON.stringify(state.pendingCheckout)):null,
+  legFinished:state.legFinished?
+   JSON.parse(JSON.stringify(state.legFinished)):null
+ });
 
-  if(state.history.length>100)state.history.shift();
+ if(state.history.length>100)state.history.shift();
 }
 
 function undo(){
-  if(botTimer){
-    clearTimeout(botTimer);
-    botTimer=null;
-  }
+ if(botTimer){
+  clearTimeout(botTimer);
+  botTimer=null;
+ }
 
-  botThinking=false;
+ botThinking=false;
 
-  if(state.history.length===0)return;
+ if(state.history.length===0)return;
 
-  let previous=null;
+ let previous=null;
 
-  do{
-    if(state.history.length===0)break;
+ do{
+  if(state.history.length===0)break;
 
-    previous=state.history.pop();
+  previous=state.history.pop();
 
-    state.players=previous.players;
-    state.currentPlayer=previous.currentPlayer;
-    state.startingPlayer=typeof previous.startingPlayer==="number"
-      ?previous.startingPlayer:0;
-    state.starterRotation=typeof previous.starterRotation==="boolean"
-      ?previous.starterRotation:true;
-    state.matchOver=previous.matchOver;
-    state.pendingCheckout=previous.pendingCheckout||null;
-    state.legFinished=previous.legFinished||null;
-  }while(isCurrentPlayerBot()&&state.history.length>0);
+  state.players=previous.players;
+  state.currentPlayer=previous.currentPlayer;
+  state.startingPlayer=
+   typeof previous.startingPlayer==="number"
+    ?previous.startingPlayer
+    :0;
 
-  currentInput="";
-  render();
+  state.starterRotation=
+   typeof previous.starterRotation==="boolean"
+    ?previous.starterRotation
+    :true;
 
-  if(isCurrentPlayerBot())startBotIfNeeded();
+  state.matchOver=previous.matchOver;
+  state.pendingCheckout=previous.pendingCheckout||null;
+  state.legFinished=previous.legFinished||null;
+ }while(isCurrentPlayerBot()&&state.history.length>0);
+
+ currentInput="";
+ render();
+
+ if(isCurrentPlayerBot())startBotIfNeeded();
 }
 
 function newGame(){
-  if(!confirm("Das aktuelle Spiel wirklich beenden?"))return;
+ if(!confirm("Das aktuelle Spiel wirklich beenden?"))return;
 
-  if(botTimer){
-    clearTimeout(botTimer);
-    botTimer=null;
-  }
+ if(botTimer){
+  clearTimeout(botTimer);
+  botTimer=null;
+ }
 
-  botThinking=false;
-  currentInput="";
+ botThinking=false;
+ currentInput="";
 
-  state.started=false;
-  state.matchOver=false;
-  state.pendingCheckout=null;
-  state.legFinished=null;
+ state.started=false;
+ state.matchOver=false;
+ state.pendingCheckout=null;
+ state.legFinished=null;
 
-  localStorage.removeItem("dartscorer");
+ localStorage.removeItem("dartscorer");
 
-  document.getElementById("gameScreen").classList.add("hidden");
-  document.getElementById("statsScreen").classList.add("hidden");
-  document.getElementById("setupScreen").classList.remove("hidden");
+ document.getElementById("gameScreen").classList.add("hidden");
+ document.getElementById("statsScreen").classList.add("hidden");
+ document.getElementById("setupScreen").classList.remove("hidden");
 
-  updatePlayerFields();
+ updatePlayerFields();
 }
 
 function saveState(){
-  if(!state.started)return;
-  localStorage.setItem("dartscorer",JSON.stringify(state));
+ if(!state.started)return;
+
+ localStorage.setItem(
+  "dartscorer",
+  JSON.stringify(state)
+ );
 }
 
 function formatNumber(value){
-  return Number(value||0).toFixed(2);
+ return Number(value||0).toFixed(2);
 }
 
 function checkoutPercentage(player){
-  const stats=player.checkoutStats;
+ const stats=player.checkoutStats;
 
-  if(!stats.attempts)return"0.00 %";
+ if(!stats.attempts)return"0.00 %";
 
-  return formatNumber(stats.hits/stats.attempts*100)+" %";
+ return formatNumber(
+  stats.hits/stats.attempts*100
+ )+" %";
 }
 
 function threeDartAverage(player){
-  if(!player.matchStats.totalDarts)return"0.00";
+ if(!player.matchStats.totalDarts)return"0.00";
 
-  return formatNumber(
-    player.matchStats.totalPoints/
-    player.matchStats.totalDarts*3
-  );
+ return formatNumber(
+  player.matchStats.totalPoints/
+  player.matchStats.totalDarts*3
+ );
 }
 
 function firstNineAverage(player){
-  if(!player.matchStats.firstNineTurns)return"0.00";
+ if(!player.matchStats.firstNineTurns)return"0.00";
 
-  return formatNumber(
-    player.matchStats.firstNinePoints/
-    player.matchStats.firstNineTurns
-  );
+ return formatNumber(
+  player.matchStats.firstNinePoints/
+  player.matchStats.firstNineTurns
+ );
 }
 
 function averageLegDarts(player){
-  const legs=player.matchStats.legDarts;
+ const legs=player.matchStats.legDarts;
 
-  if(!legs.length)return"0.00";
+ if(!legs.length)return"0.00";
 
-  return formatNumber(
-    legs.reduce((sum,darts)=>sum+darts,0)/legs.length
-  );
+ return formatNumber(
+  legs.reduce((sum,darts)=>sum+darts,0)/legs.length
+ );
 }
 
 function showStatistics(){
-  if(!state.started)return;
+ if(!state.started)return;
 
-  document.getElementById("statsContent").innerHTML=`
-    <p class="stat-note">
-      Die Statistik wird während des Spiels laufend aktualisiert.
-      Ein Checkout-Versuch zählt, sobald ein Spieler mit einem Rest
-      von höchstens 170 Punkten an die Aufnahme geht.
-    </p>
+ document.getElementById("statsContent").innerHTML=`
+  <p class="stat-note">
+   Die Statistik wird während des Spiels laufend aktualisiert.
+   Ein Checkout-Versuch zählt, sobald ein Spieler mit einem Rest
+   von höchstens 170 Punkten an die Aufnahme geht.
+  </p>
 
-    <table class="stats-table">
-      <thead>
-        <tr>
-          <th>Statistik</th>
-          ${state.players.map(player=>
-            `<th>${escapeHtml(player.name)}</th>`
-          ).join("")}
-        </tr>
-      </thead>
-      <tbody>
-        ${statRow("3-Dart-Average",player=>threeDartAverage(player))}
-        ${statRow("First-9-Average",player=>firstNineAverage(player))}
-        ${statRow("Checkoutquote",player=>checkoutPercentage(player))}
-        ${statRow("Checkout-Versuche",player=>player.checkoutStats.attempts)}
-        ${statRow("Checkouts",player=>player.checkoutStats.hits)}
-        ${statRow("1-Dart-Checkouts",player=>player.checkoutStats.darts1)}
-        ${statRow("2-Dart-Checkouts",player=>player.checkoutStats.darts2)}
-        ${statRow("3-Dart-Checkouts",player=>player.checkoutStats.darts3)}
-        ${statRow("Höchste Aufnahme",player=>player.matchStats.highestScore)}
-        ${statRow("High Finish",player=>player.matchStats.highestCheckout)}
-        ${statRow("180er",player=>player.matchStats.scores180)}
-        ${statRow("140+ Aufnahmen",player=>player.matchStats.scores140)}
-        ${statRow("100+ Aufnahmen",player=>player.matchStats.scores100)}
-        ${statRow("Gewonnene Legs",player=>player.matchStats.legsWon)}
-        ${statRow("Gewonnene Sätze",player=>player.matchStats.setsWon)}
-        ${statRow("Durchschnittliche Leg-Darts",player=>averageLegDarts(player))}
-        ${statRow(
-          "Bestes Leg",
-          player=>player.matchStats.bestLeg===null
-            ?"-"
-            :player.matchStats.bestLeg+" Darts"
-        )}
-      </tbody>
-    </table>
-  `;
+  <table class="stats-table">
+   <thead>
+    <tr>
+     <th>Statistik</th>
+     ${state.players.map(player=>
+      `<th>${escapeHtml(player.name)}</th>`
+     ).join("")}
+    </tr>
+   </thead>
 
-  document.getElementById("gameScreen").classList.add("hidden");
-  document.getElementById("setupScreen").classList.add("hidden");
-  document.getElementById("statsScreen").classList.remove("hidden");
+   <tbody>
+    ${statRow("3-Dart-Average",player=>threeDartAverage(player))}
+    ${statRow("First-9-Average",player=>firstNineAverage(player))}
+    ${statRow("Checkoutquote",player=>checkoutPercentage(player))}
+    ${statRow("Checkout-Versuche",player=>player.checkoutStats.attempts)}
+    ${statRow("Checkouts",player=>player.checkoutStats.hits)}
+    ${statRow("1-Dart-Checkouts",player=>player.checkoutStats.darts1)}
+    ${statRow("2-Dart-Checkouts",player=>player.checkoutStats.darts2)}
+    ${statRow("3-Dart-Checkouts",player=>player.checkoutStats.darts3)}
+    ${statRow("Höchste Aufnahme",player=>player.matchStats.highestScore)}
+    ${statRow("High Finish",player=>player.matchStats.highestCheckout)}
+    ${statRow("180er",player=>player.matchStats.scores180)}
+    ${statRow("140+ Aufnahmen",player=>player.matchStats.scores140)}
+    ${statRow("100+ Aufnahmen",player=>player.matchStats.scores100)}
+    ${statRow("Gewonnene Legs",player=>player.matchStats.legsWon)}
+    ${statRow("Gewonnene Sätze",player=>player.matchStats.setsWon)}
+    ${statRow("Durchschnittliche Leg-Darts",player=>averageLegDarts(player))}
+    ${statRow(
+     "Bestes Leg",
+     player=>player.matchStats.bestLeg===null
+      ?"-"
+      :player.matchStats.bestLeg+" Darts"
+    )}
+   </tbody>
+  </table>
+ `;
+
+ document.getElementById("gameScreen").classList.add("hidden");
+ document.getElementById("setupScreen").classList.add("hidden");
+ document.getElementById("statsScreen").classList.remove("hidden");
 }
 
 function statRow(label,callback){
-  return`
-    <tr>
-      <td>${label}</td>
-      ${state.players.map(player=>
-        `<td>${callback(player)}</td>`
-      ).join("")}
-    </tr>
-  `;
+ return`
+  <tr>
+   <td>${label}</td>
+   ${state.players.map(player=>
+    `<td>${callback(player)}</td>`
+   ).join("")}
+  </tr>
+ `;
 }
 
 function closeStatistics(){
-  document.getElementById("statsScreen").classList.add("hidden");
-  document.getElementById("gameScreen").classList.remove("hidden");
-  render();
+ document.getElementById("statsScreen").classList.add("hidden");
+ document.getElementById("gameScreen").classList.remove("hidden");
+ render();
 }
 
 function loadState(){
-  const saved=localStorage.getItem("dartscorer");
+ const saved=localStorage.getItem("dartscorer");
 
-  if(!saved){
-    updatePlayerFields();
-    return;
+ if(!saved){
+  updatePlayerFields();
+  return;
+ }
+
+ try{
+  const parsed=JSON.parse(saved);
+
+  if(
+   !parsed.started||
+   !Array.isArray(parsed.players)||
+   parsed.players.length===0
+  ){
+   updatePlayerFields();
+   return;
   }
 
-  try{
-    const parsed=JSON.parse(saved);
+  state=parsed;
 
-    if(
-      !parsed.started||
-      !Array.isArray(parsed.players)||
-      parsed.players.length===0
-    ){
-      updatePlayerFields();
-      return;
-    }
-
-    state=parsed;
-
-    if(!state.history)state.history=[];
-    if(!state.legFinished)state.legFinished=null;
-    if(typeof state.setsToWin!=="number")state.setsToWin=1;
-    if(typeof state.legsToWin!=="number")state.legsToWin=3;
-    if(typeof state.startingPlayer!=="number")state.startingPlayer=0;
-    if(typeof state.starterRotation!=="boolean")state.starterRotation=true;
-
-    if(
-      state.startingPlayer<0||
-      state.startingPlayer>=state.players.length
-    ){
-      state.startingPlayer=0;
-    }
-
-    state.players.forEach(player=>{
-      if(!Array.isArray(player.turns))player.turns=[];
-      if(!Array.isArray(player.legResults))player.legResults=[];
-      if(!player.checkoutStats)player.checkoutStats=emptyCheckoutStats();
-      if(!player.matchStats)player.matchStats=emptyMatchStats();
-
-      player.turns.forEach(turn=>{
-        if(typeof turn.checkoutDarts==="undefined"){
-          turn.checkoutDarts=null;
-        }
-      });
-    });
-
-    document.getElementById("setupScreen").classList.add("hidden");
-    document.getElementById("statsScreen").classList.add("hidden");
-    document.getElementById("gameScreen").classList.remove("hidden");
-
-    render();
-    startBotIfNeeded();
-  }catch(error){
-    localStorage.removeItem("dartscorer");
-    updatePlayerFields();
+  if(!state.history)state.history=[];
+  if(!state.legFinished)state.legFinished=null;
+  if(typeof state.setsToWin!=="number")state.setsToWin=1;
+  if(typeof state.legsToWin!=="number")state.legsToWin=3;
+  if(typeof state.startingPlayer!=="number")state.startingPlayer=0;
+  if(typeof state.starterRotation!=="boolean"){
+   state.starterRotation=true;
   }
+
+  if(
+   state.startingPlayer<0||
+   state.startingPlayer>=state.players.length
+  ){
+   state.startingPlayer=0;
+  }
+
+  state.players.forEach(player=>{
+   if(!Array.isArray(player.turns))player.turns=[];
+   if(!Array.isArray(player.legResults))player.legResults=[];
+   if(!player.checkoutStats){
+    player.checkoutStats=emptyCheckoutStats();
+   }
+   if(!player.matchStats){
+    player.matchStats=emptyMatchStats();
+   }
+
+   player.turns.forEach(turn=>{
+    if(typeof turn.checkoutDarts==="undefined"){
+     turn.checkoutDarts=null;
+    }
+   });
+  });
+
+  document.getElementById("setupScreen").classList.add("hidden");
+  document.getElementById("statsScreen").classList.add("hidden");
+  document.getElementById("gameScreen").classList.remove("hidden");
+
+  render();
+  startBotIfNeeded();
+ }catch(error){
+  localStorage.removeItem("dartscorer");
+  updatePlayerFields();
+ }
 }
 
 function escapeHtml(text){
-  return String(text)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+ return String(text)
+  .replaceAll("&","&amp;")
+  .replaceAll("<","&lt;")
+  .replaceAll(">","&gt;")
+  .replaceAll('"',"&quot;")
+  .replaceAll("'","&#039;");
 }
 
 document.addEventListener("keydown",event=>{
-  if(
-    !state.started||
-    state.matchOver||
-    state.pendingCheckout||
-    state.legFinished||
-    isCurrentPlayerBot()
-  )return;
+ if(
+  !state.started||
+  state.matchOver||
+  state.pendingCheckout||
+  state.legFinished||
+  isCurrentPlayerBot()
+ )return;
 
-  if(/^[0-9]$/.test(event.key))pressKey(event.key);
-  if(event.key==="Backspace")backspace();
-  if(event.key==="Escape")clearInput();
-  if(event.key==="Enter")submitScore();
+ if(/^[0-9]$/.test(event.key))pressKey(event.key);
+ if(event.key==="Backspace")backspace();
+ if(event.key==="Escape")clearInput();
+ if(event.key==="Enter")submitScore();
 });
 
 updatePlayerFields();
@@ -1646,6 +1753,7 @@ loadState();
 </script>
 </body>
 </html>
+
 
 
 
