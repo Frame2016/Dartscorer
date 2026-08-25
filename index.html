@@ -7,7 +7,7 @@
 <title>Dartscorer</title>
 
 <style>
-:root {
+:root{
   --background:#10151c;
   --header:#0b1016;
   --panel:#1b2430;
@@ -22,19 +22,16 @@
   --gold:#e6b84e;
 }
 
-* {
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
-html,
-body {
+html,body{
   width:100%;
   height:100%;
   margin:0;
   overflow:hidden;
 }
 
-body {
+body{
   display:flex;
   flex-direction:column;
   background:var(--background);
@@ -42,7 +39,7 @@ body {
   font-family:Arial,Helvetica,sans-serif;
 }
 
-header {
+header{
   flex:0 0 48px;
   height:48px;
   padding:11px;
@@ -52,7 +49,7 @@ header {
   font-weight:bold;
 }
 
-main {
+main{
   width:min(1050px,100%);
   height:calc(100dvh - 48px);
   min-height:0;
@@ -61,30 +58,28 @@ main {
   overflow:hidden;
 }
 
-.hidden {
-  display:none !important;
-}
+.hidden{display:none!important}
 
-.card {
+.card{
   padding:8px;
   border-radius:9px;
   background:var(--panel);
 }
 
-h2 {
+h2{
   margin:0 0 8px;
   font-size:20px;
 }
 
-label {
+label{
   display:block;
   margin:6px 0 3px;
   color:var(--muted);
 }
 
-input[type="text"],
-input[type="number"],
-select {
+input[type=text],
+input[type=number],
+select{
   width:100%;
   padding:8px;
   border:0;
@@ -94,13 +89,13 @@ select {
   font-size:15px;
 }
 
-input[type="checkbox"] {
+input[type=checkbox]{
   margin-right:7px;
   accent-color:var(--green);
   transform:scale(1.1);
 }
 
-button {
+button{
   min-height:40px;
   padding:6px;
   border:0;
@@ -113,45 +108,37 @@ button {
   touch-action:manipulation;
 }
 
-button:active {
-  transform:scale(.97);
-}
+button:active{transform:scale(.97)}
+button:disabled{opacity:.45;cursor:not-allowed}
 
-button:disabled {
-  opacity:.45;
-  cursor:not-allowed;
-}
-
-.primary {
+.primary{
   width:100%;
   margin-top:10px;
   background:var(--green);
   color:#062719;
 }
 
-.secondary {
-  background:#607286;
-}
+.secondary{background:#607286}
 
-.danger {
+.danger{
   width:100%;
   margin-top:6px;
   background:var(--red);
 }
 
-.hint {
+.hint{
   margin:7px 0;
   color:var(--muted);
   font-size:12px;
   line-height:1.3;
 }
 
-#setupScreen {
+#setupScreen{
   max-height:100%;
   overflow-y:auto;
 }
 
-#gameScreen {
+#gameScreen{
   width:100%;
   height:100%;
   min-height:0;
@@ -160,19 +147,19 @@ button:disabled {
   gap:6px;
 }
 
-#gameScreen > .card:first-child {
+#gameScreen>.card:first-child{
   flex:0 0 55%;
   min-height:0;
   overflow:hidden;
 }
 
-#gameScreen > .card:last-child {
+#gameScreen>.card:last-child{
   flex:1 1 45%;
   min-height:0;
   overflow:hidden;
 }
 
-.player-grid {
+.player-grid{
   width:100%;
   height:100%;
   min-height:0;
@@ -182,16 +169,16 @@ button:disabled {
 }
 
 .player-grid.players-1,
-.player-grid.players-2 {
+.player-grid.players-2{
   grid-template-rows:minmax(0,1fr);
 }
 
 .player-grid.players-3,
-.player-grid.players-4 {
+.player-grid.players-4{
   grid-template-rows:repeat(2,minmax(0,1fr));
 }
 
-.player-card {
+.player-card{
   min-width:0;
   min-height:0;
   padding:5px;
@@ -202,11 +189,9 @@ button:disabled {
   overflow:hidden;
 }
 
-.player-card.active {
-  border-color:var(--green);
-}
+.player-card.active{border-color:var(--green)}
 
-.player-name {
+.player-name{
   height:18px;
   overflow:hidden;
   color:var(--muted);
@@ -216,28 +201,28 @@ button:disabled {
   white-space:nowrap;
 }
 
-.bot-label {
+.bot-label{
   display:inline-block;
   margin-left:4px;
   color:var(--gold);
   font-size:10px;
 }
 
-.player-score {
+.player-score{
   height:36px;
   font-size:31px;
   font-weight:bold;
   line-height:36px;
 }
 
-.player-legs {
+.player-legs{
   height:18px;
   color:var(--muted);
   font-size:11px;
   line-height:18px;
 }
 
-.history-title {
+.history-title{
   height:20px;
   margin-top:2px;
   color:var(--muted);
@@ -247,7 +232,7 @@ button:disabled {
   line-height:20px;
 }
 
-.history-box {
+.history-box{
   height:calc(100% - 94px);
   min-height:0;
   overflow:hidden;
@@ -255,7 +240,7 @@ button:disabled {
   background:rgba(0,0,0,.16);
 }
 
-.score-history {
+.score-history{
   width:100%;
   border-collapse:collapse;
   table-layout:fixed;
@@ -265,7 +250,7 @@ button:disabled {
 }
 
 .score-history th,
-.score-history td {
+.score-history td{
   height:27px;
   padding:3px 4px;
   overflow:hidden;
@@ -274,7 +259,7 @@ button:disabled {
   text-overflow:ellipsis;
 }
 
-.score-history th {
+.score-history th{
   background:rgba(0,0,0,.18);
   color:var(--muted);
   font-size:13px;
@@ -282,37 +267,24 @@ button:disabled {
 }
 
 .score-history th:first-child,
-.score-history td:first-child {
-  width:20%;
-}
+.score-history td:first-child{width:20%}
 
 .score-history th:nth-child(2),
-.score-history td:nth-child(2) {
-  width:30%;
-}
+.score-history td:nth-child(2){width:30%}
 
 .score-history th:nth-child(3),
-.score-history td:nth-child(3) {
-  width:30%;
-}
+.score-history td:nth-child(3){width:30%}
 
 .score-history th:last-child,
-.score-history td:last-child {
+.score-history td:last-child{
   width:20%;
   text-align:right;
 }
 
-.bust {
-  color:var(--red);
-  font-weight:bold;
-}
+.bust{color:var(--red);font-weight:bold}
+.checkout-mark{color:var(--gold);font-weight:bold}
 
-.checkout-mark {
-  color:var(--gold);
-  font-weight:bold;
-}
-
-.scoring-area {
+.scoring-area{
   width:100%;
   height:100%;
   min-height:0;
@@ -323,15 +295,15 @@ button:disabled {
 }
 
 .input-column,
-.quick-column {
+.quick-column{
   min-width:0;
   min-height:0;
   overflow:hidden;
 }
 
-.input-display {
+.input-display{
   height:46px;
-  margin-bottom:6px;
+  margin-bottom:8px;
   padding:6px;
   border-radius:7px;
   background:#090d12;
@@ -343,84 +315,105 @@ button:disabled {
   line-height:34px;
 }
 
-.keypad {
+.keypad{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:4px;
+  gap:6px;
 }
 
-.keypad button {
-  min-height:35px;
-  font-size:17px;
+.keypad button{
+  min-height:52px;
+  font-size:21px;
 }
 
-.quick-scores {
+.quick-scores{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:5px;
+  gap:7px;
 }
 
-.quick-scores button {
-  min-height:38px;
+.quick-scores button{
+  min-height:55px;
   background:var(--purple);
-  font-size:15px;
+  font-size:18px;
 }
 
-.checkout-area {
+.checkout-area{
   display:none;
-  margin-top:6px;
+  margin-top:7px;
 }
 
-.checkout-area.visible {
-  display:block;
-}
+.checkout-area.visible{display:block}
 
-.checkout-title {
-  margin-bottom:4px;
+.checkout-title{
+  margin-bottom:5px;
   color:var(--gold);
   font-size:12px;
   font-weight:bold;
   text-align:center;
 }
 
-.checkout-buttons {
+.checkout-buttons{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:4px;
+  gap:5px;
 }
 
-.checkout-buttons button {
-  min-height:35px;
+.checkout-buttons button{
+  min-height:45px;
   background:var(--gold);
   color:#211700;
+  font-size:17px;
+}
+
+.leg-next-area{
+  display:none;
+  margin-top:7px;
+}
+
+.leg-next-area.visible{display:block}
+
+.leg-next-title{
+  margin-bottom:5px;
+  color:var(--gold);
+  font-size:13px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.next-leg-button{
+  width:100%;
+  min-height:46px;
+  background:var(--gold);
+  color:#211700;
+  font-size:16px;
+}
+
+.action-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  margin-top:7px;
+}
+
+.action-row button{
+  min-height:46px;
   font-size:15px;
 }
 
-.action-row {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:5px;
-  margin-top:6px;
-}
-
-.action-row button {
-  min-height:35px;
-  font-size:13px;
-}
-
-#statsScreen {
+#statsScreen{
   width:100%;
   height:100%;
   overflow:hidden;
 }
 
-.stats-wrap {
+.stats-wrap{
   width:100%;
   height:100%;
   overflow-y:auto;
 }
 
-.stats-table {
+.stats-table{
   width:100%;
   border-collapse:collapse;
   margin-top:7px;
@@ -428,122 +421,107 @@ button:disabled {
 }
 
 .stats-table th,
-.stats-table td {
+.stats-table td{
   padding:6px 4px;
   border-bottom:1px solid var(--line);
   text-align:left;
 }
 
-.stats-table th {
+.stats-table th{
   color:var(--muted);
   font-weight:normal;
 }
 
 .stats-table td:not(:first-child),
-.stats-table th:not(:first-child) {
+.stats-table th:not(:first-child){
   text-align:right;
 }
 
-.stat-note {
+.stat-note{
   margin:7px 0;
   color:var(--muted);
   font-size:11px;
 }
 
-@media (max-height:700px) {
-  header {
+@media(max-height:700px){
+  header{
     flex-basis:43px;
     height:43px;
     padding:9px;
     font-size:19px;
   }
 
-  main {
+  main{
     height:calc(100dvh - 43px);
     padding:5px;
   }
 
-  #gameScreen {
-    gap:5px;
-  }
+  #gameScreen{gap:5px}
 
-  #gameScreen > .card:first-child {
-    flex-basis:51%;
-  }
+  #gameScreen>.card:first-child{flex-basis:51%}
+  #gameScreen>.card:last-child{flex-basis:49%}
 
-  #gameScreen > .card:last-child {
-    flex-basis:49%;
-  }
+  .card{padding:6px}
+  .player-card{padding:3px}
 
-  .card {
-    padding:6px;
-  }
-
-  .player-card {
-    padding:3px;
-  }
-
-  .player-name {
+  .player-name{
     height:16px;
     font-size:12px;
     line-height:16px;
   }
 
-  .player-score {
+  .player-score{
     height:32px;
     font-size:27px;
     line-height:32px;
   }
 
-  .player-legs {
+  .player-legs{
     height:16px;
     font-size:10px;
     line-height:16px;
   }
 
-  .history-title {
+  .history-title{
     height:17px;
     font-size:10px;
     line-height:17px;
   }
 
-  .history-box {
-    height:calc(100% - 85px);
-  }
-
-  .score-history {
-    font-size:14px;
-  }
-
-  .score-history th {
-    font-size:11px;
-  }
+  .history-box{height:calc(100% - 85px)}
+  .score-history{font-size:14px}
+  .score-history th{font-size:11px}
 
   .score-history th,
-  .score-history td {
+  .score-history td{
     height:23px;
     padding:2px;
   }
 
-  .keypad button {
-    min-height:29px;
+  .keypad{gap:4px}
+
+  .keypad button{
+    min-height:42px;
+    font-size:18px;
+  }
+
+  .quick-scores{gap:5px}
+
+  .quick-scores button{
+    min-height:43px;
     font-size:15px;
   }
 
-  .quick-scores button {
-    min-height:32px;
-    font-size:13px;
+  .checkout-buttons button{
+    min-height:36px;
+    font-size:15px;
   }
 
-  .checkout-buttons button {
-    min-height:29px;
-    font-size:13px;
-  }
-
+  .next-leg-button,
   .action-row button,
-  .danger {
-    min-height:29px;
-    font-size:11px;
+  .danger{
+    min-height:36px;
+    font-size:13px;
   }
 }
 </style>
@@ -612,8 +590,7 @@ button:disabled {
 
   <p class="hint">
     Wenn der automatische Wechsel aktiviert ist, beginnt im zweiten Leg
-    automatisch der nächste Spieler. Bei zwei Spielern beginnt dadurch
-    nach Spieler 1 automatisch Spieler 2.
+    automatisch der nächste Spieler.
   </p>
 
   <button class="primary" onclick="startGame()">Spiel starten</button>
@@ -647,6 +624,15 @@ button:disabled {
         <div id="checkoutArea" class="checkout-area">
           <div class="checkout-title">Checkout-Darts auswählen</div>
           <div id="checkoutButtons" class="checkout-buttons"></div>
+        </div>
+
+        <div id="legNextArea" class="leg-next-area">
+          <div id="legNextTitle" class="leg-next-title">
+            Leg beendet
+          </div>
+          <button class="next-leg-button" onclick="startNextLeg()">
+            Nächstes Leg beginnen
+          </button>
         </div>
 
         <div class="action-row">
@@ -686,48 +672,40 @@ button:disabled {
 </main>
 
 <script>
-let state = {
+let state={
   started:false,
   matchOver:false,
   pendingCheckout:null,
+  legFinished:null,
   startScore:501,
   doubleOut:true,
   setsToWin:1,
   legsToWin:3,
   players:[],
   currentPlayer:0,
-
-  /*
-    startingPlayer ist der Spieler, der das aktuelle Leg beginnt.
-    starterRotation merkt sich, ob der automatische Wechsel aktiviert ist.
-  */
   startingPlayer:0,
   starterRotation:true,
-
   history:[]
 };
 
-let currentInput = "";
-let botTimer = null;
-let botThinking = false;
+let currentInput="";
+let botTimer=null;
+let botThinking=false;
 
-/* -----------------------------
-   Grundfunktionen
------------------------------ */
+const BOT_PROFILES={
+  1:{average:40,checkout:.05,variation:.48},
+  2:{average:50,checkout:.10,variation:.42},
+  3:{average:60,checkout:.15,variation:.36},
+  4:{average:60,checkout:.20,variation:.30},
+  5:{average:80,checkout:.33,variation:.24}
+};
 
-function emptyCheckoutStats() {
-  return {
-    attempts:0,
-    hits:0,
-    darts1:0,
-    darts2:0,
-    darts3:0,
-    totalDarts:0
-  };
+function emptyCheckoutStats(){
+  return{attempts:0,hits:0,darts1:0,darts2:0,darts3:0,totalDarts:0};
 }
 
-function emptyMatchStats() {
-  return {
+function emptyMatchStats(){
+  return{
     totalPoints:0,
     totalDarts:0,
     totalTurns:0,
@@ -745,496 +723,361 @@ function emptyMatchStats() {
   };
 }
 
-function updateStartingPlayerOptions() {
-  const count = Number(
-    document.getElementById("playerCount").value
-  );
+function updateStartingPlayerOptions(){
+  const count=Number(document.getElementById("playerCount").value);
+  const select=document.getElementById("startingPlayer");
+  const old=select.value;
 
-  const select = document.getElementById("startingPlayer");
-  const previousValue = select.value;
+  select.innerHTML="";
 
-  select.innerHTML = "";
-
-  for (let i = 1; i <= count; i++) {
-    const option = document.createElement("option");
-    option.value = String(i - 1);
-    option.textContent = "Spieler " + i;
+  for(let i=1;i<=count;i++){
+    const option=document.createElement("option");
+    option.value=String(i-1);
+    option.textContent="Spieler "+i;
     select.appendChild(option);
   }
 
-  if (
-    previousValue !== "" &&
-    Number(previousValue) < count
-  ) {
-    select.value = previousValue;
-  } else {
-    select.value = "0";
-  }
+  select.value=old!==""&&Number(old)<count?old:"0";
 }
 
-function updatePlayerFields() {
-  const count = Number(
-    document.getElementById("playerCount").value
-  );
+function updatePlayerFields(){
+  const count=Number(document.getElementById("playerCount").value);
+  const container=document.getElementById("playerFields");
 
-  const container = document.getElementById("playerFields");
-  container.innerHTML = "";
+  container.innerHTML="";
 
-  for (let i = 1; i <= count; i++) {
-    container.innerHTML += `
+  for(let i=1;i<=count;i++){
+    container.innerHTML+=`
       <label for="player${i}">Name Spieler ${i}</label>
-      <input
-        type="text"
-        id="player${i}"
-        value="Spieler ${i}"
-        maxlength="20"
-      >
+      <input type="text" id="player${i}" value="Spieler ${i}" maxlength="20">
     `;
   }
 
   updateStartingPlayerOptions();
 
-  const botOptions = document.getElementById("botOptions");
+  const botOptions=document.getElementById("botOptions");
 
-  if (count === 2) {
+  if(count===2){
     botOptions.classList.remove("hidden");
-  } else {
+  }else{
     botOptions.classList.add("hidden");
-    document.getElementById("playerTwoBot").checked = false;
+    document.getElementById("playerTwoBot").checked=false;
     document.getElementById("botDifficultyBox").classList.add("hidden");
   }
 }
 
-function toggleBotDifficulty() {
-  const isBot =
-    document.getElementById("playerTwoBot").checked;
-
-  document
-    .getElementById("botDifficultyBox")
-    .classList.toggle("hidden", !isBot);
+function toggleBotDifficulty(){
+  const checked=document.getElementById("playerTwoBot").checked;
+  document.getElementById("botDifficultyBox").classList.toggle("hidden",!checked);
 }
 
-function startGame() {
-  const count = Number(
-    document.getElementById("playerCount").value
+function startGame(){
+  const count=Number(document.getElementById("playerCount").value);
+  const startScore=Number(document.getElementById("gameMode").value);
+  const setsToWin=Math.max(1,Number(document.getElementById("setsToWin").value)||1);
+  const legsToWin=Math.max(1,Number(document.getElementById("legsToWin").value)||1);
+  const doubleOut=document.getElementById("doubleOut").checked;
+  const starterRotation=document.getElementById("alternateStarter").checked;
+
+  const startingPlayer=Math.min(
+    count-1,
+    Math.max(0,Number(document.getElementById("startingPlayer").value)||0)
   );
 
-  const startScore = Number(
-    document.getElementById("gameMode").value
-  );
+  const isBot=count===2&&document.getElementById("playerTwoBot").checked;
+  const botDifficulty=Number(document.getElementById("botDifficulty").value);
+  const players=[];
 
-  const setsToWin = Math.max(
-    1,
-    Number(document.getElementById("setsToWin").value) || 1
-  );
+  for(let i=1;i<=count;i++){
+    let name=document.getElementById("player"+i).value.trim();
+    const playerIsBot=i===2&&isBot;
 
-  const legsToWin = Math.max(
-    1,
-    Number(document.getElementById("legsToWin").value) || 1
-  );
-
-  const doubleOut =
-    document.getElementById("doubleOut").checked;
-
-  const starterRotation =
-    document.getElementById("alternateStarter").checked;
-
-  const startingPlayer = Math.min(
-    count - 1,
-    Math.max(
-      0,
-      Number(document.getElementById("startingPlayer").value) || 0
-    )
-  );
-
-  const isBot =
-    count === 2 &&
-    document.getElementById("playerTwoBot").checked;
-
-  const botDifficulty =
-    Number(document.getElementById("botDifficulty").value);
-
-  const players = [];
-
-  for (let i = 1; i <= count; i++) {
-    let name = document
-      .getElementById("player" + i)
-      .value
-      .trim();
-
-    const playerIsBot = i === 2 && isBot;
-
-    if (playerIsBot) {
-      name = "Bot";
-    }
+    if(playerIsBot)name="Bot";
 
     players.push({
-      name:name || "Spieler " + i,
+      name:name||"Spieler "+i,
       score:startScore,
       legs:0,
       sets:0,
       turns:[],
       legResults:[],
       isBot:playerIsBot,
-      difficulty:playerIsBot ? botDifficulty : 0,
+      difficulty:playerIsBot?botDifficulty:0,
       checkoutStats:emptyCheckoutStats(),
       matchStats:emptyMatchStats()
     });
   }
 
-  state = {
+  state={
     started:true,
     matchOver:false,
     pendingCheckout:null,
+    legFinished:null,
     startScore,
     doubleOut,
     setsToWin,
     legsToWin,
     players,
-
-    /*
-      Das erste Leg beginnt beim ausgewählten Spieler.
-    */
-    startingPlayer,
     currentPlayer:startingPlayer,
+    startingPlayer,
     starterRotation,
-
     history:[]
   };
 
-  currentInput = "";
-  botThinking = false;
+  currentInput="";
+  botThinking=false;
 
-  document
-    .getElementById("setupScreen")
-    .classList.add("hidden");
-
-  document
-    .getElementById("statsScreen")
-    .classList.add("hidden");
-
-  document
-    .getElementById("gameScreen")
-    .classList.remove("hidden");
+  document.getElementById("setupScreen").classList.add("hidden");
+  document.getElementById("statsScreen").classList.add("hidden");
+  document.getElementById("gameScreen").classList.remove("hidden");
 
   render();
   startBotIfNeeded();
 }
 
-/* -----------------------------
-   Checkout-Berechnung
------------------------------ */
+function checkoutValues(doubleOut){
+  if(!doubleOut)return Array.from({length:60},(_,i)=>i+1);
 
-function checkoutValues(doubleOut) {
-  if (!doubleOut) {
-    return Array.from({length:60}, (_, i) => i + 1);
-  }
+  const values=[];
 
-  const values = [];
-
-  for (let n = 1; n <= 20; n++) {
-    values.push(n * 2);
-  }
+  for(let i=1;i<=20;i++)values.push(i*2);
 
   values.push(50);
   return values;
 }
 
-function canFinish(score, darts, doubleOut) {
-  if (score <= 0 || darts < 1 || darts > 3) {
-    return false;
-  }
+function canFinish(score,darts,doubleOut){
+  if(score<=0||darts<1||darts>3)return false;
 
-  const finalDartValues = checkoutValues(doubleOut);
+  const finals=checkoutValues(doubleOut);
 
-  if (darts === 1) {
-    return finalDartValues.includes(score);
-  }
+  if(darts===1)return finals.includes(score);
 
-  let reachable = new Set([0]);
+  let reachable=new Set([0]);
 
-  for (let i = 0; i < darts - 1; i++) {
-    const next = new Set();
+  for(let i=0;i<darts-1;i++){
+    const next=new Set();
 
-    for (const current of reachable) {
-      for (let value = 0; value <= 60; value++) {
-        next.add(current + value);
+    for(const current of reachable){
+      for(let value=0;value<=60;value++){
+        next.add(current+value);
       }
     }
 
-    reachable = next;
+    reachable=next;
   }
 
-  for (const value of finalDartValues) {
-    if (reachable.has(score - value)) {
-      return true;
-    }
-  }
-
-  return false;
+  return finals.some(value=>reachable.has(score-value));
 }
 
-function legalCheckoutDarts(score) {
-  return [1,2,3].filter(darts =>
-    canFinish(score, darts, state.doubleOut)
-  );
+function legalCheckoutDarts(score){
+  return[1,2,3].filter(darts=>canFinish(score,darts,state.doubleOut));
 }
 
-/* -----------------------------
-   Anzeige
------------------------------ */
+function render(){
+  if(!state.started)return;
 
-function render() {
-  if (!state.started) {
-    return;
-  }
+  const playersContainer=document.getElementById("players");
 
-  const playersContainer =
-    document.getElementById("players");
+  playersContainer.className="player-grid players-"+state.players.length;
 
-  playersContainer.className =
-    "player-grid players-" + state.players.length;
+  playersContainer.innerHTML=state.players.map((player,index)=>{
+    const recent=player.turns.slice(-5);
+    const rows=[];
 
-  playersContainer.innerHTML =
-    state.players.map((player, index) => {
-      const recentTurns = player.turns.slice(-5);
-      const rows = [];
+    for(let i=0;i<5;i++){
+      const turn=recent[i];
 
-      for (let i = 0; i < 5; i++) {
-        const turn = recentTurns[i];
-
-        if (!turn) {
-          rows.push(`
-            <tr>
-              <td></td><td></td><td></td><td></td>
-            </tr>
-          `);
-        } else {
-          rows.push(`
-            <tr>
-              <td>${turn.number}</td>
-              <td class="${turn.bust ? "bust" : ""}">
-                ${turn.bust ? "Bust" : turn.score}
-              </td>
-              <td>${turn.rest}</td>
-              <td class="${turn.checkoutDarts ? "checkout-mark" : ""}">
-                ${turn.checkoutDarts
-                  ? turn.checkoutDarts + "D"
-                  : ""}
-              </td>
-            </tr>
-          `);
-        }
+      if(!turn){
+        rows.push("<tr><td></td><td></td><td></td><td></td></tr>");
+      }else{
+        rows.push(`
+          <tr>
+            <td>${turn.number}</td>
+            <td class="${turn.bust?"bust":""}">
+              ${turn.bust?"Bust":turn.score}
+            </td>
+            <td>${turn.rest}</td>
+            <td class="${turn.checkoutDarts?"checkout-mark":""}">
+              ${turn.checkoutDarts?turn.checkoutDarts+"D":""}
+            </td>
+          </tr>
+        `);
       }
+    }
 
-      return `
-        <div class="player-card ${
-          index === state.currentPlayer ? "active" : ""
-        }">
-          <div class="player-name">
-            ${escapeHtml(player.name)}
-            ${player.isBot
-              ? '<span class="bot-label">BOT</span>'
-              : ""}
-          </div>
-
-          <div class="player-score">${player.score}</div>
-
-          <div class="player-legs">
-            Sätze: ${player.sets} · Legs: ${player.legs}
-          </div>
-
-          <div class="history-title">
-            Letzte 5 Aufnahmen
-          </div>
-
-          <div class="history-box">
-            <table class="score-history">
-              <thead>
-                <tr>
-                  <th>Aufn.</th>
-                  <th>Score</th>
-                  <th>Rest</th>
-                  <th>CO</th>
-                </tr>
-              </thead>
-              <tbody>${rows.join("")}</tbody>
-            </table>
-          </div>
+    return`
+      <div class="player-card ${index===state.currentPlayer?"active":""}">
+        <div class="player-name">
+          ${escapeHtml(player.name)}
+          ${player.isBot?'<span class="bot-label">BOT</span>':""}
         </div>
-      `;
-    }).join("");
+        <div class="player-score">${player.score}</div>
+        <div class="player-legs">
+          Sätze: ${player.sets} · Legs: ${player.legs}
+        </div>
+        <div class="history-title">Letzte 5 Aufnahmen</div>
+        <div class="history-box">
+          <table class="score-history">
+            <thead>
+              <tr>
+                <th>Aufn.</th>
+                <th>Score</th>
+                <th>Rest</th>
+                <th>CO</th>
+              </tr>
+            </thead>
+            <tbody>${rows.join("")}</tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  }).join("");
 
-  const checkoutArea =
-    document.getElementById("checkoutArea");
+  const pending=state.pendingCheckout!==null;
+  const legFinished=state.legFinished!==null;
 
-  const checkoutButtons =
-    document.getElementById("checkoutButtons");
+  document.getElementById("checkoutArea")
+    .classList.toggle("visible",pending);
 
-  const pending =
-    state.pendingCheckout !== null;
+  const checkoutButtons=document.getElementById("checkoutButtons");
+  checkoutButtons.innerHTML="";
 
-  checkoutArea.classList.toggle("visible", pending);
-  checkoutButtons.innerHTML = "";
-
-  if (pending) {
-    const options = legalCheckoutDarts(
-      state.pendingCheckout.checkoutScore
-    );
-
-    options.forEach(darts => {
-      const button = document.createElement("button");
-      button.textContent = darts;
-      button.onclick = () => completeCheckout(darts);
-      button.disabled = botThinking || state.matchOver;
+  if(pending){
+    legalCheckoutDarts(state.pendingCheckout.checkoutScore).forEach(darts=>{
+      const button=document.createElement("button");
+      button.textContent=darts;
+      button.disabled=botThinking||state.matchOver;
+      button.onclick=()=>completeCheckout(darts);
       checkoutButtons.appendChild(button);
     });
   }
 
-  document.getElementById("inputDisplay").textContent =
-    currentInput === ""
-      ? "000"
-      : currentInput.padStart(3, "0");
+  const nextArea=document.getElementById("legNextArea");
+  const nextTitle=document.getElementById("legNextTitle");
 
-  const controls = document.querySelectorAll(
-    ".keypad button, .quick-scores button, .action-row button"
-  );
+  nextArea.classList.toggle("visible",legFinished);
 
-  controls.forEach(button => {
-    button.disabled =
-      botThinking ||
-      state.matchOver ||
-      pending ||
+  if(legFinished){
+    const winner=state.players[state.legFinished.winnerIndex];
+    nextTitle.textContent=
+      winner.name+" gewinnt das Leg – bereit für das nächste Leg?";
+  }
+
+  document.getElementById("inputDisplay").textContent=
+    currentInput===""?"000":currentInput.padStart(3,"0");
+
+  document.querySelectorAll(
+    ".keypad button,.quick-scores button,.action-row button"
+  ).forEach(button=>{
+    button.disabled=
+      botThinking||
+      state.matchOver||
+      pending||
+      legFinished||
       isCurrentPlayerBot();
   });
 
   saveState();
 }
 
-/* -----------------------------
-   Eingabe
------------------------------ */
-
-function pressKey(number) {
-  if (
-    botThinking ||
-    state.matchOver ||
-    state.pendingCheckout ||
+function pressKey(number){
+  if(
+    botThinking||
+    state.matchOver||
+    state.pendingCheckout||
+    state.legFinished||
     isCurrentPlayerBot()
-  ) {
-    return;
-  }
+  )return;
 
-  if (currentInput.length >= 3) {
-    return;
-  }
+  if(currentInput.length>=3)return;
 
-  const proposed = currentInput + number;
+  const proposed=currentInput+number;
 
-  if (Number(proposed) > 180) {
-    return;
-  }
+  if(Number(proposed)>180)return;
 
-  currentInput = proposed;
+  currentInput=proposed;
   render();
 }
 
-function quickScore(score) {
-  if (
-    botThinking ||
-    state.matchOver ||
-    state.pendingCheckout ||
+function quickScore(score){
+  if(
+    botThinking||
+    state.matchOver||
+    state.pendingCheckout||
+    state.legFinished||
     isCurrentPlayerBot()
-  ) {
-    return;
-  }
+  )return;
 
-  currentInput = String(score);
+  currentInput=String(score);
   submitScore();
 }
 
-function clearInput() {
-  if (
-    botThinking ||
-    state.matchOver ||
-    state.pendingCheckout ||
+function clearInput(){
+  if(
+    botThinking||
+    state.matchOver||
+    state.pendingCheckout||
+    state.legFinished||
     isCurrentPlayerBot()
-  ) {
-    return;
-  }
+  )return;
 
-  currentInput = "";
+  currentInput="";
   render();
 }
 
-function backspace() {
-  if (
-    botThinking ||
-    state.matchOver ||
-    state.pendingCheckout ||
+function backspace(){
+  if(
+    botThinking||
+    state.matchOver||
+    state.pendingCheckout||
+    state.legFinished||
     isCurrentPlayerBot()
-  ) {
-    return;
-  }
+  )return;
 
-  currentInput = currentInput.slice(0, -1);
+  currentInput=currentInput.slice(0,-1);
   render();
 }
 
-function submitScore() {
-  if (
-    !state.started ||
-    state.matchOver ||
-    state.pendingCheckout ||
+function submitScore(){
+  if(
+    !state.started||
+    state.matchOver||
+    state.pendingCheckout||
+    state.legFinished||
     isCurrentPlayerBot()
-  ) {
-    return;
-  }
+  )return;
 
-  processScore(Number(currentInput || 0));
+  processScore(Number(currentInput||0));
 }
 
-/* -----------------------------
-   Spielverarbeitung
------------------------------ */
+function processScore(score){
+  if(
+    !state.started||
+    state.matchOver||
+    state.pendingCheckout||
+    state.legFinished
+  )return;
 
-function processScore(score) {
-  if (
-    !state.started ||
-    state.matchOver ||
-    state.pendingCheckout
-  ) {
-    return;
-  }
-
-  const player =
-    state.players[state.currentPlayer];
-
-  if (score < 0 || score > 180) {
-    return;
-  }
+  if(score<0||score>180)return;
 
   saveHistory();
 
-  const oldScore = player.score;
-  const newScore = oldScore - score;
-  const turnNumber = player.turns.length + 1;
+  const player=state.players[state.currentPlayer];
+  const oldScore=player.score;
+  const newScore=oldScore-score;
+  const turnNumber=player.turns.length+1;
 
-  if (oldScore > 0 && oldScore <= 170) {
+  if(oldScore>0&&oldScore<=170){
     player.checkoutStats.attempts++;
   }
 
-  let bust = false;
+  let bust=false;
 
-  if (newScore < 0) {
-    bust = true;
-  }
+  if(newScore<0)bust=true;
+  if(state.doubleOut&&newScore===1)bust=true;
 
-  if (state.doubleOut && newScore === 1) {
-    bust = true;
-  }
-
-  if (bust) {
+  if(bust){
     player.turns.push({
       number:turnNumber,
       score,
@@ -1244,14 +1087,13 @@ function processScore(score) {
     });
 
     player.matchStats.totalTurns++;
-    player.matchStats.totalDarts += 3;
-
-    currentInput = "";
+    player.matchStats.totalDarts+=3;
+    currentInput="";
     nextPlayer();
     return;
   }
 
-  player.score = newScore;
+  player.score=newScore;
 
   player.turns.push({
     number:turnNumber,
@@ -1261,113 +1103,92 @@ function processScore(score) {
     checkoutDarts:null
   });
 
-  player.matchStats.totalPoints += score;
+  player.matchStats.totalPoints+=score;
   player.matchStats.totalTurns++;
+  player.matchStats.totalDarts+=3;
+  player.matchStats.highestScore=
+    Math.max(player.matchStats.highestScore,score);
 
-  player.matchStats.highestScore =
-    Math.max(player.matchStats.highestScore, score);
+  if(score>=100)player.matchStats.scores100++;
+  if(score>=140)player.matchStats.scores140++;
+  if(score===180)player.matchStats.scores180++;
 
-  if (score >= 100) {
-    player.matchStats.scores100++;
-  }
-
-  if (score >= 140) {
-    player.matchStats.scores140++;
-  }
-
-  if (score === 180) {
-    player.matchStats.scores180++;
-  }
-
-  if (player.turns.length <= 3) {
-    player.matchStats.firstNinePoints += score;
+  if(player.turns.length<=3){
+    player.matchStats.firstNinePoints+=score;
     player.matchStats.firstNineTurns++;
   }
 
-  if (newScore === 0) {
-    state.pendingCheckout = {
+  if(newScore===0){
+    state.pendingCheckout={
       playerIndex:state.currentPlayer,
-      turnIndex:player.turns.length - 1,
+      turnIndex:player.turns.length-1,
       checkoutScore:oldScore
     };
 
-    currentInput = "";
+    currentInput="";
     render();
 
-    if (player.isBot) {
-      const options = legalCheckoutDarts(oldScore);
+    if(player.isBot){
+      const options=legalCheckoutDarts(oldScore);
 
-      if (options.length > 0) {
-        const darts =
-          options[Math.floor(Math.random() * options.length)];
-
-        setTimeout(() => completeCheckout(darts), 250);
+      if(options.length){
+        const darts=chooseBotCheckoutDarts(options,player.difficulty);
+        setTimeout(()=>completeCheckout(darts),250);
       }
     }
 
     return;
   }
 
-  player.matchStats.totalDarts += 3;
-
-  currentInput = "";
+  currentInput="";
   nextPlayer();
 }
 
-function completeCheckout(darts) {
-  if (!state.pendingCheckout || state.matchOver) {
-    return;
-  }
+function chooseBotCheckoutDarts(options,difficulty){
+  if(difficulty>=5)return options[0];
+  if(difficulty>=4)return Math.random()<.75?options[0]:options[options.length-1];
+  if(difficulty>=3)return Math.random()<.55?options[0]:options[options.length-1];
 
-  const checkoutScore =
-    state.pendingCheckout.checkoutScore;
+  return options[Math.floor(Math.random()*options.length)];
+}
 
-  const legalOptions =
-    legalCheckoutDarts(checkoutScore);
+function completeCheckout(darts){
+  if(!state.pendingCheckout||state.matchOver)return;
 
-  if (!legalOptions.includes(darts)) {
-    return;
-  }
+  const checkoutScore=state.pendingCheckout.checkoutScore;
+  const legalOptions=legalCheckoutDarts(checkoutScore);
 
-  const playerIndex =
-    state.pendingCheckout.playerIndex;
+  if(!legalOptions.includes(darts))return;
 
-  const turnIndex =
-    state.pendingCheckout.turnIndex;
+  const player=state.players[state.pendingCheckout.playerIndex];
+  const turn=player.turns[state.pendingCheckout.turnIndex];
 
-  const player = state.players[playerIndex];
-  const turn = player.turns[turnIndex];
-
-  if (!turn) {
-    state.pendingCheckout = null;
+  if(!turn){
+    state.pendingCheckout=null;
     render();
     return;
   }
 
-  turn.checkoutDarts = darts;
+  turn.checkoutDarts=darts;
 
   player.checkoutStats.hits++;
-  player.checkoutStats["darts" + darts]++;
-  player.checkoutStats.totalDarts += darts;
+  player.checkoutStats["darts"+darts]++;
+  player.checkoutStats.totalDarts+=darts;
 
-  player.matchStats.totalDarts += darts;
+  player.matchStats.totalDarts-=3-darts;
 
-  player.matchStats.highestCheckout =
-    Math.max(
-      player.matchStats.highestCheckout,
-      checkoutScore
-    );
+  player.matchStats.highestCheckout=
+    Math.max(player.matchStats.highestCheckout,checkoutScore);
 
   finishLeg(player);
 }
 
-function finishLeg(player) {
-  const dartsInLeg =
-    player.matchStats.totalDarts -
-    player.legResults.reduce(
-      (sum, leg) => sum + leg.darts,
-      0
-    );
+function finishLeg(player){
+  const previousLegDarts=player.legResults.reduce(
+    (sum,leg)=>sum+leg.darts,0
+  );
+
+  const dartsInLeg=player.matchStats.totalDarts-previousLegDarts;
 
   player.legResults.push({
     darts:dartsInLeg,
@@ -1377,463 +1198,300 @@ function finishLeg(player) {
   player.matchStats.legsWon++;
   player.matchStats.legDarts.push(dartsInLeg);
 
-  if (
-    player.matchStats.bestLeg === null ||
-    dartsInLeg < player.matchStats.bestLeg
-  ) {
-    player.matchStats.bestLeg = dartsInLeg;
+  if(
+    player.matchStats.bestLeg===null||
+    dartsInLeg<player.matchStats.bestLeg
+  ){
+    player.matchStats.bestLeg=dartsInLeg;
   }
 
   player.legs++;
 
-  if (player.legs >= state.legsToWin) {
+  if(player.legs>=state.legsToWin){
     player.sets++;
     player.matchStats.setsWon++;
-    player.legs = 0;
+    player.legs=0;
 
-    if (player.sets >= state.setsToWin) {
-      state.matchOver = true;
-      state.pendingCheckout = null;
-      botThinking = false;
+    if(player.sets>=state.setsToWin){
+      state.matchOver=true;
+      state.pendingCheckout=null;
+      state.legFinished=null;
+      botThinking=false;
       render();
       showStatistics();
       return;
     }
   }
 
-  /*
-    Der Startspieler des nächsten Legs wird hier festgelegt.
-
-    Beispiel bei zwei Spielern:
-    - startingPlayer = 0: Spieler 1 beginnt Leg 1
-    - startingPlayer = 1: Spieler 2 beginnt Leg 2
-    - startingPlayer = 0: Spieler 1 beginnt Leg 3
-
-    Bei deaktiviertem Schalter bleibt der ursprüngliche
-    Startspieler für jedes weitere Leg bestehen.
-  */
-  if (state.starterRotation) {
-    state.startingPlayer =
-      (state.startingPlayer + 1) %
-      state.players.length;
+  if(state.starterRotation){
+    state.startingPlayer=
+      (state.startingPlayer+1)%state.players.length;
   }
+
+  state.pendingCheckout=null;
+  state.legFinished={
+    winnerIndex:state.players.indexOf(player)
+  };
+
+  botThinking=false;
+  currentInput="";
+  render();
+}
+
+function startNextLeg(){
+  if(!state.legFinished||state.matchOver)return;
 
   resetLegForAllPlayers();
 
-  state.currentPlayer = state.startingPlayer;
-  state.pendingCheckout = null;
-  botThinking = false;
-  currentInput = "";
+  state.currentPlayer=state.startingPlayer;
+  state.pendingCheckout=null;
+  state.legFinished=null;
+  botThinking=false;
+  currentInput="";
 
   render();
   startBotIfNeeded();
 }
 
-function resetLegForAllPlayers() {
-  state.players.forEach(player => {
-    player.score = state.startScore;
-    player.turns = [];
+function resetLegForAllPlayers(){
+  state.players.forEach(player=>{
+    player.score=state.startScore;
+    player.turns=[];
   });
 }
 
-function nextPlayer() {
-  state.currentPlayer =
-    (state.currentPlayer + 1) %
-    state.players.length;
+function nextPlayer(){
+  state.currentPlayer=
+    (state.currentPlayer+1)%state.players.length;
 
-  currentInput = "";
-  botThinking = false;
+  currentInput="";
+  botThinking=false;
 
   render();
   startBotIfNeeded();
 }
 
-/* -----------------------------
-   Dart-Bot
------------------------------ */
+function randomNormal(){
+  let u=0;
+  let v=0;
 
-const BOT_PROFILES = {
-  1:{average:40, checkout:0.05, triple:0.14},
-  2:{average:50, checkout:0.10, triple:0.19},
-  3:{average:60, checkout:0.15, triple:0.24},
-  4:{average:60, checkout:0.20, triple:0.28},
-  5:{average:80, checkout:0.33, triple:0.36}
-};
+  while(u===0)u=Math.random();
+  while(v===0)v=Math.random();
 
-function randomNormal() {
-  let u = 0;
-  let v = 0;
-
-  while (u === 0) {
-    u = Math.random();
-  }
-
-  while (v === 0) {
-    v = Math.random();
-  }
-
-  return Math.sqrt(-2 * Math.log(u)) *
-    Math.cos(2 * Math.PI * v);
+  return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
 }
 
-function botPerformanceFactor() {
-  const chance = Math.random();
-
-  if (chance < 0.70) {
-    return 1 + randomNormal() * 0.10;
-  }
-
-  if (chance < 0.95) {
-    return 1 + randomNormal() * 0.24;
-  }
-
-  return 1 + randomNormal() * 0.48;
+function clamp(value,min,max){
+  return Math.max(min,Math.min(max,value));
 }
 
-function clamp(value, min, max) {
-  return Math.max(min, Math.min(max, value));
+function botPerformanceFactor(){
+  return clamp(1+randomNormal()*.13,.55,1.45);
 }
 
-function botTargetSector() {
-  return Math.random() < 0.72 ? 20 : 19;
+function randomDartScore(profile,performance){
+  const averagePerDart=profile.average/3;
+
+  const raw=
+    averagePerDart*performance+
+    randomNormal()*averagePerDart*profile.variation;
+
+  return clamp(Math.round(raw),0,60);
 }
 
-function adjacentMiss(sector) {
-  if (sector === 20) {
-    return Math.random() < 0.5 ? 1 : 5;
+function calculateBotScore(rest,difficulty){
+  const profile=BOT_PROFILES[difficulty]||BOT_PROFILES[3];
+  const performance=botPerformanceFactor();
+
+  if(
+    rest>1&&
+    rest<=170&&
+    legalCheckoutDarts(rest).length&&
+    Math.random()<profile.checkout*performance
+  ){
+    return rest;
   }
 
-  return Math.random() < 0.5 ? 3 : 7;
+  let total=0;
+
+  for(let dart=0;dart<3;dart++){
+    total+=randomDartScore(profile,performance);
+  }
+
+  if(Math.random()<.06)total=0;
+  if(Math.random()<.05)total=25;
+
+  return clamp(Math.round(total),0,180);
 }
 
-function randomSingleScore() {
-  return Math.floor(Math.random() * 20) + 1;
+function isCurrentPlayerBot(){
+  const player=state.players[state.currentPlayer];
+  return player&&player.isBot===true;
 }
 
-function simulateBotDart(profile, performance) {
-  const target = botTargetSector();
-
-  const tripleChance = clamp(
-    profile.triple * performance,
-    0.04,
-    0.62
-  );
-
-  const doubleChance = clamp(
-    0.08 * performance,
-    0.025,
-    0.18
-  );
-
-  const singleTargetChance = clamp(
-    0.22 + (performance - 1) * 0.06,
-    0.12,
-    0.30
-  );
-
-  const missChance = clamp(
-    0.30 - (performance - 1) * 0.04,
-    0.18,
-    0.38
-  );
-
-  const roll = Math.random();
-
-  if (roll < tripleChance) {
-    return target * 3;
-  }
-
-  if (roll < tripleChance + doubleChance) {
-    return target * 2;
-  }
-
-  if (
-    roll <
-    tripleChance +
-    doubleChance +
-    singleTargetChance
-  ) {
-    return target;
-  }
-
-  if (
-    roll <
-    tripleChance +
-    doubleChance +
-    singleTargetChance +
-    missChance
-  ) {
-    return adjacentMiss(target);
-  }
-
-  const remainderRoll = Math.random();
-
-  if (remainderRoll < 0.08) {
-    return 25;
-  }
-
-  if (remainderRoll < 0.10) {
-    return 50;
-  }
-
-  if (remainderRoll < 0.16) {
-    return 0;
-  }
-
-  return randomSingleScore();
-}
-
-function calculateBotScore(rest, difficulty) {
-  const profile =
-    BOT_PROFILES[difficulty] || BOT_PROFILES[3];
-
-  const performance = botPerformanceFactor();
-
-  if (rest > 1 && rest <= 170) {
-    const checkoutChance = clamp(
-      profile.checkout * performance,
-      0.005,
-      0.65
-    );
-
-    if (
-      Math.random() < checkoutChance &&
-      legalCheckoutDarts(rest).length > 0
-    ) {
-      return rest;
-    }
-  }
-
-  let total = 0;
-
-  for (let dart = 0; dart < 3; dart++) {
-    total += simulateBotDart(profile, performance);
-  }
-
-  const targetTurnAverage =
-    profile.average * performance;
-
-  if (Math.random() < 0.28 && total > 0) {
-    const correction =
-      (targetTurnAverage - total) *
-      (0.25 + Math.random() * 0.35);
-
-    total = Math.round(total + correction);
-  }
-
-  return clamp(Math.round(total), 0, 180);
-}
-
-function isCurrentPlayerBot() {
-  const player = state.players[state.currentPlayer];
-  return player && player.isBot === true;
-}
-
-function startBotIfNeeded() {
-  if (
-    !state.started ||
-    state.matchOver ||
-    state.pendingCheckout ||
-    !isCurrentPlayerBot() ||
+function startBotIfNeeded(){
+  if(
+    !state.started||
+    state.matchOver||
+    state.pendingCheckout||
+    state.legFinished||
+    !isCurrentPlayerBot()||
     botThinking
-  ) {
-    return;
-  }
+  )return;
 
-  botThinking = true;
+  botThinking=true;
   render();
 
-  botTimer = setTimeout(() => {
-    botTimer = null;
+  botTimer=setTimeout(()=>{
+    botTimer=null;
     playBotTurn();
-  }, 850);
+  },850);
 }
 
-function playBotTurn() {
-  if (
-    !state.started ||
-    state.matchOver ||
-    state.pendingCheckout ||
+function playBotTurn(){
+  if(
+    !state.started||
+    state.matchOver||
+    state.pendingCheckout||
+    state.legFinished||
     !isCurrentPlayerBot()
-  ) {
-    botThinking = false;
+  ){
+    botThinking=false;
     render();
     return;
   }
 
-  const bot = state.players[state.currentPlayer];
+  const bot=state.players[state.currentPlayer];
+  const score=calculateBotScore(bot.score,bot.difficulty);
 
-  const score = calculateBotScore(
-    bot.score,
-    bot.difficulty
-  );
-
-  botThinking = false;
+  botThinking=false;
   processScore(score);
 }
 
-/* -----------------------------
-   Rückgängig und Speicherung
------------------------------ */
-
-function saveHistory() {
+function saveHistory(){
   state.history.push({
     players:JSON.parse(JSON.stringify(state.players)),
     currentPlayer:state.currentPlayer,
     startingPlayer:state.startingPlayer,
     starterRotation:state.starterRotation,
     matchOver:state.matchOver,
-    pendingCheckout:state.pendingCheckout
-      ? JSON.parse(JSON.stringify(state.pendingCheckout))
-      : null
+    pendingCheckout:state.pendingCheckout?
+      JSON.parse(JSON.stringify(state.pendingCheckout)):null,
+    legFinished:state.legFinished?
+      JSON.parse(JSON.stringify(state.legFinished)):null
   });
 
-  if (state.history.length > 50) {
-    state.history.shift();
-  }
+  if(state.history.length>100)state.history.shift();
 }
 
-function undo() {
-  if (botTimer) {
+function undo(){
+  if(botTimer){
     clearTimeout(botTimer);
-    botTimer = null;
+    botTimer=null;
   }
 
-  botThinking = false;
+  botThinking=false;
 
-  if (state.history.length === 0) {
-    return;
-  }
+  if(state.history.length===0)return;
 
-  const previous = state.history.pop();
+  let previous=null;
 
-  state.players = previous.players;
-  state.currentPlayer = previous.currentPlayer;
+  do{
+    if(state.history.length===0)break;
 
-  if (typeof previous.startingPlayer === "number") {
-    state.startingPlayer = previous.startingPlayer;
-  }
+    previous=state.history.pop();
 
-  if (typeof previous.starterRotation === "boolean") {
-    state.starterRotation = previous.starterRotation;
-  }
+    state.players=previous.players;
+    state.currentPlayer=previous.currentPlayer;
+    state.startingPlayer=typeof previous.startingPlayer==="number"
+      ?previous.startingPlayer:0;
+    state.starterRotation=typeof previous.starterRotation==="boolean"
+      ?previous.starterRotation:true;
+    state.matchOver=previous.matchOver;
+    state.pendingCheckout=previous.pendingCheckout||null;
+    state.legFinished=previous.legFinished||null;
+  }while(isCurrentPlayerBot()&&state.history.length>0);
 
-  state.matchOver = previous.matchOver;
-  state.pendingCheckout = previous.pendingCheckout;
-
-  currentInput = "";
+  currentInput="";
   render();
+
+  if(isCurrentPlayerBot())startBotIfNeeded();
 }
 
-function newGame() {
-  if (!confirm("Das aktuelle Spiel wirklich beenden?")) {
-    return;
-  }
+function newGame(){
+  if(!confirm("Das aktuelle Spiel wirklich beenden?"))return;
 
-  if (botTimer) {
+  if(botTimer){
     clearTimeout(botTimer);
-    botTimer = null;
+    botTimer=null;
   }
 
-  botThinking = false;
-  currentInput = "";
+  botThinking=false;
+  currentInput="";
 
-  state.started = false;
-  state.matchOver = false;
-  state.pendingCheckout = null;
+  state.started=false;
+  state.matchOver=false;
+  state.pendingCheckout=null;
+  state.legFinished=null;
 
   localStorage.removeItem("dartscorer");
 
-  document
-    .getElementById("gameScreen")
-    .classList.add("hidden");
-
-  document
-    .getElementById("statsScreen")
-    .classList.add("hidden");
-
-  document
-    .getElementById("setupScreen")
-    .classList.remove("hidden");
+  document.getElementById("gameScreen").classList.add("hidden");
+  document.getElementById("statsScreen").classList.add("hidden");
+  document.getElementById("setupScreen").classList.remove("hidden");
 
   updatePlayerFields();
 }
 
-function saveState() {
-  if (!state.started) {
-    return;
-  }
+function saveState(){
+  if(!state.started)return;
+  localStorage.setItem("dartscorer",JSON.stringify(state));
+}
 
-  localStorage.setItem(
-    "dartscorer",
-    JSON.stringify(state)
+function formatNumber(value){
+  return Number(value||0).toFixed(2);
+}
+
+function checkoutPercentage(player){
+  const stats=player.checkoutStats;
+
+  if(!stats.attempts)return"0.00 %";
+
+  return formatNumber(stats.hits/stats.attempts*100)+" %";
+}
+
+function threeDartAverage(player){
+  if(!player.matchStats.totalDarts)return"0.00";
+
+  return formatNumber(
+    player.matchStats.totalPoints/
+    player.matchStats.totalDarts*3
   );
 }
 
-/* -----------------------------
-   Statistik
------------------------------ */
-
-function formatNumber(value) {
-  return Number(value || 0).toFixed(2);
-}
-
-function checkoutPercentage(player) {
-  const stats = player.checkoutStats;
-
-  if (!stats.attempts) {
-    return "0.00 %";
-  }
+function firstNineAverage(player){
+  if(!player.matchStats.firstNineTurns)return"0.00";
 
   return formatNumber(
-    stats.hits / stats.attempts * 100
-  ) + " %";
-}
-
-function threeDartAverage(player) {
-  if (!player.matchStats.totalDarts) {
-    return "0.00";
-  }
-
-  return formatNumber(
-    player.matchStats.totalPoints /
-    player.matchStats.totalDarts * 3
-  );
-}
-
-function firstNineAverage(player) {
-  if (!player.matchStats.firstNineTurns) {
-    return "0.00";
-  }
-
-  return formatNumber(
-    player.matchStats.firstNinePoints /
+    player.matchStats.firstNinePoints/
     player.matchStats.firstNineTurns
   );
 }
 
-function averageLegDarts(player) {
-  const legs = player.matchStats.legDarts;
+function averageLegDarts(player){
+  const legs=player.matchStats.legDarts;
 
-  if (!legs.length) {
-    return "0.00";
-  }
+  if(!legs.length)return"0.00";
 
   return formatNumber(
-    legs.reduce((sum, darts) => sum + darts, 0) /
-    legs.length
+    legs.reduce((sum,darts)=>sum+darts,0)/legs.length
   );
 }
 
-function showStatistics() {
-  if (!state.started) {
-    return;
-  }
+function showStatistics(){
+  if(!state.started)return;
 
-  const content =
-    document.getElementById("statsContent");
-
-  content.innerHTML = `
+  document.getElementById("statsContent").innerHTML=`
     <p class="stat-note">
       Die Statistik wird während des Spiels laufend aktualisiert.
       Ein Checkout-Versuch zählt, sobald ein Spieler mit einem Rest
@@ -1844,262 +1502,143 @@ function showStatistics() {
       <thead>
         <tr>
           <th>Statistik</th>
-          ${state.players.map(player =>
+          ${state.players.map(player=>
             `<th>${escapeHtml(player.name)}</th>`
           ).join("")}
         </tr>
       </thead>
-
       <tbody>
-        ${statRow("3-Dart-Average", player =>
-          threeDartAverage(player)
-        )}
-
-        ${statRow("First-9-Average", player =>
-          firstNineAverage(player)
-        )}
-
-        ${statRow("Checkoutquote", player =>
-          checkoutPercentage(player)
-        )}
-
-        ${statRow("Checkout-Versuche", player =>
-          player.checkoutStats.attempts
-        )}
-
-        ${statRow("Checkouts", player =>
-          player.checkoutStats.hits
-        )}
-
-        ${statRow("1-Dart-Checkouts", player =>
-          player.checkoutStats.darts1
-        )}
-
-        ${statRow("2-Dart-Checkouts", player =>
-          player.checkoutStats.darts2
-        )}
-
-        ${statRow("3-Dart-Checkouts", player =>
-          player.checkoutStats.darts3
-        )}
-
-        ${statRow("Höchste Aufnahme", player =>
-          player.matchStats.highestScore
-        )}
-
-        ${statRow("High Finish", player =>
-          player.matchStats.highestCheckout
-        )}
-
-        ${statRow("180er", player =>
-          player.matchStats.scores180
-        )}
-
-        ${statRow("140+ Aufnahmen", player =>
-          player.matchStats.scores140
-        )}
-
-        ${statRow("100+ Aufnahmen", player =>
-          player.matchStats.scores100
-        )}
-
-        ${statRow("Gewonnene Legs", player =>
-          player.matchStats.legsWon
-        )}
-
-        ${statRow("Gewonnene Sätze", player =>
-          player.matchStats.setsWon
-        )}
-
-        ${statRow("Durchschnittliche Leg-Darts", player =>
-          averageLegDarts(player)
-        )}
-
-        ${statRow("Bestes Leg", player =>
-          player.matchStats.bestLeg === null
-            ? "-"
-            : player.matchStats.bestLeg + " Darts"
+        ${statRow("3-Dart-Average",player=>threeDartAverage(player))}
+        ${statRow("First-9-Average",player=>firstNineAverage(player))}
+        ${statRow("Checkoutquote",player=>checkoutPercentage(player))}
+        ${statRow("Checkout-Versuche",player=>player.checkoutStats.attempts)}
+        ${statRow("Checkouts",player=>player.checkoutStats.hits)}
+        ${statRow("1-Dart-Checkouts",player=>player.checkoutStats.darts1)}
+        ${statRow("2-Dart-Checkouts",player=>player.checkoutStats.darts2)}
+        ${statRow("3-Dart-Checkouts",player=>player.checkoutStats.darts3)}
+        ${statRow("Höchste Aufnahme",player=>player.matchStats.highestScore)}
+        ${statRow("High Finish",player=>player.matchStats.highestCheckout)}
+        ${statRow("180er",player=>player.matchStats.scores180)}
+        ${statRow("140+ Aufnahmen",player=>player.matchStats.scores140)}
+        ${statRow("100+ Aufnahmen",player=>player.matchStats.scores100)}
+        ${statRow("Gewonnene Legs",player=>player.matchStats.legsWon)}
+        ${statRow("Gewonnene Sätze",player=>player.matchStats.setsWon)}
+        ${statRow("Durchschnittliche Leg-Darts",player=>averageLegDarts(player))}
+        ${statRow(
+          "Bestes Leg",
+          player=>player.matchStats.bestLeg===null
+            ?"-"
+            :player.matchStats.bestLeg+" Darts"
         )}
       </tbody>
     </table>
   `;
 
-  document
-    .getElementById("gameScreen")
-    .classList.add("hidden");
-
-  document
-    .getElementById("setupScreen")
-    .classList.add("hidden");
-
-  document
-    .getElementById("statsScreen")
-    .classList.remove("hidden");
+  document.getElementById("gameScreen").classList.add("hidden");
+  document.getElementById("setupScreen").classList.add("hidden");
+  document.getElementById("statsScreen").classList.remove("hidden");
 }
 
-function statRow(label, callback) {
-  return `
+function statRow(label,callback){
+  return`
     <tr>
       <td>${label}</td>
-      ${state.players.map(player =>
+      ${state.players.map(player=>
         `<td>${callback(player)}</td>`
       ).join("")}
     </tr>
   `;
 }
 
-function closeStatistics() {
-  document
-    .getElementById("statsScreen")
-    .classList.add("hidden");
-
-  document
-    .getElementById("gameScreen")
-    .classList.remove("hidden");
-
+function closeStatistics(){
+  document.getElementById("statsScreen").classList.add("hidden");
+  document.getElementById("gameScreen").classList.remove("hidden");
   render();
 }
 
-/* -----------------------------
-   Spielstand laden
------------------------------ */
+function loadState(){
+  const saved=localStorage.getItem("dartscorer");
 
-function loadState() {
-  const saved = localStorage.getItem("dartscorer");
-
-  if (!saved) {
+  if(!saved){
     updatePlayerFields();
     return;
   }
 
-  try {
-    const parsed = JSON.parse(saved);
+  try{
+    const parsed=JSON.parse(saved);
 
-    if (
-      !parsed.started ||
-      !Array.isArray(parsed.players) ||
-      parsed.players.length === 0
-    ) {
+    if(
+      !parsed.started||
+      !Array.isArray(parsed.players)||
+      parsed.players.length===0
+    ){
       updatePlayerFields();
       return;
     }
 
-    state = parsed;
+    state=parsed;
 
-    if (!state.history) {
-      state.history = [];
+    if(!state.history)state.history=[];
+    if(!state.legFinished)state.legFinished=null;
+    if(typeof state.setsToWin!=="number")state.setsToWin=1;
+    if(typeof state.legsToWin!=="number")state.legsToWin=3;
+    if(typeof state.startingPlayer!=="number")state.startingPlayer=0;
+    if(typeof state.starterRotation!=="boolean")state.starterRotation=true;
+
+    if(
+      state.startingPlayer<0||
+      state.startingPlayer>=state.players.length
+    ){
+      state.startingPlayer=0;
     }
 
-    if (typeof state.setsToWin !== "number") {
-      state.setsToWin = 1;
-    }
+    state.players.forEach(player=>{
+      if(!Array.isArray(player.turns))player.turns=[];
+      if(!Array.isArray(player.legResults))player.legResults=[];
+      if(!player.checkoutStats)player.checkoutStats=emptyCheckoutStats();
+      if(!player.matchStats)player.matchStats=emptyMatchStats();
 
-    if (typeof state.legsToWin !== "number") {
-      state.legsToWin = 3;
-    }
-
-    /*
-      Alte Spielstände erhalten sinnvolle Standardwerte:
-      Spieler 1 beginnt und der automatische Wechsel ist aktiv.
-    */
-    if (typeof state.startingPlayer !== "number") {
-      state.startingPlayer = 0;
-    }
-
-    if (
-      state.startingPlayer < 0 ||
-      state.startingPlayer >= state.players.length
-    ) {
-      state.startingPlayer = 0;
-    }
-
-    if (typeof state.starterRotation !== "boolean") {
-      state.starterRotation = true;
-    }
-
-    state.players.forEach(player => {
-      if (!Array.isArray(player.turns)) {
-        player.turns = [];
-      }
-
-      if (!Array.isArray(player.legResults)) {
-        player.legResults = [];
-      }
-
-      if (!player.checkoutStats) {
-        player.checkoutStats = emptyCheckoutStats();
-      }
-
-      if (!player.matchStats) {
-        player.matchStats = emptyMatchStats();
-      }
-
-      player.turns.forEach(turn => {
-        if (typeof turn.checkoutDarts === "undefined") {
-          turn.checkoutDarts = null;
+      player.turns.forEach(turn=>{
+        if(typeof turn.checkoutDarts==="undefined"){
+          turn.checkoutDarts=null;
         }
       });
     });
 
-    document
-      .getElementById("setupScreen")
-      .classList.add("hidden");
-
-    document
-      .getElementById("statsScreen")
-      .classList.add("hidden");
-
-    document
-      .getElementById("gameScreen")
-      .classList.remove("hidden");
+    document.getElementById("setupScreen").classList.add("hidden");
+    document.getElementById("statsScreen").classList.add("hidden");
+    document.getElementById("gameScreen").classList.remove("hidden");
 
     render();
     startBotIfNeeded();
-
-  } catch (error) {
+  }catch(error){
     localStorage.removeItem("dartscorer");
     updatePlayerFields();
   }
 }
 
-/* -----------------------------
-   Sicherheit und Tastatur
------------------------------ */
-
-function escapeHtml(text) {
+function escapeHtml(text){
   return String(text)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 
-document.addEventListener("keydown", event => {
-  if (
-    !state.started ||
-    state.matchOver ||
-    state.pendingCheckout ||
+document.addEventListener("keydown",event=>{
+  if(
+    !state.started||
+    state.matchOver||
+    state.pendingCheckout||
+    state.legFinished||
     isCurrentPlayerBot()
-  ) {
-    return;
-  }
+  )return;
 
-  if (/^[0-9]$/.test(event.key)) {
-    pressKey(event.key);
-  }
-
-  if (event.key === "Backspace") {
-    backspace();
-  }
-
-  if (event.key === "Escape") {
-    clearInput();
-  }
-
-  if (event.key === "Enter") {
-    submitScore();
-  }
+  if(/^[0-9]$/.test(event.key))pressKey(event.key);
+  if(event.key==="Backspace")backspace();
+  if(event.key==="Escape")clearInput();
+  if(event.key==="Enter")submitScore();
 });
 
 updatePlayerFields();
@@ -2107,4 +1646,6 @@ loadState();
 </script>
 </body>
 </html>
+
+
 
