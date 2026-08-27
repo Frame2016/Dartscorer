@@ -148,20 +148,14 @@ button:disabled{opacity:.45;cursor:not-allowed}
  gap:5px;
 }
 
-/*
-  Der obere Bereich ist wieder etwas größer.
-  Dadurch stehen die letzten fünf Aufnahmen großzügiger
-  zur Verfügung. Der freie Platz am unteren iPad-Rand
-  wird gleichzeitig besser genutzt.
-*/
 #gameScreen>.card:first-child{
- flex:0 0 48%;
+ flex:0 0 40%;
  min-height:0;
  overflow:hidden;
 }
 
 #gameScreen>.card:last-child{
- flex:1 1 52%;
+ flex:1 1 60%;
  min-height:0;
  overflow:hidden;
 }
@@ -216,14 +210,10 @@ button:disabled{opacity:.45;cursor:not-allowed}
 }
 
 .player-score{
- /*
-   Die verbleibende Punktzahl ist jetzt doppelt so groß
-   wie zuvor: 60px statt 30px.
- */
- height:60px;
- font-size:60px;
+ height:52px;
+ font-size:52px;
  font-weight:bold;
- line-height:60px;
+ line-height:52px;
 }
 
 .player-legs{
@@ -244,7 +234,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 }
 
 .history-box{
- height:calc(100% - 118px);
+ height:calc(100% - 110px);
  min-height:0;
  overflow:hidden;
  border-radius:5px;
@@ -255,15 +245,15 @@ button:disabled{opacity:.45;cursor:not-allowed}
  width:100%;
  border-collapse:collapse;
  table-layout:fixed;
- font-size:19px;
+ font-size:17px;
  line-height:1.1;
  text-align:left;
 }
 
 .score-history th,
 .score-history td{
- height:26px;
- padding:3px 4px;
+ height:24px;
+ padding:2px 4px;
  overflow:hidden;
  border-bottom:1px solid var(--line);
  white-space:nowrap;
@@ -273,7 +263,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .score-history th{
  background:rgba(0,0,0,.18);
  color:var(--muted);
- font-size:13px;
+ font-size:12px;
  font-weight:normal;
 }
 
@@ -301,7 +291,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
  min-height:0;
  display:grid;
  grid-template-columns:1fr 1fr;
- gap:7px;
+ gap:6px;
  overflow:hidden;
 }
 
@@ -313,53 +303,53 @@ button:disabled{opacity:.45;cursor:not-allowed}
 }
 
 .input-display{
- height:42px;
- margin-bottom:6px;
- padding:4px;
+ height:38px;
+ margin-bottom:4px;
+ padding:2px;
  border-radius:7px;
  background:#090d12;
  color:var(--green);
  text-align:center;
- font-size:29px;
+ font-size:27px;
  font-weight:bold;
  letter-spacing:5px;
- line-height:34px;
+ line-height:32px;
 }
 
 .keypad{
  display:grid;
  grid-template-columns:repeat(3,1fr);
- gap:4px;
+ gap:3px;
 }
 
 .keypad button{
- min-height:46px;
+ min-height:69px;
  font-size:20px;
 }
 
 .quick-scores{
  display:grid;
  grid-template-columns:repeat(3,1fr);
- gap:5px;
+ gap:4px;
 }
 
 .quick-scores button{
- min-height:48px;
+ min-height:72px;
  background:var(--purple);
- font-size:17px;
+ font-size:16px;
 }
 
 .checkout-area{
  display:none;
- margin-top:5px;
+ margin-top:4px;
 }
 
 .checkout-area.visible{display:block}
 
 .checkout-title{
- margin-bottom:4px;
+ margin-bottom:3px;
  color:var(--gold);
- font-size:12px;
+ font-size:11px;
  font-weight:bold;
  text-align:center;
 }
@@ -367,49 +357,49 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .checkout-buttons{
  display:grid;
  grid-template-columns:repeat(3,1fr);
- gap:4px;
+ gap:3px;
 }
 
 .checkout-buttons button{
- min-height:40px;
+ min-height:60px;
  background:var(--gold);
  color:#211700;
- font-size:16px;
+ font-size:15px;
 }
 
 .leg-next-area{
  display:none;
- margin-top:5px;
+ margin-top:4px;
 }
 
 .leg-next-area.visible{display:block}
 
 .leg-next-title{
- margin-bottom:4px;
+ margin-bottom:3px;
  color:var(--gold);
- font-size:13px;
+ font-size:12px;
  font-weight:bold;
  text-align:center;
 }
 
 .next-leg-button{
  width:100%;
- min-height:42px;
+ min-height:40px;
  background:var(--gold);
  color:#211700;
- font-size:16px;
+ font-size:15px;
 }
 
 .action-row{
  display:grid;
- grid-template-columns:1fr 1fr;
- gap:5px;
- margin-top:5px;
+ grid-template-columns:1fr 1fr 1fr;
+ gap:4px;
+ margin-top:4px;
 }
 
 .action-row button{
- min-height:42px;
- font-size:15px;
+ min-height:63px;
+ font-size:14px;
 }
 
 #statsScreen{
@@ -454,7 +444,6 @@ button:disabled{opacity:.45;cursor:not-allowed}
  font-size:11px;
 }
 
-/* Anpassung für kleinere iPad-Fenster und Querformat */
 @media(max-height:700px){
  header{
   flex-basis:43px;
@@ -473,11 +462,11 @@ button:disabled{opacity:.45;cursor:not-allowed}
  }
 
  #gameScreen>.card:first-child{
-  flex-basis:45%;
+  flex-basis:35%;
  }
 
  #gameScreen>.card:last-child{
-  flex-basis:55%;
+  flex-basis:65%;
  }
 
  .card{
@@ -489,95 +478,118 @@ button:disabled{opacity:.45;cursor:not-allowed}
  }
 
  .player-name{
-  height:16px;
-  font-size:12px;
-  line-height:16px;
+  height:15px;
+  font-size:11px;
+  line-height:15px;
  }
 
  .player-score{
-  height:50px;
-  font-size:50px;
-  line-height:50px;
+  height:42px;
+  font-size:42px;
+  line-height:42px;
  }
 
  .player-legs{
+  height:15px;
+  font-size:9px;
+  line-height:15px;
+ }
+
+ .history-title{
   height:16px;
   font-size:10px;
   line-height:16px;
  }
 
- .history-title{
-  height:18px;
-  font-size:11px;
-  line-height:18px;
- }
-
  .history-box{
-  height:calc(100% - 100px);
+  height:calc(100% - 91px);
  }
 
  .score-history{
-  font-size:17px;
+  font-size:15px;
  }
 
  .score-history th{
-  font-size:11px;
+  font-size:10px;
  }
 
  .score-history th,
  .score-history td{
-  height:23px;
-  padding:2px;
+  height:20px;
+  padding:1px 2px;
  }
 
  .input-display{
-  height:38px;
-  margin-bottom:5px;
-  font-size:26px;
-  line-height:30px;
+  height:32px;
+  margin-bottom:3px;
+  font-size:23px;
+  line-height:27px;
  }
 
  .keypad{
-  gap:3px;
+  gap:2px;
  }
 
  .keypad button{
-  min-height:40px;
+  min-height:60px;
   font-size:18px;
  }
 
  .quick-scores{
-  gap:4px;
+  gap:3px;
  }
 
  .quick-scores button{
-  min-height:41px;
-  font-size:15px;
- }
-
- .checkout-area{
-  margin-top:4px;
- }
-
- .checkout-buttons button{
-  min-height:34px;
+  min-height:62px;
   font-size:14px;
  }
 
- .next-leg-button,
- .action-row button,
- .danger{
-  min-height:36px;
+ .checkout-area{
+  margin-top:3px;
+ }
+
+ .checkout-buttons{
+  gap:2px;
+ }
+
+ .checkout-buttons button{
+  min-height:51px;
   font-size:13px;
+ }
+
+ .next-leg-area{
+  margin-top:3px;
+ }
+
+ .next-leg-button{
+  min-height:34px;
+  font-size:13px;
+ }
+
+ .action-row{
+  gap:3px;
+  margin-top:3px;
+ }
+
+ .action-row button{
+  min-height:54px;
+  font-size:12px;
+ }
+
+ .danger{
+  min-height:42px;
+  font-size:12px;
  }
 }
 </style>
 </head>
 
 <body>
+
 <header>Dartscorer 🎯</header>
 
 <main>
+
 <section id="setupScreen" class="card">
  <h2>Neues Spiel</h2>
 
@@ -644,12 +656,14 @@ button:disabled{opacity:.45;cursor:not-allowed}
 </section>
 
 <section id="gameScreen" class="hidden">
+
  <div class="card">
   <div id="players" class="player-grid"></div>
  </div>
 
  <div class="card">
   <div class="scoring-area">
+
    <div class="input-column">
     <div id="inputDisplay" class="input-display">000</div>
 
@@ -686,6 +700,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
     <div class="action-row">
      <button class="secondary" onclick="undo()">Rückgängig</button>
      <button class="primary" onclick="submitScore()">Eingeben</button>
+     <button class="secondary" onclick="submitRestScore()">Restscore</button>
     </div>
    </div>
 
@@ -705,6 +720,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
     <button class="danger" onclick="showStatistics()">Statistik</button>
     <button class="danger" onclick="newGame()">Neues Spiel</button>
    </div>
+
   </div>
  </div>
 </section>
@@ -721,6 +737,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
   <button class="danger" onclick="newGame()">Neues Spiel</button>
  </div>
 </section>
+
 </main>
 
 <script>
@@ -783,7 +800,10 @@ function emptyMatchStats(){
 }
 
 function updateStartingPlayerOptions(){
- const count=Number(document.getElementById("playerCount").value);
+ const count=Number(
+  document.getElementById("playerCount").value
+ );
+
  const select=document.getElementById("startingPlayer");
  const old=select.value;
 
@@ -796,19 +816,25 @@ function updateStartingPlayerOptions(){
   select.appendChild(option);
  }
 
- select.value=old!==""&&Number(old)<count?old:"0";
+ select.value=
+  old!==""&&Number(old)<count?
+  old:
+  "0";
 }
 
 function updatePlayerFields(){
- const count=Number(document.getElementById("playerCount").value);
- const container=document.getElementById("playerFields");
+ const count=Number(
+  document.getElementById("playerCount").value
+ );
 
+ const container=document.getElementById("playerFields");
  container.innerHTML="";
 
  for(let i=1;i<=count;i++){
   container.innerHTML+=`
    <label for="player${i}">Name Spieler ${i}</label>
-   <input type="text" id="player${i}" value="Spieler ${i}" maxlength="20">
+   <input type="text" id="player${i}"
+    value="Spieler ${i}" maxlength="20">
   `;
  }
 
@@ -821,20 +847,27 @@ function updatePlayerFields(){
  }else{
   botOptions.classList.add("hidden");
   document.getElementById("playerTwoBot").checked=false;
-  document.getElementById("botDifficultyBox").classList.add("hidden");
+  document.getElementById("botDifficultyBox")
+   .classList.add("hidden");
  }
 }
 
 function toggleBotDifficulty(){
- const checked=document.getElementById("playerTwoBot").checked;
+ const checked=
+  document.getElementById("playerTwoBot").checked;
 
  document.getElementById("botDifficultyBox")
   .classList.toggle("hidden",!checked);
 }
 
 function startGame(){
- const count=Number(document.getElementById("playerCount").value);
- const startScore=Number(document.getElementById("gameMode").value);
+ const count=Number(
+  document.getElementById("playerCount").value
+ );
+
+ const startScore=Number(
+  document.getElementById("gameMode").value
+ );
 
  const setsToWin=Math.max(
   1,
@@ -846,7 +879,9 @@ function startGame(){
   Number(document.getElementById("legsToWin").value)||1
  );
 
- const doubleOut=document.getElementById("doubleOut").checked;
+ const doubleOut=
+  document.getElementById("doubleOut").checked;
+
  const starterRotation=
   document.getElementById("alternateStarter").checked;
 
@@ -854,12 +889,15 @@ function startGame(){
   count-1,
   Math.max(
    0,
-   Number(document.getElementById("startingPlayer").value)||0
+   Number(
+    document.getElementById("startingPlayer").value
+   )||0
   )
  );
 
  const isBot=
-  count===2&&document.getElementById("playerTwoBot").checked;
+  count===2&&
+  document.getElementById("playerTwoBot").checked;
 
  const botDifficulty=Number(
   document.getElementById("botDifficulty").value
@@ -868,8 +906,13 @@ function startGame(){
  const players=[];
 
  for(let i=1;i<=count;i++){
-  let name=document.getElementById("player"+i).value.trim();
-  const playerIsBot=i===2&&isBot;
+  let name=
+   document.getElementById("player"+i)
+   .value
+   .trim();
+
+  const playerIsBot=
+   i===2&&isBot;
 
   if(playerIsBot)name="Bot";
 
@@ -906,9 +949,14 @@ function startGame(){
  currentInput="";
  botThinking=false;
 
- document.getElementById("setupScreen").classList.add("hidden");
- document.getElementById("statsScreen").classList.add("hidden");
- document.getElementById("gameScreen").classList.remove("hidden");
+ document.getElementById("setupScreen")
+  .classList.add("hidden");
+
+ document.getElementById("statsScreen")
+  .classList.add("hidden");
+
+ document.getElementById("gameScreen")
+  .classList.remove("hidden");
 
  render();
  startBotIfNeeded();
@@ -916,14 +964,20 @@ function startGame(){
 
 function checkoutValues(doubleOut){
  if(!doubleOut){
-  return Array.from({length:60},(_,i)=>i+1);
+  return Array.from(
+   {length:60},
+   (_,i)=>i+1
+  );
  }
 
  const values=[];
 
- for(let i=1;i<=20;i++)values.push(i*2);
+ for(let i=1;i<=20;i++){
+  values.push(i*2);
+ }
 
  values.push(50);
+
  return values;
 }
 
@@ -932,7 +986,9 @@ function canFinish(score,darts,doubleOut){
 
  const finals=checkoutValues(doubleOut);
 
- if(darts===1)return finals.includes(score);
+ if(darts===1){
+  return finals.includes(score);
+ }
 
  let reachable=new Set([0]);
 
@@ -948,119 +1004,168 @@ function canFinish(score,darts,doubleOut){
   reachable=next;
  }
 
- return finals.some(value=>reachable.has(score-value));
+ return finals.some(
+  value=>reachable.has(score-value)
+ );
 }
 
 function legalCheckoutDarts(score){
- return[1,2,3].filter(darts=>
-  canFinish(score,darts,state.doubleOut)
+ return[1,2,3].filter(
+  darts=>canFinish(
+   score,
+   darts,
+   state.doubleOut
+  )
  );
 }
 
 function render(){
  if(!state.started)return;
 
- const playersContainer=document.getElementById("players");
+ const playersContainer=
+  document.getElementById("players");
 
  playersContainer.className=
   "player-grid players-"+state.players.length;
 
- playersContainer.innerHTML=state.players.map((player,index)=>{
-  const recent=player.turns.slice(-5);
-  const rows=[];
+ playersContainer.innerHTML=
+  state.players.map((player,index)=>{
+   const recent=player.turns.slice(-5);
+   const rows=[];
 
-  for(let i=0;i<5;i++){
-   const turn=recent[i];
+   for(let i=0;i<5;i++){
+    const turn=recent[i];
 
-   if(!turn){
-    rows.push("<tr><td></td><td></td><td></td><td></td></tr>");
-   }else{
-    rows.push(`
-     <tr>
-      <td>${turn.number}</td>
-      <td class="${turn.bust?"bust":""}">
-       ${turn.bust?"Bust":turn.score}
-      </td>
-      <td>${turn.rest}</td>
-      <td class="${turn.checkoutDarts?"checkout-mark":""}">
-       ${turn.checkoutDarts?turn.checkoutDarts+"D":""}
-      </td>
-     </tr>
-    `);
+    if(!turn){
+     rows.push(
+      "<tr><td></td><td></td><td></td><td></td></tr>"
+     );
+    }else{
+     rows.push(`
+      <tr>
+       <td>${turn.number}</td>
+       <td class="${turn.bust?"bust":""}">
+        ${turn.bust?"Bust":turn.score}
+       </td>
+       <td>${turn.rest}</td>
+       <td class="${turn.checkoutDarts?"checkout-mark":""}">
+        ${turn.checkoutDarts?
+         turn.checkoutDarts+"D":
+         ""}
+       </td>
+      </tr>
+     `);
+    }
    }
-  }
 
-  return`
-   <div class="player-card ${index===state.currentPlayer?"active":""}">
-    <div class="player-name">
-     ${escapeHtml(player.name)}
-     ${player.isBot?'<span class="bot-label">BOT</span>':""}
+   return`
+    <div class="player-card ${
+     index===state.currentPlayer?"active":""
+    }">
+     <div class="player-name">
+      ${escapeHtml(player.name)}
+      ${
+       player.isBot?
+       '<span class="bot-label">BOT</span>':
+       ""
+      }
+     </div>
+
+     <div class="player-score">
+      ${player.score}
+     </div>
+
+     <div class="player-legs">
+      Sätze: ${player.sets} · Legs: ${player.legs}
+     </div>
+
+     <div class="history-title">
+      Letzte 5 Aufnahmen
+     </div>
+
+     <div class="history-box">
+      <table class="score-history">
+       <thead>
+        <tr>
+         <th>Aufn.</th>
+         <th>Score</th>
+         <th>Rest</th>
+         <th>CO</th>
+        </tr>
+       </thead>
+       <tbody>
+        ${rows.join("")}
+       </tbody>
+      </table>
+     </div>
     </div>
+   `;
+  }).join("");
 
-    <div class="player-score">${player.score}</div>
+ const pending=
+  state.pendingCheckout!==null;
 
-    <div class="player-legs">
-     Sätze: ${player.sets} · Legs: ${player.legs}
-    </div>
-
-    <div class="history-title">Letzte 5 Aufnahmen</div>
-
-    <div class="history-box">
-     <table class="score-history">
-      <thead>
-       <tr>
-        <th>Aufn.</th>
-        <th>Score</th>
-        <th>Rest</th>
-        <th>CO</th>
-       </tr>
-      </thead>
-      <tbody>${rows.join("")}</tbody>
-     </table>
-    </div>
-   </div>
-  `;
- }).join("");
-
- const pending=state.pendingCheckout!==null;
- const legFinished=state.legFinished!==null;
+ const legFinished=
+  state.legFinished!==null;
 
  document.getElementById("checkoutArea")
   .classList.toggle("visible",pending);
 
- const checkoutButtons=document.getElementById("checkoutButtons");
+ const checkoutButtons=
+  document.getElementById("checkoutButtons");
+
  checkoutButtons.innerHTML="";
 
  if(pending){
-  legalCheckoutDarts(state.pendingCheckout.checkoutScore)
-   .forEach(darts=>{
-    const button=document.createElement("button");
+  legalCheckoutDarts(
+   state.pendingCheckout.checkoutScore
+  ).forEach(darts=>{
+   const button=document.createElement("button");
 
-    button.textContent=darts;
-    button.disabled=botThinking||state.matchOver;
-    button.onclick=()=>completeCheckout(darts);
+   button.textContent=darts;
+   button.disabled=
+    botThinking||
+    state.matchOver;
 
-    checkoutButtons.appendChild(button);
-   });
+   button.onclick=
+    ()=>completeCheckout(darts);
+
+   checkoutButtons.appendChild(button);
+  });
  }
 
- const nextArea=document.getElementById("legNextArea");
- const nextTitle=document.getElementById("legNextTitle");
+ const nextArea=
+  document.getElementById("legNextArea");
 
- nextArea.classList.toggle("visible",legFinished);
+ const nextTitle=
+  document.getElementById("legNextTitle");
+
+ nextArea.classList.toggle(
+  "visible",
+  legFinished
+ );
 
  if(legFinished){
-  const winner=state.players[state.legFinished.winnerIndex];
+  const winner=
+   state.players[
+    state.legFinished.winnerIndex
+   ];
 
   nextTitle.textContent=
-   winner.name+" gewinnt das Leg – bereit für das nächste Leg?";
+   winner.name+
+   " gewinnt das Leg – bereit für das nächste Leg?";
  }
 
- document.getElementById("inputDisplay").textContent=
-  currentInput===""?"000":currentInput.padStart(3,"0");
+ document.getElementById("inputDisplay")
+  .textContent=
+   currentInput===""?
+   "000":
+   currentInput.padStart(3,"0");
 
  document.querySelectorAll(
-  ".keypad button,.quick-scores button,.action-row button"
+  ".keypad button,"+
+  ".quick-scores button,"+
+  ".action-row button"
  ).forEach(button=>{
   button.disabled=
    botThinking||
@@ -1143,7 +1248,45 @@ function submitScore(){
  processScore(Number(currentInput||0));
 }
 
-function processScore(score){
+function submitRestScore(){
+ if(
+  !state.started||
+  state.matchOver||
+  state.pendingCheckout||
+  state.legFinished||
+  isCurrentPlayerBot()
+ )return;
+
+ const restScore=Number(currentInput||0);
+ processRestScore(restScore);
+}
+
+function processRestScore(restScore){
+ const player=
+  state.players[state.currentPlayer];
+
+ if(!player)return;
+
+ if(
+  !Number.isInteger(restScore)||
+  restScore<0||
+  restScore>player.score
+ ){
+  alert(
+   "Der Restscore muss zwischen 0 und "+
+   player.score+
+   " liegen."
+  );
+  return;
+ }
+
+ const scoredPoints=
+  player.score-restScore;
+
+ processScore(scoredPoints,restScore);
+}
+
+function processScore(score,forcedRest=null){
  if(
   !state.started||
   state.matchOver||
@@ -1151,13 +1294,33 @@ function processScore(score){
   state.legFinished
  )return;
 
- if(score<0||score>180)return;
+ if(
+  !Number.isInteger(score)||
+  score<0||
+  score>180
+ )return;
+
+ const player=
+  state.players[state.currentPlayer];
+
+ const oldScore=player.score;
+
+ let newScore=oldScore-score;
+
+ if(forcedRest!==null){
+  if(
+   !Number.isInteger(forcedRest)||
+   forcedRest<0||
+   forcedRest>oldScore
+  )return;
+
+  newScore=forcedRest;
+ }
+
+ const actualScore=oldScore-newScore;
 
  saveHistory();
 
- const player=state.players[state.currentPlayer];
- const oldScore=player.score;
- const newScore=oldScore-score;
  const turnNumber=player.turns.length+1;
 
  if(oldScore>0&&oldScore<=170){
@@ -1172,7 +1335,7 @@ function processScore(score){
  if(bust){
   player.turns.push({
    number:turnNumber,
-   score,
+   score:actualScore,
    rest:oldScore,
    bust:true,
    checkoutDarts:null
@@ -1180,6 +1343,7 @@ function processScore(score){
 
   player.matchStats.totalTurns++;
   player.matchStats.totalDarts+=3;
+
   currentInput="";
   nextPlayer();
   return;
@@ -1189,24 +1353,28 @@ function processScore(score){
 
  player.turns.push({
   number:turnNumber,
-  score,
+  score:actualScore,
   rest:newScore,
   bust:false,
   checkoutDarts:null
  });
 
- player.matchStats.totalPoints+=score;
+ player.matchStats.totalPoints+=actualScore;
  player.matchStats.totalTurns++;
  player.matchStats.totalDarts+=3;
- player.matchStats.highestScore=
-  Math.max(player.matchStats.highestScore,score);
 
- if(score>=100)player.matchStats.scores100++;
- if(score>=140)player.matchStats.scores140++;
- if(score===180)player.matchStats.scores180++;
+ player.matchStats.highestScore=
+  Math.max(
+   player.matchStats.highestScore,
+   actualScore
+  );
+
+ if(actualScore>=100)player.matchStats.scores100++;
+ if(actualScore>=140)player.matchStats.scores140++;
+ if(actualScore===180)player.matchStats.scores180++;
 
  if(player.turns.length<=3){
-  player.matchStats.firstNinePoints+=score;
+  player.matchStats.firstNinePoints+=actualScore;
   player.matchStats.firstNineTurns++;
  }
 
@@ -1229,7 +1397,10 @@ function processScore(score){
      player.difficulty
     );
 
-    setTimeout(()=>completeCheckout(darts),250);
+    setTimeout(
+     ()=>completeCheckout(darts),
+     250
+    );
    }
   }
 
@@ -1255,19 +1426,27 @@ function chooseBotCheckoutDarts(options,difficulty){
    options[options.length-1];
  }
 
- return options[Math.floor(Math.random()*options.length)];
+ return options[
+  Math.floor(Math.random()*options.length)
+ ];
 }
 
 function completeCheckout(darts){
  if(!state.pendingCheckout||state.matchOver)return;
 
- const checkoutScore=state.pendingCheckout.checkoutScore;
- const legalOptions=legalCheckoutDarts(checkoutScore);
+ const checkoutScore=
+  state.pendingCheckout.checkoutScore;
+
+ const legalOptions=
+  legalCheckoutDarts(checkoutScore);
 
  if(!legalOptions.includes(darts))return;
 
- const player=state.players[state.pendingCheckout.playerIndex];
- const turn=player.turns[state.pendingCheckout.turnIndex];
+ const player=
+  state.players[state.pendingCheckout.playerIndex];
+
+ const turn=
+  player.turns[state.pendingCheckout.turnIndex];
 
  if(!turn){
   state.pendingCheckout=null;
@@ -1276,24 +1455,32 @@ function completeCheckout(darts){
  }
 
  turn.checkoutDarts=darts;
+
  player.checkoutStats.hits++;
  player.checkoutStats["darts"+darts]++;
  player.checkoutStats.totalDarts+=darts;
+
  player.matchStats.totalDarts-=3-darts;
+
  player.matchStats.highestCheckout=
-  Math.max(player.matchStats.highestCheckout,checkoutScore);
+  Math.max(
+   player.matchStats.highestCheckout,
+   checkoutScore
+  );
 
  finishLeg(player);
 }
 
 function finishLeg(player){
- const previousLegDarts=player.legResults.reduce(
-  (sum,leg)=>sum+leg.darts,
-  0
- );
+ const previousLegDarts=
+  player.legResults.reduce(
+   (sum,leg)=>sum+leg.darts,
+   0
+  );
 
  const dartsInLeg=
-  player.matchStats.totalDarts-previousLegDarts;
+  player.matchStats.totalDarts-
+  previousLegDarts;
 
  player.legResults.push({
   darts:dartsInLeg,
@@ -1322,7 +1509,6 @@ function finishLeg(player){
    state.pendingCheckout=null;
    state.legFinished=null;
    botThinking=false;
-
    render();
    showStatistics();
    return;
@@ -1331,7 +1517,8 @@ function finishLeg(player){
 
  if(state.starterRotation){
   state.startingPlayer=
-   (state.startingPlayer+1)%state.players.length;
+   (state.startingPlayer+1)%
+   state.players.length;
  }
 
  state.pendingCheckout=null;
@@ -1342,6 +1529,7 @@ function finishLeg(player){
 
  botThinking=false;
  currentInput="";
+
  render();
 }
 
@@ -1369,7 +1557,8 @@ function resetLegForAllPlayers(){
 
 function nextPlayer(){
  state.currentPlayer=
-  (state.currentPlayer+1)%state.players.length;
+  (state.currentPlayer+1)%
+  state.players.length;
 
  currentInput="";
  botThinking=false;
@@ -1385,7 +1574,8 @@ function randomNormal(){
  while(u===0)u=Math.random();
  while(v===0)v=Math.random();
 
- return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
+ return Math.sqrt(-2*Math.log(u))*
+  Math.cos(2*Math.PI*v);
 }
 
 function clamp(value,min,max){
@@ -1393,7 +1583,11 @@ function clamp(value,min,max){
 }
 
 function botPerformanceFactor(){
- return clamp(1+randomNormal()*.13,.55,1.45);
+ return clamp(
+  1+randomNormal()*.13,
+  .55,
+  1.45
+ );
 }
 
 function randomDartScore(profile,performance){
@@ -1401,14 +1595,20 @@ function randomDartScore(profile,performance){
 
  const raw=
   averagePerDart*performance+
-  randomNormal()*averagePerDart*profile.variation;
+  randomNormal()*
+  averagePerDart*
+  profile.variation;
 
  return clamp(Math.round(raw),0,60);
 }
 
 function calculateBotScore(rest,difficulty){
- const profile=BOT_PROFILES[difficulty]||BOT_PROFILES[3];
- const performance=botPerformanceFactor();
+ const profile=
+  BOT_PROFILES[difficulty]||
+  BOT_PROFILES[3];
+
+ const performance=
+  botPerformanceFactor();
 
  if(
   rest>1&&
@@ -1432,7 +1632,8 @@ function calculateBotScore(rest,difficulty){
 }
 
 function isCurrentPlayerBot(){
- const player=state.players[state.currentPlayer];
+ const player=
+  state.players[state.currentPlayer];
 
  return player&&player.isBot===true;
 }
@@ -1469,12 +1670,14 @@ function playBotTurn(){
   return;
  }
 
- const bot=state.players[state.currentPlayer];
+ const bot=
+  state.players[state.currentPlayer];
 
- const score=calculateBotScore(
-  bot.score,
-  bot.difficulty
- );
+ const score=
+  calculateBotScore(
+   bot.score,
+   bot.difficulty
+  );
 
  botThinking=false;
  processScore(score);
@@ -1488,12 +1691,16 @@ function saveHistory(){
   starterRotation:state.starterRotation,
   matchOver:state.matchOver,
   pendingCheckout:state.pendingCheckout?
-   JSON.parse(JSON.stringify(state.pendingCheckout)):null,
+   JSON.parse(JSON.stringify(state.pendingCheckout)):
+   null,
   legFinished:state.legFinished?
-   JSON.parse(JSON.stringify(state.legFinished)):null
+   JSON.parse(JSON.stringify(state.legFinished)):
+   null
  });
 
- if(state.history.length>100)state.history.shift();
+ if(state.history.length>100){
+  state.history.shift();
+ }
 }
 
 function undo(){
@@ -1515,29 +1722,40 @@ function undo(){
 
   state.players=previous.players;
   state.currentPlayer=previous.currentPlayer;
+
   state.startingPlayer=
    typeof previous.startingPlayer==="number"?
-    previous.startingPlayer:
-    0;
+   previous.startingPlayer:
+   0;
 
   state.starterRotation=
    typeof previous.starterRotation==="boolean"?
-    previous.starterRotation:
-    true;
+   previous.starterRotation:
+   true;
 
   state.matchOver=previous.matchOver;
-  state.pendingCheckout=previous.pendingCheckout||null;
-  state.legFinished=previous.legFinished||null;
- }while(isCurrentPlayerBot()&&state.history.length>0);
+  state.pendingCheckout=
+   previous.pendingCheckout||null;
+  state.legFinished=
+   previous.legFinished||null;
+
+ }while(
+  isCurrentPlayerBot()&&
+  state.history.length>0
+ );
 
  currentInput="";
  render();
 
- if(isCurrentPlayerBot())startBotIfNeeded();
+ if(isCurrentPlayerBot()){
+  startBotIfNeeded();
+ }
 }
 
 function newGame(){
- if(!confirm("Das aktuelle Spiel wirklich beenden?"))return;
+ if(!confirm(
+  "Das aktuelle Spiel wirklich beenden?"
+ ))return;
 
  if(botTimer){
   clearTimeout(botTimer);
@@ -1554,9 +1772,14 @@ function newGame(){
 
  localStorage.removeItem("dartscorer");
 
- document.getElementById("gameScreen").classList.add("hidden");
- document.getElementById("statsScreen").classList.add("hidden");
- document.getElementById("setupScreen").classList.remove("hidden");
+ document.getElementById("gameScreen")
+  .classList.add("hidden");
+
+ document.getElementById("statsScreen")
+  .classList.add("hidden");
+
+ document.getElementById("setupScreen")
+  .classList.remove("hidden");
 
  updatePlayerFields();
 }
@@ -1608,7 +1831,10 @@ function averageLegDarts(player){
  if(!legs.length)return"0.00";
 
  return formatNumber(
-  legs.reduce((sum,darts)=>sum+darts,0)/legs.length
+  legs.reduce(
+   (sum,darts)=>sum+darts,
+   0
+  )/legs.length
  );
 }
 
@@ -1626,29 +1852,96 @@ function showStatistics(){
    <thead>
     <tr>
      <th>Statistik</th>
-     ${state.players.map(player=>
-      `<th>${escapeHtml(player.name)}</th>`
-     ).join("")}
+     ${
+      state.players.map(
+       player=>
+        `<th>${escapeHtml(player.name)}</th>`
+      ).join("")
+     }
     </tr>
    </thead>
 
    <tbody>
-    ${statRow("3-Dart-Average",player=>threeDartAverage(player))}
-    ${statRow("First-9-Average",player=>firstNineAverage(player))}
-    ${statRow("Checkoutquote",player=>checkoutPercentage(player))}
-    ${statRow("Checkout-Versuche",player=>player.checkoutStats.attempts)}
-    ${statRow("Checkouts",player=>player.checkoutStats.hits)}
-    ${statRow("1-Dart-Checkouts",player=>player.checkoutStats.darts1)}
-    ${statRow("2-Dart-Checkouts",player=>player.checkoutStats.darts2)}
-    ${statRow("3-Dart-Checkouts",player=>player.checkoutStats.darts3)}
-    ${statRow("Höchste Aufnahme",player=>player.matchStats.highestScore)}
-    ${statRow("High Finish",player=>player.matchStats.highestCheckout)}
-    ${statRow("180er",player=>player.matchStats.scores180)}
-    ${statRow("140+ Aufnahmen",player=>player.matchStats.scores140)}
-    ${statRow("100+ Aufnahmen",player=>player.matchStats.scores100)}
-    ${statRow("Gewonnene Legs",player=>player.matchStats.legsWon)}
-    ${statRow("Gewonnene Sätze",player=>player.matchStats.setsWon)}
-    ${statRow("Durchschnittliche Leg-Darts",player=>averageLegDarts(player))}
+    ${statRow(
+     "3-Dart-Average",
+     player=>threeDartAverage(player)
+    )}
+
+    ${statRow(
+     "First-9-Average",
+     player=>firstNineAverage(player)
+    )}
+
+    ${statRow(
+     "Checkoutquote",
+     player=>checkoutPercentage(player)
+    )}
+
+    ${statRow(
+     "Checkout-Versuche",
+     player=>player.checkoutStats.attempts
+    )}
+
+    ${statRow(
+     "Checkouts",
+     player=>player.checkoutStats.hits
+    )}
+
+    ${statRow(
+     "1-Dart-Checkouts",
+     player=>player.checkoutStats.darts1
+    )}
+
+    ${statRow(
+     "2-Dart-Checkouts",
+     player=>player.checkoutStats.darts2
+    )}
+
+    ${statRow(
+     "3-Dart-Checkouts",
+     player=>player.checkoutStats.darts3
+    )}
+
+    ${statRow(
+     "Höchste Aufnahme",
+     player=>player.matchStats.highestScore
+    )}
+
+    ${statRow(
+     "High Finish",
+     player=>player.matchStats.highestCheckout
+    )}
+
+    ${statRow(
+     "180er",
+     player=>player.matchStats.scores180
+    )}
+
+    ${statRow(
+     "140+ Aufnahmen",
+     player=>player.matchStats.scores140
+    )}
+
+    ${statRow(
+     "100+ Aufnahmen",
+     player=>player.matchStats.scores100
+    )}
+
+    ${statRow(
+     "Gewonnene Legs",
+     player=>player.matchStats.legsWon
+    )}
+
+    ${statRow(
+     "Gewonnene Sätze",
+     player=>player.matchStats.setsWon
+    )}
+
+    ${statRow(
+     "Durchschnittliche Leg-Darts",
+     player=>averageLegDarts(player)
+    )}
+
     ${statRow(
      "Bestes Leg",
      player=>player.matchStats.bestLeg===null?
@@ -1659,31 +1952,43 @@ function showStatistics(){
   </table>
  `;
 
- document.getElementById("gameScreen").classList.add("hidden");
- document.getElementById("setupScreen").classList.add("hidden");
- document.getElementById("statsScreen").classList.remove("hidden");
+ document.getElementById("gameScreen")
+  .classList.add("hidden");
+
+ document.getElementById("setupScreen")
+  .classList.add("hidden");
+
+ document.getElementById("statsScreen")
+  .classList.remove("hidden");
 }
 
 function statRow(label,callback){
  return`
   <tr>
    <td>${label}</td>
-   ${state.players.map(player=>
-    `<td>${callback(player)}</td>`
-   ).join("")}
+   ${
+    state.players.map(
+     player=>
+      `<td>${callback(player)}</td>`
+    ).join("")
+   }
   </tr>
  `;
 }
 
 function closeStatistics(){
- document.getElementById("statsScreen").classList.add("hidden");
- document.getElementById("gameScreen").classList.remove("hidden");
+ document.getElementById("statsScreen")
+  .classList.add("hidden");
+
+ document.getElementById("gameScreen")
+  .classList.remove("hidden");
 
  render();
 }
 
 function loadState(){
- const saved=localStorage.getItem("dartscorer");
+ const saved=
+  localStorage.getItem("dartscorer");
 
  if(!saved){
   updatePlayerFields();
@@ -1706,8 +2011,15 @@ function loadState(){
 
   if(!state.history)state.history=[];
   if(!state.legFinished)state.legFinished=null;
-  if(typeof state.setsToWin!=="number")state.setsToWin=1;
-  if(typeof state.legsToWin!=="number")state.legsToWin=3;
+
+  if(typeof state.setsToWin!=="number"){
+   state.setsToWin=1;
+  }
+
+  if(typeof state.legsToWin!=="number"){
+   state.legsToWin=3;
+  }
+
   if(typeof state.startingPlayer!=="number"){
    state.startingPlayer=0;
   }
@@ -1724,17 +2036,22 @@ function loadState(){
   }
 
   state.players.forEach(player=>{
-   if(!Array.isArray(player.turns))player.turns=[];
+   if(!Array.isArray(player.turns)){
+    player.turns=[];
+   }
+
    if(!Array.isArray(player.legResults)){
     player.legResults=[];
    }
 
    if(!player.checkoutStats){
-    player.checkoutStats=emptyCheckoutStats();
+    player.checkoutStats=
+     emptyCheckoutStats();
    }
 
    if(!player.matchStats){
-    player.matchStats=emptyMatchStats();
+    player.matchStats=
+     emptyMatchStats();
    }
 
    player.turns.forEach(turn=>{
@@ -1744,12 +2061,18 @@ function loadState(){
    });
   });
 
-  document.getElementById("setupScreen").classList.add("hidden");
-  document.getElementById("statsScreen").classList.add("hidden");
-  document.getElementById("gameScreen").classList.remove("hidden");
+  document.getElementById("setupScreen")
+   .classList.add("hidden");
+
+  document.getElementById("statsScreen")
+   .classList.add("hidden");
+
+  document.getElementById("gameScreen")
+   .classList.remove("hidden");
 
   render();
   startBotIfNeeded();
+
  }catch(error){
   localStorage.removeItem("dartscorer");
   updatePlayerFields();
@@ -1774,19 +2097,26 @@ document.addEventListener("keydown",event=>{
   isCurrentPlayerBot()
  )return;
 
- if(/^[0-9]$/.test(event.key))pressKey(event.key);
- if(event.key==="Backspace")backspace();
- if(event.key==="Escape")clearInput();
- if(event.key==="Enter")submitScore();
+ if(/^[0-9]$/.test(event.key)){
+  pressKey(event.key);
+ }
+
+ if(event.key==="Backspace"){
+  backspace();
+ }
+
+ if(event.key==="Escape"){
+  clearInput();
+ }
+
+ if(event.key==="Enter"){
+  submitScore();
+ }
 });
 
 updatePlayerFields();
 loadState();
 </script>
+
 </body>
 </html>
-
-
-
-
-
