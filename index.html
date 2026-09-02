@@ -95,8 +95,9 @@ input[type=checkbox]{
  transform:scale(1.1);
 }
 
+/* Alle Tasten wurden ausschließlich vertikal um den Faktor 1,5 vergrößert. */
 button{
- min-height:40px;
+ min-height:60px;
  padding:6px;
  border:0;
  border-radius:7px;
@@ -192,11 +193,11 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .player-card.active{border-color:var(--green)}
 
 .player-name{
- height:18px;
+ height:23px;
  overflow:hidden;
  color:var(--muted);
- font-size:14px;
- line-height:18px;
+ font-size:18px;
+ line-height:23px;
  text-overflow:ellipsis;
  white-space:nowrap;
 }
@@ -205,35 +206,35 @@ button:disabled{opacity:.45;cursor:not-allowed}
  display:inline-block;
  margin-left:4px;
  color:var(--gold);
- font-size:10px;
+ font-size:12px;
 }
 
 .player-score{
- height:52px;
- font-size:52px;
+ height:68px;
+ font-size:68px;
  font-weight:bold;
- line-height:52px;
+ line-height:68px;
 }
 
 .player-legs{
- height:18px;
+ height:22px;
  color:var(--muted);
- font-size:11px;
- line-height:18px;
+ font-size:14px;
+ line-height:22px;
 }
 
 .history-title{
- height:20px;
+ height:25px;
  margin-top:2px;
  color:var(--muted);
  text-align:left;
- font-size:13px;
+ font-size:16px;
  font-weight:bold;
- line-height:20px;
+ line-height:25px;
 }
 
 .history-box{
- height:calc(100% - 110px);
+ height:calc(100% - 140px);
  min-height:0;
  overflow:hidden;
  border-radius:5px;
@@ -244,14 +245,14 @@ button:disabled{opacity:.45;cursor:not-allowed}
  width:100%;
  border-collapse:collapse;
  table-layout:fixed;
- font-size:17px;
+ font-size:20px;
  line-height:1.1;
  text-align:left;
 }
 
 .score-history th,
 .score-history td{
- height:24px;
+ height:30px;
  padding:2px 4px;
  overflow:hidden;
  border-bottom:1px solid var(--line);
@@ -262,7 +263,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .score-history th{
  background:rgba(0,0,0,.18);
  color:var(--muted);
- font-size:12px;
+ font-size:14px;
  font-weight:normal;
 }
 
@@ -322,7 +323,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 }
 
 .keypad button{
- min-height:69px;
+ min-height:104px;
  font-size:20px;
 }
 
@@ -330,10 +331,11 @@ button:disabled{opacity:.45;cursor:not-allowed}
  display:grid;
  grid-template-columns:repeat(3,1fr);
  gap:4px;
+ margin-top:42px;
 }
 
 .quick-scores button{
- min-height:72px;
+ min-height:108px;
  background:var(--purple);
  font-size:16px;
 }
@@ -360,7 +362,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 }
 
 .checkout-buttons button{
- min-height:60px;
+ min-height:90px;
  background:var(--gold);
  color:#211700;
  font-size:15px;
@@ -383,7 +385,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 
 .next-leg-button{
  width:100%;
- min-height:40px;
+ min-height:60px;
  background:var(--gold);
  color:#211700;
  font-size:15px;
@@ -397,7 +399,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 }
 
 .action-row button{
- min-height:63px;
+ min-height:95px;
  font-size:14px;
 }
 
@@ -457,44 +459,42 @@ button:disabled{opacity:.45;cursor:not-allowed}
  }
 
  #gameScreen{gap:4px}
-
  #gameScreen>.card:first-child{flex-basis:35%}
  #gameScreen>.card:last-child{flex-basis:65%}
-
  .card{padding:5px}
  .player-card{padding:3px}
 
  .player-name{
-  height:15px;
-  font-size:11px;
-  line-height:15px;
+  height:19px;
+  font-size:15px;
+  line-height:19px;
  }
 
  .player-score{
-  height:42px;
-  font-size:42px;
-  line-height:42px;
+  height:55px;
+  font-size:55px;
+  line-height:55px;
  }
 
  .player-legs{
-  height:15px;
-  font-size:9px;
-  line-height:15px;
+  height:18px;
+  font-size:12px;
+  line-height:18px;
  }
 
  .history-title{
-  height:16px;
-  font-size:10px;
-  line-height:16px;
+  height:21px;
+  font-size:13px;
+  line-height:21px;
  }
 
- .history-box{height:calc(100% - 91px)}
- .score-history{font-size:15px}
- .score-history th{font-size:10px}
+ .history-box{height:calc(100% - 113px)}
+ .score-history{font-size:18px}
+ .score-history th{font-size:12px}
 
  .score-history th,
  .score-history td{
-  height:20px;
+  height:27px;
   padding:1px 2px;
  }
 
@@ -508,14 +508,17 @@ button:disabled{opacity:.45;cursor:not-allowed}
  .keypad{gap:2px}
 
  .keypad button{
-  min-height:60px;
+  min-height:90px;
   font-size:18px;
  }
 
- .quick-scores{gap:3px}
+ .quick-scores{
+  gap:3px;
+  margin-top:35px;
+ }
 
  .quick-scores button{
-  min-height:62px;
+  min-height:93px;
   font-size:14px;
  }
 
@@ -523,14 +526,14 @@ button:disabled{opacity:.45;cursor:not-allowed}
  .checkout-buttons{gap:2px}
 
  .checkout-buttons button{
-  min-height:51px;
+  min-height:77px;
   font-size:13px;
  }
 
  .next-leg-area{margin-top:3px}
 
  .next-leg-button{
-  min-height:34px;
+  min-height:51px;
   font-size:13px;
  }
 
@@ -540,12 +543,12 @@ button:disabled{opacity:.45;cursor:not-allowed}
  }
 
  .action-row button{
-  min-height:54px;
+  min-height:81px;
   font-size:12px;
  }
 
  .danger{
-  min-height:42px;
+  min-height:63px;
   font-size:12px;
  }
 }
@@ -652,10 +655,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
     </div>
 
     <div id="legNextArea" class="leg-next-area">
-     <div id="legNextTitle" class="leg-next-title">
-      Leg beendet
-     </div>
-
+     <div id="legNextTitle" class="leg-next-title">Leg beendet</div>
      <button class="next-leg-button" onclick="startNextLeg()">
       Nächstes Leg beginnen
      </button>
@@ -666,10 +666,13 @@ button:disabled{opacity:.45;cursor:not-allowed}
       Rückgängig
      </button>
 
-     <button class="primary" onclick="submitScore()">Eingeben</button>
-
+     <!-- Eingeben und Restscore wurden vertauscht. -->
      <button class="secondary" onclick="submitRestScore()">
       Restscore
+     </button>
+
+     <button class="primary" onclick="submitScore()">
+      Eingeben
      </button>
     </div>
    </div>
@@ -793,8 +796,7 @@ function updatePlayerFields(){
  for(let i=1;i<=count;i++){
   container.innerHTML+=`
    <label for="player${i}">Name Spieler ${i}</label>
-   <input type="text" id="player${i}"
-    value="Spieler ${i}" maxlength="20">
+   <input type="text" id="player${i}" value="Spieler ${i}" maxlength="20">
   `;
  }
 
@@ -813,7 +815,6 @@ function updatePlayerFields(){
 
 function toggleBotDifficulty(){
  const checked=document.getElementById("playerTwoBot").checked;
-
  document.getElementById("botDifficultyBox")
   .classList.toggle("hidden",!checked);
 }
@@ -901,9 +902,7 @@ function checkoutValues(doubleOut){
 
  const values=[];
 
- for(let i=1;i<=20;i++){
-  values.push(i*2);
- }
+ for(let i=1;i<=20;i++)values.push(i*2);
 
  values.push(50);
  return values;
@@ -914,9 +913,7 @@ function canFinish(score,darts,doubleOut){
 
  const finals=checkoutValues(doubleOut);
 
- if(darts===1){
-  return finals.includes(score);
- }
+ if(darts===1)return finals.includes(score);
 
  let reachable=new Set([0]);
 
@@ -936,11 +933,9 @@ function canFinish(score,darts,doubleOut){
 }
 
 function legalCheckoutDarts(score){
- return[1,2,3].filter(darts=>canFinish(
-  score,
-  darts,
-  state.doubleOut
- ));
+ return[1,2,3].filter(darts=>
+  canFinish(score,darts,state.doubleOut)
+ );
 }
 
 function render(){
@@ -1020,11 +1015,9 @@ function render(){
   legalCheckoutDarts(state.pendingCheckout.checkoutScore)
    .forEach(darts=>{
     const button=document.createElement("button");
-
     button.textContent=darts;
     button.disabled=botThinking||state.matchOver;
     button.onclick=()=>completeCheckout(darts);
-
     checkoutButtons.appendChild(button);
    });
  }
@@ -1057,9 +1050,6 @@ function render(){
    isCurrentPlayerBot();
  });
 
- /*
-  * Rückgängig bleibt während der Checkout-Auswahl verfügbar.
-  */
  document.getElementById("undoButton").disabled=
   botThinking||state.history.length===0;
 
@@ -1187,7 +1177,6 @@ function processScore(score,forcedRest=null){
 
  const player=state.players[state.currentPlayer];
  const oldScore=player.score;
-
  let newScore=oldScore-score;
 
  if(forcedRest!==null){
@@ -1202,10 +1191,6 @@ function processScore(score,forcedRest=null){
 
  const actualScore=oldScore-newScore;
 
- /*
-  * Vor jeder Aufnahme wird der komplette Spielstand gespeichert.
-  * Damit kann auch eine Checkout-Auswahl rückgängig gemacht werden.
-  */
  saveHistory();
 
  const turnNumber=player.turns.length+1;
@@ -1334,24 +1319,12 @@ function completeCheckout(darts){
  player.checkoutStats.totalDarts+=darts;
 
  player.matchStats.totalDarts-=3-darts;
-
  player.matchStats.highestCheckout=
   Math.max(player.matchStats.highestCheckout,checkoutScore);
 
  finishLeg(player);
 }
 
-/*
- * Ermittelt die Darts des gerade beendeten Legs ausschließlich
- * aus den Aufnahmen des Spielers, der das Leg gewonnen hat.
- *
- * Jede normale Aufnahme zählt mit drei Darts.
- * Die Checkout-Aufnahme wird auf die tatsächlich ausgewählten
- * Checkout-Darts korrigiert.
- *
- * Dadurch werden Aufnahmen aus verlorenen Legs niemals
- * in die Leg-Darts-Statistik dieses Spielers übernommen.
- */
 function calculateDartsFromTurns(player){
  return player.turns.reduce((total,turn)=>{
   if(turn.checkoutDarts){
@@ -1363,14 +1336,6 @@ function calculateDartsFromTurns(player){
 }
 
 function finishLeg(player){
- /*
-  * Hier werden nur die Aufnahmen des Leg-Siegers ausgewertet.
-  * Beispiel:
-  * Spieler 1 gewinnt mit 30 Darts, verliert ein Leg,
-  * gewinnt danach mit 40 Darts.
-  * Für Spieler 1 werden dadurch ausschließlich 30 und 40
-  * gespeichert. Der Durchschnitt beträgt also 35 Darts.
-  */
  const dartsInLeg=calculateDartsFromTurns(player);
 
  player.legResults.push({
@@ -1400,7 +1365,6 @@ function finishLeg(player){
    state.pendingCheckout=null;
    state.legFinished=null;
    botThinking=false;
-
    render();
    showStatistics();
    return;
@@ -1420,7 +1384,6 @@ function finishLeg(player){
 
  botThinking=false;
  currentInput="";
-
  render();
 }
 
@@ -1582,9 +1545,7 @@ function saveHistory(){
    null
  });
 
- if(state.history.length>100){
-  state.history.shift();
- }
+ if(state.history.length>100)state.history.shift();
 }
 
 function undo(){
@@ -1606,7 +1567,6 @@ function undo(){
 
   state.players=previous.players;
   state.currentPlayer=previous.currentPlayer;
-
   state.startingPlayer=
    typeof previous.startingPlayer==="number"?
    previous.startingPlayer:
@@ -1629,9 +1589,7 @@ function undo(){
  currentInput="";
  render();
 
- if(isCurrentPlayerBot()){
-  startBotIfNeeded();
- }
+ if(isCurrentPlayerBot())startBotIfNeeded();
 }
 
 function newGame(){
@@ -1644,7 +1602,6 @@ function newGame(){
 
  botThinking=false;
  currentInput="";
-
  state.started=false;
  state.matchOver=false;
  state.pendingCheckout=null;
@@ -1746,10 +1703,7 @@ function showStatistics(){
     ${statRow("100+ Aufnahmen",player=>player.matchStats.scores100)}
     ${statRow("Gewonnene Legs",player=>player.matchStats.legsWon)}
     ${statRow("Gewonnene Sätze",player=>player.matchStats.setsWon)}
-    ${statRow(
-     "Darts pro Leg",
-     player=>averageLegDarts(player)
-    )}
+    ${statRow("Darts pro Leg",player=>averageLegDarts(player))}
     ${statRow(
      "Bestes Leg",
      player=>player.matchStats.bestLeg===null?
@@ -1779,7 +1733,6 @@ function statRow(label,callback){
 function closeStatistics(){
  document.getElementById("statsScreen").classList.add("hidden");
  document.getElementById("gameScreen").classList.remove("hidden");
-
  render();
 }
 
@@ -1808,18 +1761,9 @@ function loadState(){
   if(!state.history)state.history=[];
   if(!state.legFinished)state.legFinished=null;
 
-  if(typeof state.setsToWin!=="number"){
-   state.setsToWin=1;
-  }
-
-  if(typeof state.legsToWin!=="number"){
-   state.legsToWin=3;
-  }
-
-  if(typeof state.startingPlayer!=="number"){
-   state.startingPlayer=0;
-  }
-
+  if(typeof state.setsToWin!=="number")state.setsToWin=1;
+  if(typeof state.legsToWin!=="number")state.legsToWin=3;
+  if(typeof state.startingPlayer!=="number")state.startingPlayer=0;
   if(typeof state.starterRotation!=="boolean"){
    state.starterRotation=true;
   }
@@ -1832,13 +1776,8 @@ function loadState(){
   }
 
   state.players.forEach(player=>{
-   if(!Array.isArray(player.turns)){
-    player.turns=[];
-   }
-
-   if(!Array.isArray(player.legResults)){
-    player.legResults=[];
-   }
+   if(!Array.isArray(player.turns))player.turns=[];
+   if(!Array.isArray(player.legResults))player.legResults=[];
 
    if(!player.checkoutStats){
     player.checkoutStats=emptyCheckoutStats();
@@ -1886,21 +1825,10 @@ document.addEventListener("keydown",event=>{
   isCurrentPlayerBot()
  )return;
 
- if(/^[0-9]$/.test(event.key)){
-  pressKey(event.key);
- }
-
- if(event.key==="Backspace"){
-  backspace();
- }
-
- if(event.key==="Escape"){
-  clearInput();
- }
-
- if(event.key==="Enter"){
-  submitScore();
- }
+ if(/^[0-9]$/.test(event.key))pressKey(event.key);
+ if(event.key==="Backspace")backspace();
+ if(event.key==="Escape")clearInput();
+ if(event.key==="Enter")submitScore();
 });
 
 updatePlayerFields();
@@ -1908,3 +1836,4 @@ loadState();
 </script>
 </body>
 </html>
+
