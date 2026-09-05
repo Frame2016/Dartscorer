@@ -294,6 +294,16 @@ button:disabled{opacity:.45;cursor:not-allowed}
  overflow:hidden;
 }
 
+/* Schnelltasten links */
+.quick-column{
+ grid-column:1;
+}
+
+/* Eingabebereich rechts */
+.input-column{
+ grid-column:2;
+}
+
 .input-column,
 .quick-column{
  min-width:0;
@@ -301,7 +311,6 @@ button:disabled{opacity:.45;cursor:not-allowed}
  overflow:hidden;
 }
 
-/* Eingabedisplay: doppelte Höhe und doppelte Schriftgröße */
 .input-display{
  height:76px;
  margin-bottom:4px;
@@ -316,7 +325,6 @@ button:disabled{opacity:.45;cursor:not-allowed}
  line-height:64px;
 }
 
-/* Zahlen- und Schnelltasten: 10 % geringere vertikale Höhe */
 .keypad{
  display:grid;
  grid-template-columns:repeat(3,1fr);
@@ -428,6 +436,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
  padding:6px 4px;
  border-bottom:1px solid var(--line);
  text-align:left;
+ vertical-align:top;
 }
 
 .stats-table th{
@@ -438,6 +447,11 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .stats-table td:not(:first-child),
 .stats-table th:not(:first-child){
  text-align:right;
+}
+
+.leg-stat{
+ margin:2px 0;
+ white-space:nowrap;
 }
 
 .stat-note{
@@ -499,7 +513,6 @@ button:disabled{opacity:.45;cursor:not-allowed}
   padding:1px 2px;
  }
 
- /* Im kleinen Bildschirm ebenfalls doppelte Größe */
  .input-display{
   height:64px;
   margin-bottom:3px;
@@ -633,6 +646,26 @@ button:disabled{opacity:.45;cursor:not-allowed}
 
  <div class="card">
   <div class="scoring-area">
+
+   <!-- Schnelltasten links -->
+   <div class="quick-column">
+    <div class="quick-scores">
+     <button onclick="quickScore(26)">26</button>
+     <button onclick="quickScore(41)">41</button>
+     <button onclick="quickScore(45)">45</button>
+     <button onclick="quickScore(57)">57</button>
+     <button onclick="quickScore(60)">60</button>
+     <button onclick="quickScore(81)">81</button>
+     <button onclick="quickScore(85)">85</button>
+     <button onclick="quickScore(100)">100</button>
+     <button onclick="quickScore(140)">140</button>
+    </div>
+
+    <button class="danger" onclick="showStatistics()">Statistik</button>
+    <button class="danger" onclick="newGame()">Neues Spiel</button>
+   </div>
+
+   <!-- Zahlenblock rechts -->
    <div class="input-column">
     <div id="inputDisplay" class="input-display">000</div>
 
@@ -678,22 +711,6 @@ button:disabled{opacity:.45;cursor:not-allowed}
     </div>
    </div>
 
-   <div class="quick-column">
-    <div class="quick-scores">
-     <button onclick="quickScore(26)">26</button>
-     <button onclick="quickScore(41)">41</button>
-     <button onclick="quickScore(45)">45</button>
-     <button onclick="quickScore(57)">57</button>
-     <button onclick="quickScore(60)">60</button>
-     <button onclick="quickScore(81)">81</button>
-     <button onclick="quickScore(85)">85</button>
-     <button onclick="quickScore(100)">100</button>
-     <button onclick="quickScore(140)">140</button>
-    </div>
-
-    <button class="danger" onclick="showStatistics()">Statistik</button>
-    <button class="danger" onclick="newGame()">Neues Spiel</button>
-   </div>
   </div>
  </div>
 </section>
@@ -761,9 +778,13 @@ function emptyMatchStats(){
   firstNineTurns:0,
   highestScore:0,
   highestCheckout:0,
+
+  /* Neue, getrennte Aufnahmebereiche */
+  scores80:0,
   scores100:0,
   scores140:0,
   scores180:0,
+
   legsWon:0,
   setsWon:0,
   legDarts:[],
@@ -816,6 +837,7 @@ function updatePlayerFields(){
 
 function toggleBotDifficulty(){
  const checked=document.getElementById("playerTwoBot").checked;
+
  document.getElementById("botDifficultyBox")
   .classList.toggle("hidden",!checked);
 }
@@ -847,6 +869,7 @@ function startGame(){
 
  const isBot=count===2&&document.getElementById("playerTwoBot").checked;
  const botDifficulty=Number(document.getElementById("botDifficulty").value);
+
  const players=[];
 
  for(let i=1;i<=count;i++){
@@ -903,7 +926,9 @@ function checkoutValues(doubleOut){
 
  const values=[];
 
- for(let i=1;i<=20;i++)values.push(i*2);
+ for(let i=1;i<=20;i++){
+  values.push(i*2);
+ }
 
  values.push(50);
  return values;
@@ -939,36 +964,51 @@ function legalCheckoutDarts(score){
  );
 }
 
+/* Kumulative Darts für die Anzeige der letzten Aufnahmen */
+function dartsForTurn(player,index){
+ let total=0;
+
+ for(let i=0;i<=index;i++){
+  const turn=player.turns[i];
+  total+=turn&&turn.checkoutDarts
+   ?Number(turn.checkoutDarts)
+   :3;
+ }
+
+ return total;
+}
+
 function render(){
  if(!state.started)return;
 
  const playersContainer=document.getElementById("players");
 
- playersContainer.className="player-grid players-"+state.players.length;
+ playersContainer.className=
+  "player-grid players-"+state.players.length;
 
  playersContainer.innerHTML=state.players.map((player,index)=>{
-  const recent=player.turns.slice(-5);
+  const start=Math.max(0,player.turns.length-5);
   const rows=[];
 
-  for(let i=0;i<5;i++){
-   const turn=recent[i];
+  for(let i=start;i<player.turns.length;i++){
+   const turn=player.turns[i];
 
-   if(!turn){
-    rows.push("<tr><td></td><td></td><td></td><td></td></tr>");
-   }else{
-    rows.push(`
-     <tr>
-      <td>${turn.number}</td>
-      <td class="${turn.bust?"bust":""}">
-       ${turn.bust?"Bust":turn.score}
-      </td>
-      <td>${turn.rest}</td>
-      <td class="${turn.checkoutDarts?"checkout-mark":""}">
-       ${turn.checkoutDarts?turn.checkoutDarts+"D":""}
-      </td>
-     </tr>
-    `);
-   }
+   rows.push(`
+    <tr>
+     <td>${dartsForTurn(player,i)}</td>
+     <td class="${turn.bust?"bust":""}">
+      ${turn.bust?"Bust":turn.score}
+     </td>
+     <td>${turn.rest}</td>
+     <td class="${turn.checkoutDarts?"checkout-mark":""}">
+      ${turn.checkoutDarts?turn.checkoutDarts+"D":""}
+     </td>
+    </tr>
+   `);
+  }
+
+  while(rows.length<5){
+   rows.unshift("<tr><td></td><td></td><td></td><td></td></tr>");
   }
 
   return`
@@ -990,7 +1030,7 @@ function render(){
      <table class="score-history">
       <thead>
        <tr>
-        <th>Aufn.</th>
+        <th>Darts</th>
         <th>Score</th>
         <th>Rest</th>
         <th>CO</th>
@@ -1016,9 +1056,11 @@ function render(){
   legalCheckoutDarts(state.pendingCheckout.checkoutScore)
    .forEach(darts=>{
     const button=document.createElement("button");
+
     button.textContent=darts;
     button.disabled=botThinking||state.matchOver;
     button.onclick=()=>completeCheckout(darts);
+
     checkoutButtons.appendChild(button);
    });
  }
@@ -1178,6 +1220,7 @@ function processScore(score,forcedRest=null){
 
  const player=state.players[state.currentPlayer];
  const oldScore=player.score;
+
  let newScore=oldScore-score;
 
  if(forcedRest!==null){
@@ -1239,9 +1282,28 @@ function processScore(score,forcedRest=null){
  player.matchStats.highestScore=
   Math.max(player.matchStats.highestScore,actualScore);
 
- if(actualScore>=100)player.matchStats.scores100++;
- if(actualScore>=140)player.matchStats.scores140++;
- if(actualScore===180)player.matchStats.scores180++;
+ /*
+  Getrennte Kategorien:
+  80–99
+  100–139
+  140+
+  Eine 180 zählt daher ausschließlich bei 140+.
+ */
+ if(actualScore>=80&&actualScore<=99){
+  player.matchStats.scores80++;
+ }
+
+ if(actualScore>=100&&actualScore<=139){
+  player.matchStats.scores100++;
+ }
+
+ if(actualScore>=140){
+  player.matchStats.scores140++;
+ }
+
+ if(actualScore===180){
+  player.matchStats.scores180++;
+ }
 
  if(player.turns.length<=3){
   player.matchStats.firstNinePoints+=actualScore;
@@ -1282,15 +1344,15 @@ function chooseBotCheckoutDarts(options,difficulty){
  if(difficulty>=5)return options[0];
 
  if(difficulty>=4){
-  return Math.random()<.75?
-   options[0]:
-   options[options.length-1];
+  return Math.random()<.75
+   ?options[0]
+   :options[options.length-1];
  }
 
  if(difficulty>=3){
-  return Math.random()<.55?
-   options[0]:
-   options[options.length-1];
+  return Math.random()<.55
+   ?options[0]
+   :options[options.length-1];
  }
 
  return options[Math.floor(Math.random()*options.length)];
@@ -1320,12 +1382,17 @@ function completeCheckout(darts){
  player.checkoutStats.totalDarts+=darts;
 
  player.matchStats.totalDarts-=3-darts;
+
  player.matchStats.highestCheckout=
-  Math.max(player.matchStats.highestCheckout,checkoutScore);
+  Math.max(
+   player.matchStats.highestCheckout,
+   checkoutScore
+  );
 
  finishLeg(player);
 }
 
+/* Darts eines Spielers im aktuellen Leg */
 function calculateDartsFromTurns(player){
  return player.turns.reduce((total,turn)=>{
   if(turn.checkoutDarts){
@@ -1336,13 +1403,47 @@ function calculateDartsFromTurns(player){
  },0);
 }
 
+/* Punkte eines Spielers im aktuellen Leg */
+function calculateLegPoints(player){
+ return player.turns.reduce((total,turn)=>{
+  return total+(turn.bust?0:Number(turn.score)||0);
+ },0);
+}
+
+/*
+  Speichert für jeden Spieler das gerade beendete Leg.
+  Dadurch können später alle einzelnen Legs mit Average
+  und benötigten Darts angezeigt werden.
+*/
+function saveCurrentLegResults(winner){
+ const legNumber=
+  state.players.reduce(
+   (max,player)=>Math.max(max,player.legResults.length),
+   0
+  )+1;
+
+ state.players.forEach(player=>{
+  const darts=calculateDartsFromTurns(player);
+  const points=calculateLegPoints(player);
+  const average=darts>0?points/darts*3:0;
+
+  if(darts>0){
+   player.legResults.push({
+    leg:legNumber,
+    darts,
+    points,
+    average,
+    won:player===winner
+   });
+  }
+ });
+}
+
 function finishLeg(player){
  const dartsInLeg=calculateDartsFromTurns(player);
 
- player.legResults.push({
-  darts:dartsInLeg,
-  points:state.startScore
- });
+ /* Vor dem Zurücksetzen die Daten aller Spieler speichern */
+ saveCurrentLegResults(player);
 
  player.matchStats.legsWon++;
  player.matchStats.legDarts.push(dartsInLeg);
@@ -1366,6 +1467,7 @@ function finishLeg(player){
    state.pendingCheckout=null;
    state.legFinished=null;
    botThinking=false;
+
    render();
    showStatistics();
    return;
@@ -1385,6 +1487,7 @@ function finishLeg(player){
 
  botThinking=false;
  currentInput="";
+
  render();
 }
 
@@ -1485,6 +1588,7 @@ function calculateBotScore(rest,difficulty){
 
 function isCurrentPlayerBot(){
  const player=state.players[state.currentPlayer];
+
  return player&&player.isBot===true;
 }
 
@@ -1569,14 +1673,14 @@ function undo(){
   state.players=previous.players;
   state.currentPlayer=previous.currentPlayer;
   state.startingPlayer=
-   typeof previous.startingPlayer==="number"?
-   previous.startingPlayer:
-   0;
+   typeof previous.startingPlayer==="number"
+    ?previous.startingPlayer
+    :0;
 
   state.starterRotation=
-   typeof previous.starterRotation==="boolean"?
-   previous.starterRotation:
-   true;
+   typeof previous.starterRotation==="boolean"
+    ?previous.starterRotation
+    :true;
 
   state.matchOver=previous.matchOver;
   state.pendingCheckout=previous.pendingCheckout||null;
@@ -1603,6 +1707,7 @@ function newGame(){
 
  botThinking=false;
  currentInput="";
+
  state.started=false;
  state.matchOver=false;
  state.pendingCheckout=null;
@@ -1668,6 +1773,22 @@ function averageLegDarts(player){
  );
 }
 
+/* Darstellung der einzelnen Legs */
+function legResultsHtml(player){
+ if(!player.legResults||!player.legResults.length){
+  return "-";
+ }
+
+ return player.legResults.map(result=>`
+  <div class="leg-stat">
+   Leg ${result.leg}:
+   ${formatNumber(result.average)} Average,
+   ${result.darts} Darts
+   ${result.won?"✓":""}
+  </div>
+ `).join("");
+}
+
 function showStatistics(){
  if(!state.started)return;
 
@@ -1699,18 +1820,22 @@ function showStatistics(){
     ${statRow("3-Dart-Checkouts",player=>player.checkoutStats.darts3)}
     ${statRow("Höchste Aufnahme",player=>player.matchStats.highestScore)}
     ${statRow("High Finish",player=>player.matchStats.highestCheckout)}
-    ${statRow("180er",player=>player.matchStats.scores180)}
+
+    ${statRow("80–99 Aufnahmen",player=>player.matchStats.scores80)}
+    ${statRow("100–139 Aufnahmen",player=>player.matchStats.scores100)}
     ${statRow("140+ Aufnahmen",player=>player.matchStats.scores140)}
-    ${statRow("100+ Aufnahmen",player=>player.matchStats.scores100)}
+    ${statRow("180er",player=>player.matchStats.scores180)}
+
     ${statRow("Gewonnene Legs",player=>player.matchStats.legsWon)}
     ${statRow("Gewonnene Sätze",player=>player.matchStats.setsWon)}
-    ${statRow("Darts pro Leg",player=>averageLegDarts(player))}
+    ${statRow("Darts pro gewonnenem Leg",player=>averageLegDarts(player))}
     ${statRow(
      "Bestes Leg",
-     player=>player.matchStats.bestLeg===null?
-      "-":
-      player.matchStats.bestLeg+" Darts"
+     player=>player.matchStats.bestLeg===null
+      ?"-"
+      :player.matchStats.bestLeg+" Darts"
     )}
+    ${statRow("Einzelne Legs",player=>legResultsHtml(player))}
    </tbody>
   </table>
  `;
@@ -1734,6 +1859,7 @@ function statRow(label,callback){
 function closeStatistics(){
  document.getElementById("statsScreen").classList.add("hidden");
  document.getElementById("gameScreen").classList.remove("hidden");
+
  render();
 }
 
@@ -1788,9 +1914,57 @@ function loadState(){
     player.matchStats=emptyMatchStats();
    }
 
+   /*
+    Kompatibilität mit bereits gespeicherten Spielen,
+    die noch keine getrennten Kategorien hatten.
+   */
+   if(typeof player.matchStats.scores80!=="number"){
+    player.matchStats.scores80=0;
+   }
+
+   if(typeof player.matchStats.scores100!=="number"){
+    player.matchStats.scores100=0;
+   }
+
+   if(typeof player.matchStats.scores140!=="number"){
+    player.matchStats.scores140=0;
+   }
+
+   if(typeof player.matchStats.scores180!=="number"){
+    player.matchStats.scores180=0;
+   }
+
    player.turns.forEach(turn=>{
     if(typeof turn.checkoutDarts==="undefined"){
      turn.checkoutDarts=null;
+    }
+   });
+
+   /*
+    Ältere gespeicherte Leg-Daten erhalten einen
+    berechneten Average, falls noch keiner vorhanden ist.
+   */
+   player.legResults.forEach((result,index)=>{
+    if(typeof result.leg!=="number"){
+     result.leg=index+1;
+    }
+
+    if(typeof result.darts!=="number"){
+     result.darts=0;
+    }
+
+    if(typeof result.points!=="number"){
+     result.points=0;
+    }
+
+    if(typeof result.average!=="number"){
+     result.average=result.darts>0
+      ?result.points/result.darts*3
+      :0;
+    }
+
+    if(typeof result.won!=="boolean"){
+     result.won=false;
     }
    });
   });
